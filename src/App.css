@@ -1,0 +1,4 @@
+/*  Сюда будут импортироваться все стили */
+@import url(./vendor/normalize.css);
+@import url(./vendor/fonts/fonts.css);
+@import url(./blocks/header/header.css);
