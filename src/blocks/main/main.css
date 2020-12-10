@@ -1,0 +1,9 @@
+@import url(./__button/main__button.css);
+@import url(./__title/main__title.css);
+@import url(./__input/main__input.css);
+@import url(./__info/main__info.css);
+
+.main__info{
+width: 1400px;
+background-image: url(../../images/main.png)
+}

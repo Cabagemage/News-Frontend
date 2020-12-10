@@ -1,0 +1,7 @@
+@import url(./__avatar/about__avatar.css);
+@import url(./__title/about__title.css);
+@import url(./__info/about__info.css);
+
+.about{
+  max-width: 1400px;
+}
