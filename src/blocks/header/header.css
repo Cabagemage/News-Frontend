@@ -5,6 +5,7 @@
 .header{
   width: 1440px;
   height: 80px;
+  margin-bottom: 80px;
   display: flex;
   justify-content: space-between;
   margin-top: 30px;

@@ -1,0 +1,11 @@
+.main__title{
+  width: 608px;
+  height: 128px;
+  color: #ffffff;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 60px;
+  line-height: 64px;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  margin: 0 0 32px auto;
+}
