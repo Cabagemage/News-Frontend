@@ -1,10 +1,5 @@
 body{
-    max-width: 1440px;
     margin: 0 auto;
     background-color: #ffffff;
-    background-image: url(../../images/main.png);
-    background-repeat: no-repeat;
-    background-size:cover;
-    color: white;
     font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
     }

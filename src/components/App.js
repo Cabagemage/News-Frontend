@@ -6,8 +6,11 @@ import About from "./About"
 function App() {
   return (
     <div className="body">
+      <div className="layout">
       <Header />
       <Main />
+      </div>
+      <About />
     </div>
   );
 }

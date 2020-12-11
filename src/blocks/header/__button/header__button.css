@@ -2,7 +2,9 @@
   max-width: 176px;
   height: 48px;
   border: 1px solid #FFFFFF;
+  color: #FFFFFF;
   box-sizing: border-box;
+  background-color: transparent;
   border-radius: 100px;
   cursor: pointer;
   font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;

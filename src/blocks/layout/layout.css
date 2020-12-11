@@ -1,4 +1,6 @@
 .layout{
-  width: 100%;
+  background-image: url(../../images/main.png);
   background-repeat: no-repeat;
+  background-size:cover;
+  color: white;
   }

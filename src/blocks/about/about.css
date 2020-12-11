@@ -1,8 +1,11 @@
 @import url(./__avatar/about__avatar.css);
 @import url(./__title/about__title.css);
+@import url(./__text/about__text.css);
 @import url(./__info/about__info.css);
 
 .about{
-  max-width: 1400px;
+  width: 1400px;
   background-color: white;
+  display: flex;
+  margin: 0 auto;
 }

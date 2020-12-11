@@ -5,10 +5,10 @@
 .header{
   width: 1440px;
   height: 80px;
-  margin-bottom: 80px;
   display: flex;
   justify-content: space-between;
-  margin-top: 30px;
+  margin: 0 auto 80px auto;
+  padding-top: 30px;
   font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
   border-color: transparent;
   border-bottom: 1px solid #C4C4C4;
