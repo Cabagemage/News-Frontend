@@ -1,0 +1,11 @@
+@import url(./_white/link_theme_white.css);
+@import url(./_black/link_theme_black.css);
+@import url(./_active/link_status_active.css);
+
+.link{
+  font-weight: 500;
+  font-size: 18px;
+  text-decoration: none;
+  line-height: 24px;
+  margin-right: 32px;
+}

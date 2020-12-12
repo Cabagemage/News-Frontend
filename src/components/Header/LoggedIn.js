@@ -6,15 +6,15 @@ function LoggedIn() {
   return (
     <>
      <Route>
-      <NavLink className="header__link"
+      <NavLink className="link link_theme_black"
       exact
-      activeClassName="header__link_active"
+      activeClassName="link_active"
       to="/">Главная</NavLink>
     </Route>
     <Route>
       <NavLink
-      className="header__link"
-      activeClassName="header__link_active"
+      className="link link_theme_black"
+      activeClassName="link_active"
       to="/articles">Сохраненные cтатьи</NavLink>
     </Route>
     <Route>

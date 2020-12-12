@@ -7,8 +7,8 @@ function IsNotLoggedIn() {
     <>
      <Route>
       <NavLink
-      className="header__link"
-      activeClassName="header__link_active"
+      className="link link_theme_white"
+      activeClassName="link_active"
       exact
       to="/">Главная</NavLink>
     </Route>
