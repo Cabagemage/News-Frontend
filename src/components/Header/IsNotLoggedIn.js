@@ -12,13 +12,11 @@ function IsNotLoggedIn({handleLoginPopup}) {
       exact
       to="/">Главная</NavLink>
     </Route>
-    <Link to='/signin'>
       <button
       type="button"
       className="header__button"
       onClick={handleLoginPopup}>Авторизоваться
       </button>
-      </Link>
     </>
   )
 }

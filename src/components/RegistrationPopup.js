@@ -5,6 +5,7 @@ function RegistrationPopup({
   isOpen,
   isClose,
   closeToOverlay,
+  formToggle
 }) {
 
   function handleSubmit(e) {

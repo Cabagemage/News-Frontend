@@ -10,9 +10,15 @@ import { Switch, NavLink, Link, Route } from 'react-router-dom';
 function App() {
 
   const [isLoginPopupOpen, setLoginPopupOpen] = useState(false);
+  const [formToggle, setFormToggle] = useState(false)
 
   const handleLoginPopup = () => {
     setLoginPopupOpen(true);
+    console.log('one two three')
+  };
+
+ const handleFormToggle = () => {
+    setFormToggle(true);
     console.log('one two three')
   };
 
@@ -33,23 +39,23 @@ function App() {
       <Header handleLoginPopup={handleLoginPopup} />
       <Main />
       </div>
-      <Switch>
-        
-      <Route path="/signin">
+
+
+      {!formToggle ?
       <LoginPopup
       isOpen={isLoginPopupOpen}
       isClose={closeAllPopups}
+      formToggle={handleFormToggle}
       closeToOverlay={handleOverlayClose}>
-      </LoginPopup>
-      </Route>
-
-      <Route path="/signup">
+      </LoginPopup> :
       <RegistrationPopup
       isOpen={isLoginPopupOpen}
       isClose={closeAllPopups}
-      closeToOverlay={handleOverlayClose}></RegistrationPopup>
-      </Route>
-      </Switch>
+      formToggle={handleFormToggle}
+      closeToOverlay={handleOverlayClose}>
+      </RegistrationPopup>}
+
+
       <About />
       <Footer />
     </body>

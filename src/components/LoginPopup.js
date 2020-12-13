@@ -5,6 +5,7 @@ function LoginPopup({
   isOpen,
   isClose,
   closeToOverlay,
+  formToggle
 }) {
 
   function handleSubmit(e) {
@@ -20,13 +21,14 @@ function LoginPopup({
       btnClassName="login"
       onSubmit={handleSubmit}
       popupCloseName="login"
+      formToggle={formToggle}
       isOpen={isOpen}
       isClose={isClose}
       closeToOverlay={closeToOverlay}
       children={
         <>
           <div className="popup__inputs">
-            <label className="popup__label">Введите почту</label>
+            <label className="popup__label">Почта</label>
             <input
               type="email"
               name="email"
@@ -35,7 +37,7 @@ function LoginPopup({
               placeholder="Введите почту"
             />
             <span id="avatar-error" className="popup__input_type_error"></span>
-            <label className="popup__label">Введите пароль</label>
+            <label className="popup__label">Пароль</label>
             <input
               type="password"
               name="password"

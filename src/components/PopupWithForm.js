@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import "../App.css";
 import { Link, Route } from 'react-router-dom';
 function PopupWithForm({
@@ -12,9 +12,11 @@ function PopupWithForm({
   buttonText,
   children,
   closeToOverlay,
+  formToggle
 })
 
 {
+
   return (
     <div
       className={`popup ${isOpen && "popup_opened"}   popup_function_${name}  `}
@@ -33,8 +35,12 @@ function PopupWithForm({
           type="submit"
           onClick={onSubmit}
           className={`popup__save popup__save_function_${btnClassName}`}>{buttonText}</button>
-          <span className="popup__span"> или
-          <Link className="link link_style_popup" to='/signup'>Зарегистрироваться</Link></span>
+          {formToggle ? <span className="popup__span"> или &nbsp;
+          <Link className="link link_style_popup">Зарегистрироваться</Link></span>
+          :
+          <span className="popup__span"> или &nbsp;
+          <Link className="link link_style_popup">Войти</Link></span>
+          }
         </div>
       </form>
     </div>
