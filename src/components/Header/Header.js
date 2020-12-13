@@ -4,16 +4,15 @@ import IsNotLoggedIn from './IsNotLoggedIn.js'
 import "../../App.css";
 
 
-function Header({isLoggedIn}) {
+function Header({isLoggedIn, handleLoginPopup}) {
   return (
     <header className="header">
       <h1 className="header__logo">NewsExplorer</h1>
       <div className="header__navigation">
-      {isLoggedIn ?
-       <LoggedIn />
-        :
-        <IsNotLoggedIn />
-      }
+      {isLoggedIn ? <LoggedIn /> :
+      <IsNotLoggedIn
+      handleLoginPopup={handleLoginPopup}
+      /> }
       </div>
     </header>
 

@@ -1,5 +1,6 @@
 @import url(./_white/link_theme_white.css);
 @import url(./_black/link_theme_black.css);
+@import url(./_popup/link_style_popup.css);
 @import url(./_active/link_status_active.css);
 
 .link{

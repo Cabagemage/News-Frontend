@@ -1,0 +1,28 @@
+
+.popup__save{
+    width: 360px;
+    height: 64px;
+    background-color: #2F71E5;
+    border-radius: 100px;
+    margin-top: 39px;
+    justify-self: flex-end;
+    cursor: pointer;
+    border-color: transparent;
+    align-self: center;
+}
+.popup__save:hover{
+opacity: 0.6;
+}
+
+
+@media screen and (max-width: 450px){
+    .popup__save{
+    max-width: 150px;
+    }
+}
+
+@media screen and (max-width: 650px){
+    .popup__save{
+    max-width: 270px;
+    }
+    }

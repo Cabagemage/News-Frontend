@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from "react";
-import { NavLink, Route } from 'react-router-dom';
+import { NavLink, Link, Route } from 'react-router-dom';
 import "../../App.css";
 
-function IsNotLoggedIn() {
+function IsNotLoggedIn({handleLoginPopup}) {
   return (
     <>
      <Route>
@@ -12,9 +12,13 @@ function IsNotLoggedIn() {
       exact
       to="/">Главная</NavLink>
     </Route>
-    <Route>
-      <button className="header__button" to="/signin">Авторизоваться</button>
-    </Route>
+    <Link to='/signin'>
+      <button
+      type="button"
+      className="header__button"
+      onClick={handleLoginPopup}>Авторизоваться
+      </button>
+      </Link>
     </>
   )
 }
