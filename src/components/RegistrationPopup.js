@@ -5,7 +5,7 @@ function RegistrationPopup({
   isOpen,
   isClose,
   closeToOverlay,
-  formToggle
+  handleFormToggle
 }) {
 
   function handleSubmit(e) {
@@ -18,8 +18,10 @@ function RegistrationPopup({
       form="login"
       title="Регистрация"
       buttonText="Зарегистрироваться"
+      link="Войти"
       btnClassName="login"
       onSubmit={handleSubmit}
+      handleFormToggle={handleFormToggle}
       popupCloseName="login"
       isOpen={isOpen}
       isClose={isClose}

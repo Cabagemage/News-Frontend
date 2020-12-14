@@ -14,11 +14,10 @@ function App() {
 
   const handleLoginPopup = () => {
     setLoginPopupOpen(true);
-    console.log('one two three')
   };
 
  const handleFormToggle = () => {
-    setFormToggle(true);
+    setFormToggle(!formToggle);
     console.log('one two three')
   };
 
@@ -41,19 +40,21 @@ function App() {
       </div>
 
 
-      {!formToggle ?
+      {formToggle ?
       <LoginPopup
       isOpen={isLoginPopupOpen}
+      toggled={formToggle}
+      handleFormToggle={handleFormToggle}
       isClose={closeAllPopups}
-      formToggle={handleFormToggle}
       closeToOverlay={handleOverlayClose}>
       </LoginPopup> :
       <RegistrationPopup
       isOpen={isLoginPopupOpen}
+      toggled={formToggle}
+      handleFormToggle={handleFormToggle}
       isClose={closeAllPopups}
-      formToggle={handleFormToggle}
       closeToOverlay={handleOverlayClose}>
-      </RegistrationPopup>}
+     </RegistrationPopup> }
 
 
       <About />

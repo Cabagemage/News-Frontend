@@ -7,15 +7,21 @@ function PopupWithForm({
   onSubmit,
   btnClassName,
   name,
+  link,
   form,
   title,
+  toggled,
   buttonText,
   children,
   closeToOverlay,
-  formToggle
+  handleFormToggle
 })
 
 {
+
+function changeInfoPopup(e){
+  e.preventDefault();
+}
 
   return (
     <div
@@ -35,14 +41,20 @@ function PopupWithForm({
           type="submit"
           onClick={onSubmit}
           className={`popup__save popup__save_function_${btnClassName}`}>{buttonText}</button>
-          {formToggle ? <span className="popup__span"> или &nbsp;
-          <Link className="link link_style_popup">Зарегистрироваться</Link></span>
+          {toggled ?
+          <span className="popup__span"> или &nbsp;
+          <button onClick={handleFormToggle}
+          className="link link_style_popup">{link}</button>
+          </span>
           :
           <span className="popup__span"> или &nbsp;
-          <Link className="link link_style_popup">Войти</Link></span>
-          }
+          <button onClick={handleFormToggle}
+          className="link link_style_popup">{link}</button>
+          </span>
+           }
         </div>
       </form>
+
     </div>
   );
 }
