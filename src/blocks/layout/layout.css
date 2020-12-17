@@ -1,3 +1,5 @@
+@import url(./__cards/layout__cards.css);
+
 .layout{
   background-image: url(../../images/main.png);
   background-repeat: no-repeat;

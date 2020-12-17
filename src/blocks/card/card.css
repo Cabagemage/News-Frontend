@@ -1,0 +1,19 @@
+@import url(./__image/card__image.css);
+@import url(./__remove/card__remove.css);
+@import url(./__keyword/card__keyword.css);
+.card{
+  width: 400px;
+  height: 576px;
+  margin-right: 16px;
+  margin-top: 16px;
+  display: grid;
+  background-color: white;
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.card:last-child{
+  margin-top: 16px;
+  margin-right: 0;
+}
