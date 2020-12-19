@@ -1,0 +1,18 @@
+.card__remove{
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background-color: #FFFFFF;
+  background-image: url(../../../../images/trash.svg);
+  background-repeat: no-repeat;
+  border-color: transparent;
+  cursor: pointer;
+  border-radius: 8px;
+  background-position: center;
+}
+
+.card__remove:hover{
+  background-image: url(../../../../images/trash-active.svg);
+}

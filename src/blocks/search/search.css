@@ -1,9 +1,0 @@
-@import url(./__button/search__button.css);
-@import url(./__input/search__input.css);
-
-.search{
-display: flex;
-width: 608px;
-height: 64px;
-position: relative;
-}

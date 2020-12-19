@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import '../App.css';
 import Header from "./Header/Header";
-import Main from "./Main"
-import About from "./About"
-import Footer from "./Footer"
-import Cards from "./Cards"
-import LoginPopup from "./LoginPopup"
-import RegistrationPopup from "./RegistrationPopup"
+import Main from "./Main/Main"
+import About from "./About/About"
+import Footer from "./Footer/Footer"
+import Cards from "./Cards/Cards"
+import LoginPopup from "./PopupAuth/LoginPopup"
+import RegistrationPopup from "./PopupAuth/RegistrationPopup"
 import { Switch, NavLink, Link, Route } from 'react-router-dom';
 function App() {
 

@@ -1,0 +1,12 @@
+@import url(./__avatar/about__avatar.css);
+@import url(./__title/about__title.css);
+@import url(./__text/about__text.css);
+@import url(./__info/about__info.css);
+
+.about{
+  width: 1400px;
+  background-color: white;
+  display: flex;
+  margin: 0 auto 30px auto;
+  font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+}

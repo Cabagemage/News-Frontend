@@ -1,0 +1,11 @@
+.button_place_loggedin{
+  max-width: 176px;
+  height: 48px;
+  border: 1px solid #FFFFFF;
+  color: #FFFFFF;
+  box-sizing: border-box;
+  background-color: transparent;
+  background-image: url('../../../images/leave-button.svg');
+  background-position: right;
+  background-repeat: no-repeat;
+}

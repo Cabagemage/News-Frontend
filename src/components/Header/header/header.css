@@ -1,0 +1,14 @@
+@import url(./__logo/header__logo.css);
+@import url(./__link/header__link.css);
+
+.header{
+  width: 1440px;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto 80px auto;
+  padding-top: 30px;
+  font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  border-color: transparent;
+  border-bottom: 1px solid #C4C4C4;
+}

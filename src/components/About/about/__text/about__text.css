@@ -1,0 +1,7 @@
+.about__text{
+  width: 600px;
+  padding-left: 56px;
+  padding-top: 50px;
+  word-wrap: break-word;
+  font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+}

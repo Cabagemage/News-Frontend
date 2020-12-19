@@ -14,7 +14,7 @@ function IsNotLoggedIn({handleLoginPopup}) {
     </Route>
       <button
       type="button"
-      className="header__button"
+      className="button button_place_loggedout"
       onClick={handleLoginPopup}>Авторизоваться
       </button>
     </>

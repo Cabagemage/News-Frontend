@@ -1,17 +1,11 @@
 /*  Сюда будут импортироваться все стили */
 @import url(./vendor/normalize.css);
 @import url(./vendor/fonts/fonts.css);
-@import url(./blocks/header/header.css);
-@import url(./blocks/cards/cards.css);
-@import url(./blocks/card/card.css);
-@import url(./blocks/footer/footer.css);
-@import url(./blocks/main/main.css);
+@import url(./blocks/button/button.css);
 @import url(./blocks/popup/popup.css);
 @import url(./blocks/popup/_opened/popup_opened.css);
 @import url(./blocks/popup/__container/_function/popup__container_function_login.css);
 @import url(./blocks/popup/__container/_content/popup__container_content_login.css);
 @import url(./blocks/link/link.css);
 @import url(./blocks/layout/layout.css);
-@import url(./blocks/about/about.css);
-@import url(./blocks/search/search.css);
 @import url(./blocks/pages/page.css);

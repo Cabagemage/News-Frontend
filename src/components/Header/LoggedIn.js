@@ -17,7 +17,7 @@ function LoggedIn() {
       activeClassName="link_active"
       to="/articles">Сохраненные cтатьи</NavLink>
     </Route>
-      <button className="header__button">Юзернейм</button>
+      <button className="button button_place_loggedin">Юзернейм</button>
     </>
   )
 }

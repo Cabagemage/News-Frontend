@@ -1,7 +1,7 @@
 import React from "react";
 import LoggedIn from './LoggedIn.js'
 import IsNotLoggedIn from './IsNotLoggedIn.js'
-import "../../App.css";
+import "./header/header.css";
 
 
 function Header({isLoggedIn, handleLoginPopup}) {

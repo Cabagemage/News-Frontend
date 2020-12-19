@@ -1,0 +1,15 @@
+.button_place_search{
+  background-color: #2F71E5;
+  color: white;
+  justify-self: flex-end;
+  cursor: pointer;
+  border-color: transparent;
+  position: absolute;
+  right: 0;
+  align-self: center;
+}
+
+.button_place_search:hover{
+  transition: 0.2s ease-in;
+  background-color: #347EFF;
+}
