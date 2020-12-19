@@ -12,9 +12,14 @@ function App() {
 
   const [isLoginPopupOpen, setLoginPopupOpen] = useState(false);
   const [formToggle, setFormToggle] = useState(false)
+  const [loggedIn, setLoginIn] = useState(false)
 
   const handleLoginPopup = () => {
     setLoginPopupOpen(true);
+  };
+
+  const handleLoginIn = () => {
+    setLoginIn(true);
   };
 
  const handleFormToggle = () => {
@@ -35,10 +40,22 @@ function App() {
 
   return (
     <body className="body">
+      <Switch>
+
+      <Route exact path="/">
       <div className="layout">
       <Header handleLoginPopup={handleLoginPopup} />
       <Main />
       </div>
+      <About />
+      </Route>
+
+      <Route exact path="/news">
+      <Header loggedIn={handleLoginIn} handleLoginPopup={handleLoginPopup} />
+      <Cards />
+      </Route>
+      </Switch>
+
       {!formToggle ?
       <LoginPopup
       isOpen={isLoginPopupOpen}
@@ -54,8 +71,7 @@ function App() {
       isClose={closeAllPopups}
       closeToOverlay={handleOverlayClose}>
       </RegistrationPopup> }
-      <Cards />
-      <About />
+
       <Footer />
     </body>
   );

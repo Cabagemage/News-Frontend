@@ -12,6 +12,6 @@ color: #ffffff;
 
 .header__link_active{
   color: #ffffff;
-  padding-bottom: 45px;
-  border-bottom: 2px solid #ffffff;
+  padding-bottom: 37px;
+  border-bottom: white 2px solid;
 }
