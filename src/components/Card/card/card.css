@@ -4,7 +4,7 @@
 @import url(./__about/card__about.css);
 @import url(./__text/card__text.css);
 @import url(./__article/card__article.css);
-@import url(./__remove/card__remove.css);
+@import url(./__icon/card__icon.css);
 @import url(./__keyword/card__keyword.css);
 .card{
   width: 400px;

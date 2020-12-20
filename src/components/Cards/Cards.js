@@ -3,15 +3,12 @@ import {Link, NavLink, Route } from 'react-router-dom';
 import Card from '../Card/Card'
 import "./cards/cards.css";
 
-function Cards() {
+function Cards({loggedIn}) {
   return (
     <>
     <div className="layout__cards">
     <div className="cards">
-      <Card />
-      <Card />
-      <Card />
-      <Card />
+      <Card loggedIn={loggedIn} />
    </div>
    </div>
    </>

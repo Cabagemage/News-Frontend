@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { NavLink, Link, Route } from 'react-router-dom';
 import "./header/header.css";
-
+import "../../App.css";
 function IsNotLoggedIn({handleLoginPopup}) {
   return (
     <>

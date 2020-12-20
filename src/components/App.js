@@ -19,7 +19,7 @@ function App() {
   };
 
   const handleLoginIn = () => {
-    setLoginIn(true);
+    setLoginIn(loggedIn);
   };
 
  const handleFormToggle = () => {
@@ -41,8 +41,9 @@ function App() {
   return (
     <body className="body">
       <Switch>
-
-      <Route exact path="/">
+      <Route
+      exact
+      path="/">
       <div className="layout">
       <Header handleLoginPopup={handleLoginPopup} />
       <Main />
@@ -50,9 +51,9 @@ function App() {
       <About />
       </Route>
 
-      <Route exact path="/news">
+      <Route path="/news">
       <Header loggedIn={handleLoginIn} handleLoginPopup={handleLoginPopup} />
-      <Cards />
+      <Cards loggedIn={handleLoginIn} />
       </Route>
       </Switch>
 

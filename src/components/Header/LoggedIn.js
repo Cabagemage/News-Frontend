@@ -8,16 +8,16 @@ function LoggedIn() {
      <Route>
       <NavLink className="link link_theme_black"
       exact
-      activeClassName="header__link_active"
+      activeClassName="link_white_active"
       to="/">Главная</NavLink>
     </Route>
     <Route>
       <NavLink
       className="link link_theme_black"
-      activeClassName="header__link_active"
+      activeClassName="link_white_active"
       to="/news">Сохраненные cтатьи</NavLink>
     </Route>
-      <button className="button button_place_loggedin button_theme_black">Юзернейм</button>
+      <button className="button button_place_loggedin button_theme_black">Грета</button>
     </>
   )
 }

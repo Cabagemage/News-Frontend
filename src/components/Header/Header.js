@@ -7,7 +7,9 @@ import "./header/header.css";
 function Header({loggedIn, handleLoginPopup}) {
   return (
     <header className="header">
-      <h1 className="header__logo">NewsExplorer</h1>
+      {loggedIn ?
+      <h1 className="header__logo header__logo_theme_black">NewsExplorer</h1>
+      : <h1 className="header__logo">NewsExplorer</h1>}
       <div className="header__navigation">
       {loggedIn ? <LoggedIn /> :
       <IsNotLoggedIn
