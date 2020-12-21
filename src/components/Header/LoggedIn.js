@@ -15,7 +15,7 @@ function LoggedIn() {
       <NavLink
       className="link link_theme_black"
       activeClassName="link_white_active"
-      to="/news">Сохраненные cтатьи</NavLink>
+      to="/saved-news">Сохраненные cтатьи</NavLink>
     </Route>
       <button className="button button_place_loggedin button_theme_black">Грета</button>
     </>

@@ -48,23 +48,27 @@ function App() {
       <Header handleLoginPopup={handleLoginPopup} />
       <Main />
       </div>
+      <Cards loggedIn={loggedIn} />
       <About />
       </Route>
 
-      <Route path="/news">
+      <Route path="/saved-news">
       <Header loggedIn={handleLoginIn} handleLoginPopup={handleLoginPopup} />
-      <Cards loggedIn={handleLoginIn} />
+      <Cards loggedIn={!loggedIn} />
       </Route>
+
       </Switch>
 
-      {!formToggle ?
+      {!formToggle
+      ?
       <LoginPopup
       isOpen={isLoginPopupOpen}
       toggled={formToggle}
       handleFormToggle={handleFormToggle}
       isClose={closeAllPopups}
       closeToOverlay={handleOverlayClose}>
-      </LoginPopup> :
+      </LoginPopup>
+      :
       <RegistrationPopup
       isOpen={isLoginPopupOpen}
       toggled={formToggle}
@@ -74,6 +78,7 @@ function App() {
       </RegistrationPopup> }
 
       <Footer />
+
     </body>
   );
 }
