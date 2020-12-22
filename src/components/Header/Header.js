@@ -7,18 +7,22 @@ import { NavLink, Link, Route } from 'react-router-dom';
 
 function Header({loggedIn, handleLoginPopup}) {
   return (
-    <header className="header">
-      {loggedIn ?
-      <NavLink to='/' className="link header__logo header__logo_theme_black">NewsExplorer</NavLink>
-      : <NavLink to='/' className="link header__logo">NewsExplorer</NavLink>}
-      <nav className="header__navigation">
-      {loggedIn ? <LoggedIn /> :
-      <IsNotLoggedIn
+    <>
+    {loggedIn ? <header className="header header_status_savednews">
+    <NavLink to='/' className="link header__logo header__logo_theme_black">NewsExplorer</NavLink>
+    <nav className="header__navigation">
+    <LoggedIn />
+    </nav>
+    </header> :
+    <header className="header header_status_main">
+    <NavLink to='/' className="link header__logo">NewsExplorer</NavLink>
+    <nav className="header__navigation">
+    <IsNotLoggedIn
       handleLoginPopup={handleLoginPopup}
-      /> }
-      </nav>
-    </header>
-
+      />
+    </nav>
+    </header>}
+</>
   );
 }
 

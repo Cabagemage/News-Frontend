@@ -4,6 +4,7 @@ import Header from "./Header/Header";
 import Main from "./Main/Main"
 import About from "./About/About"
 import Footer from "./Footer/Footer"
+import SavedNewsHeader from "./SavedNewsHeader/SavedNewsHeader"
 import Cards from "./Cards/Cards"
 import LoginPopup from "./PopupAuth/LoginPopup"
 import RegistrationPopup from "./PopupAuth/RegistrationPopup"
@@ -54,6 +55,7 @@ function App() {
 
       <Route path="/saved-news">
       <Header loggedIn={handleLoginIn} handleLoginPopup={handleLoginPopup} />
+      <SavedNewsHeader />
       <Cards loggedIn={!loggedIn} />
       </Route>
 
