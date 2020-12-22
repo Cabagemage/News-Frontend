@@ -11,6 +11,7 @@
   width: 100%;
   align-items: center;
   padding-bottom: 30px;
+  grid-area: footer;
 }
 
 @media screen and (max-width: 768px){

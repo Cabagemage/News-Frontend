@@ -40,12 +40,13 @@ function App() {
   };
 
   return (
-    <body className="body">
+
+      <div className="page">
       <Switch>
       <Route
       exact
       path="/">
-      <div className="layout">
+      <div class="layout">
       <Header handleLoginPopup={handleLoginPopup} />
       <Main />
       </div>
@@ -80,7 +81,7 @@ function App() {
       isClose={closeAllPopups}
       closeToOverlay={handleOverlayClose}>
       </RegistrationPopup> }
-    </body>
+      </div>
   );
 }
 

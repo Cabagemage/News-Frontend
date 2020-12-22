@@ -6,7 +6,6 @@
 @import url(./__container/header__container.css);
 
 .header{
-  max-width: 1440px;
   width: 100%;
   height: 80px;
   display: flex;
@@ -17,6 +16,7 @@
   border-color: transparent;
   border-bottom: 1px solid #C4C4C4;
   background-repeat: no-repeat;
+  grid-area: header;
 }
 
 @media screen and (max-width: 768px){
@@ -24,12 +24,22 @@
   max-width: 768px;
   height: 66px;
   padding-top: 22px;
+
 }
 }
 
-@media screen and (max-width: 680px){
+@media screen and (max-width: 700px){
   .header{
-    width: 680px;
+    max-width: 640px;
+    height: 66px;
+    padding-top: 22px;
+  }
+  }
+
+
+@media screen and (max-width: 639px){
+  .header{
+    max-width: 570px;
     height: 66px;
     padding-top: 22px;
   }
