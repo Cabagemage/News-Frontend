@@ -3,6 +3,13 @@
   height: 48px;
   border: 1px solid #FFFFFF;
   color: #FFFFFF;
-  box-sizing: border-box;
+  box-sizing: content-box;
   background-color: transparent;
 }
+
+@media screen and (max-width: 768px){
+  .button_place_loggedout{
+    max-width: 152px;
+    height: 48px;
+  }
+  }

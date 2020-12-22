@@ -3,6 +3,7 @@
 @import url(./__nav/footer__nav.css);
 .footer{
   max-width: 1440px;
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -11,3 +12,11 @@
   align-items: center;
   padding-bottom: 30px;
 }
+
+@media screen and (max-width: 768px){
+  .header{
+    width: 768px;
+    height: 66px;
+    padding-top: 22px;
+  }
+  }

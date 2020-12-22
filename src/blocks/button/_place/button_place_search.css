@@ -1,5 +1,6 @@
 .button_place_search{
   background-color: #2F71E5;
+  height: 68px;
   color: white;
   justify-self: flex-end;
   cursor: pointer;
@@ -13,3 +14,11 @@
   transition: 0.2s ease-in;
   background-color: #347EFF;
 }
+
+@media screen and (max-width: 768px){
+  .button_place_search{
+  width: 288px;
+  height: 56px;
+  position: relative;
+  }
+  }

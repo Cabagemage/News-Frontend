@@ -5,8 +5,18 @@
 
 .about{
   width: 1440px;
+  max-width: 100%;
   background-color: white;
   display: flex;
   margin: 0 auto 30px auto;
   font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
 }
+
+@media screen and (max-width: 768px){
+  .about{
+    width: 768px;
+    flex-direction: column;
+    height: 66px;
+    padding-top: 22px;
+  }
+  }

@@ -12,6 +12,17 @@ color: #ffffff;
 
 .header__link_active{
   color: #ffffff;
-  padding-bottom: 37px;
+  padding-bottom: 30px;
   border-bottom: white 2px solid;
 }
+
+@media screen and (max-width: 768px){
+  .header__link{
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .header__link_active{
+    padding-bottom: 23px;
+  }
+
+  }

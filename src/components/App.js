@@ -41,13 +41,14 @@ function App() {
 
   return (
     <body className="body">
-    <div className="layout">
       <Switch>
       <Route
       exact
       path="/">
+      <div className="layout">
       <Header handleLoginPopup={handleLoginPopup} />
       <Main />
+      </div>
       <Cards loggedIn={loggedIn} />
       <About />
       </Route>
@@ -61,7 +62,7 @@ function App() {
       </Switch>
 
       <Footer />
-      </div>
+
       {!formToggle
       ?
       <LoginPopup
