@@ -4,7 +4,7 @@
 @import url(./__logo/_theme/header__logo_theme_black.css);
 @import url(./__link/header__link.css);
 @import url(./__container/header__container.css);
-
+@import url(./__navigation/header__navigation.css);
 .header{
   width: 100%;
   max-width: 1440px;

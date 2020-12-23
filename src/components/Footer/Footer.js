@@ -13,7 +13,7 @@ function Footer() {
         <Link className="link link_theme_black" exact to="/">Яндекс.Практикум</Link>
         <Link className="link link_theme_black" exact to="/">Главная</Link>
         </div>
-        <div>
+        <div className="footer__icons">
         <img className="footer__social" src={facebook} />
         <img className="footer__social" src={github} />
         </div>

@@ -1,0 +1,14 @@
+.footer__icons{
+  padding-left: 40px;
+}
+
+@media screen and (max-width: 768px){
+  .footer__icons{
+    padding-left: 26px;
+  }
+  }
+
+  @media screen and (max-width: 320px){
+    .footer__icons{
+    }
+    }
