@@ -16,7 +16,7 @@
 }
 
 @media screen and (max-width: 768px){
-  .card__image{
+  .card__keyword{
     top: 8px;
     left: 8px;
   }
@@ -25,7 +25,7 @@
 
 
 @media screen and (max-width: 320px){
-  .card__image{
+  .card__keyword{
     top: 16px;
     left: 16px;
   }

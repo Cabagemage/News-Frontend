@@ -19,3 +19,10 @@ grid-area: main;
     padding-top: 22px;
   }
   }
+
+  @media screen and (max-width: 320px){
+    .main{
+      width: 288px;
+      padding-top: 22px;
+    }
+    }
