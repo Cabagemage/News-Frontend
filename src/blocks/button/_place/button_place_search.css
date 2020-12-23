@@ -1,5 +1,6 @@
 .button_place_search{
   background-color: #2F71E5;
+  width: 168px;
   height: 68px;
   color: white;
   justify-self: flex-end;
@@ -8,6 +9,7 @@
   position: absolute;
   right: 0;
   align-self: center;
+  grid-area: search-button
 }
 
 .button_place_search:hover{
@@ -17,8 +19,13 @@
 
 @media screen and (max-width: 768px){
   .button_place_search{
-  width: 288px;
+  width: 160px;
   height: 56px;
-  position: relative;
   }
   }
+  @media screen and (max-width: 320px){
+    .button_place_search{
+    width: 288px;
+    height: 56px;
+    }
+    }

@@ -12,3 +12,20 @@
   -webkit-line-clamp: 6;
   -webkit-box-orient: vertical;
 }
+
+
+
+@media screen and (max-width: 768px){
+  .card__about{
+    max-width: 192px;
+    font-size: 16px;
+    line-height: 22px;
+  }
+  }
+
+
+@media screen and (max-width: 320px){
+  .card__about{
+    max-width: 256px;
+  }
+  }

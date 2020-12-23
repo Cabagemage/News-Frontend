@@ -1,4 +1,5 @@
 .button_place_cards{
+  width: 168px;
   background-color: #2F71E5;
   color: white;
   justify-self: flex-end;

@@ -20,3 +20,10 @@
     padding-top: 22px;
   }
   }
+
+
+@media screen and (max-width: 320px){
+  .about{
+    width: 320px;
+  }
+  }

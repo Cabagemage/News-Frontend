@@ -15,9 +15,16 @@
 }
 
 @media screen and (max-width: 768px){
-  .header{
-    width: 768px;
+  .footer{
+    width: 720px;
     height: 66px;
     padding-top: 22px;
   }
   }
+
+  @media screen and (max-width: 320px){
+    .footer{
+      width: 180px;
+      margin: 5px 5px;
+    }
+    }

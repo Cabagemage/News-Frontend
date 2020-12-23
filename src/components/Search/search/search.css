@@ -1,12 +1,13 @@
 @import url(./__input/search__input.css);
 
 .search{
-display: flex;
+display: grid;
 max-width: 608px;
 width: 100%;
 height: 64px;
 position: relative;
 grid-area: search;
+grid-template-areas: "search-input search-button";
 }
 
 @media screen and (max-width: 768px){
@@ -23,8 +24,9 @@ grid-area: search;
   .search{
     width: 288px;
     height: 56px;
-    flex-direction: column;
     padding-top: 22px;
-    margin: 0 auto;
+    grid-template-columns:  280px;
+    grid-template-rows: 68px 68px;
+    grid-template-areas: "search-input" "search-button";
   }
   }

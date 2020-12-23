@@ -4,6 +4,8 @@
   color: #ffffff;
   font-style: normal;
   font-weight: normal;
+  padding-left: 30px;
+  margin: 0;
   font-size: 60px;
   line-height: 64px;
   font-family: 'Roboto Slab', 'Helvetica Neue', Arial, sans-serif;
@@ -13,6 +15,7 @@
 @media screen and (max-width: 768px){
   .main__title{
     width: 385px;
+    padding-left: 30px;
     font-size: 36px;
     line-height: 40px;
   }
