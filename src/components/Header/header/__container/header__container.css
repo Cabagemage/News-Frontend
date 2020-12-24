@@ -1,3 +1,4 @@
+@import url(./_version/header__container_version_mobile.css);
 .header__container{
   display: flex;
   align-items: center;
@@ -9,9 +10,9 @@
     padding-right: 40px;
   }
   }
-  @media screen and (max-width: 560px){
-    .header__container{
+@media screen and (max-width: 560px){
+  .header__container{
       padding-right: 16px;
-      transform: scaleY(0)
+      display: none;
     }
     }

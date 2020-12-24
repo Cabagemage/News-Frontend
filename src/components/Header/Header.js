@@ -2,7 +2,8 @@ import React, {useState} from "react";
 import "../../App.css";
 import "./header/header.css";
 import { NavLink, Route } from 'react-router-dom';
-
+import HeaderHamburgerSignedOut from './HeaderHamburgerSignedOut'
+import HeaderHamburgerSignedIn from './HeaderHamburgerSignedIn'
 function Header({loggedIn, handleLoginPopup}) {
   const [streamingsIsOpen, setStreamingsIsOpen] = useState(true);
   const [streamingsBtnIsClicked, setStreamingsBtnIsClicked] = useState(false);
@@ -10,14 +11,22 @@ function Header({loggedIn, handleLoginPopup}) {
   const handleBtnClick = () => {
     setStreamingsIsOpen(!streamingsIsOpen);
     setStreamingsBtnIsClicked(!streamingsBtnIsClicked);
+    console.log('one two')
   };
 
   return (
     <>
-    {loggedIn ?
+    {loggedIn  ?
     <header className="header header_status_savednews">
       <NavLink to='/' className="link header__logo header__logo_theme_black">NewsExplorer</NavLink>
-      <div className="header__container">
+         {streamingsBtnIsClicked ? <button
+    className="button header__hamburger-menu_clicked " onClick={handleBtnClick}>
+    </button>
+    : <button
+    className="button header__hamburger-menu_theme_black " onClick={handleBtnClick}>
+    </button>
+    }
+      <div className="header__container header__container_version_mobile">
     <nav className="header__navigation">
     <Route>
       <NavLink className="link link_theme_black"
@@ -38,11 +47,16 @@ function Header({loggedIn, handleLoginPopup}) {
     :
     <header className="header header_status_main">
     <NavLink to='/' className="link header__logo">NewsExplorer</NavLink>
-    <button className="button header__hamburger-menu" onClick={handleBtnClick}>
-    {streamingsBtnIsClicked ?
-     '' : ''}
+    {streamingsBtnIsClicked ? <button
+    className="button header__hamburger-menu_clicked " onClick={handleBtnClick}>
     </button>
-    <div className="header__container">
+    : <button
+    className="button header__hamburger-menu " onClick={handleBtnClick}>
+    </button>
+    }
+
+
+    <div className="header__container header__container_version_mobile">
     <nav className="header__navigation">
     <Route>
       <NavLink
@@ -60,6 +74,12 @@ function Header({loggedIn, handleLoginPopup}) {
     </div>
     </header>
     }
+    {!loggedIn && streamingsBtnIsClicked ?
+    <HeaderHamburgerSignedOut
+    handleLoginPopup={handleLoginPopup} /> : ''}
+    {loggedIn && streamingsBtnIsClicked ?
+    <HeaderHamburgerSignedIn
+    handleLoginPopup={handleLoginPopup} /> : ''}
 </>
   );
 }

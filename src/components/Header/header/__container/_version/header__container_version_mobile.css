@@ -1,0 +1,17 @@
+.header__container_version_mobile{
+  display: none;
+}
+
+@media screen and (max-width: 560px){
+  .header__container_version_mobile{
+    display: flex;
+    position: absolute;
+    height: 240px;
+    z-index: 6;
+    top: 0;
+    justify-content: center;
+    flex-direction: column;
+    width: 100vw;
+    background-color: #1A1B22;
+    }
+    }
