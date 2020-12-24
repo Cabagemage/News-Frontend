@@ -1,0 +1,9 @@
+.header__hamburger-menu_clicked{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  width: 29px;
+  height: 29px;
+  padding: 0;
+}

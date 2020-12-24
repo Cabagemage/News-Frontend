@@ -1,9 +1,17 @@
-import React from "react";
+import React, {useState} from "react";
 import "../../App.css";
 import "./header/header.css";
 import { NavLink, Route } from 'react-router-dom';
 
 function Header({loggedIn, handleLoginPopup}) {
+  const [streamingsIsOpen, setStreamingsIsOpen] = useState(true);
+  const [streamingsBtnIsClicked, setStreamingsBtnIsClicked] = useState(false);
+
+  const handleBtnClick = () => {
+    setStreamingsIsOpen(!streamingsIsOpen);
+    setStreamingsBtnIsClicked(!streamingsBtnIsClicked);
+  };
+
   return (
     <>
     {loggedIn ?
@@ -30,6 +38,10 @@ function Header({loggedIn, handleLoginPopup}) {
     :
     <header className="header header_status_main">
     <NavLink to='/' className="link header__logo">NewsExplorer</NavLink>
+    <button className="header__mobile-logo" onClick={handleBtnClick}>
+    {streamingsBtnIsClicked ?
+     'hello' : 'hello too'}
+    </button>
     <div className="header__container">
     <nav className="header__navigation">
     <Route>
@@ -46,7 +58,8 @@ function Header({loggedIn, handleLoginPopup}) {
       onClick={handleLoginPopup}>Авторизоваться
     </button>
     </div>
-    </header>}
+    </header>
+    }
 </>
   );
 }

@@ -12,5 +12,6 @@
   @media screen and (max-width: 320px){
     .header__container{
       padding-right: 16px;
+      transform: scaleY(0)
     }
     }
