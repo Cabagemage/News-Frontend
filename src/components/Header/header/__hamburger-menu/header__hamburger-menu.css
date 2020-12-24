@@ -1,28 +1,29 @@
 @import url(./_clicked/header__hamburger-menu_clicked.css);
 .header__hamburger-menu{
     display: none;
-    padding: 7px 16px;
-    margin-bottom: 6px;
-    border: 2px solid #fff;
-    border-radius: 30px;
+    position: absolute;
+    right: 16px;
+    width: 24px;
+    height: 24px;
     background-color: transparent;
-    font-family: 'Inter', 'Helvetica', 'Arial', sans-serif;
-    font-weight: 400;
-    color: #fff;
-    font-size: 12px;
-    line-height: 1.2;
+    border: none;
+    background-image: url(../../../../images/mobile-menu.svg);
+    background-position:center;
+    background-repeat: none;
+    background-size: cover;
   }
 
-  .streamings__open-btn:hover {
+  .header__hamburger-menu:hover {
     opacity: .6;
   }
 
-  .streamings__open-btn:focus {
+  .header__hamburger-menu:focus {
     outline: none;
   }
 
-  @media screen and (max-width: 320px) {
-    .streamings__open-btn {
+  @media screen and (max-width: 560px) {
+    .header__hamburger-menu {
       display: inline-block;
+
     }
   }

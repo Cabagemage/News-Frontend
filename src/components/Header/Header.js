@@ -38,9 +38,9 @@ function Header({loggedIn, handleLoginPopup}) {
     :
     <header className="header header_status_main">
     <NavLink to='/' className="link header__logo">NewsExplorer</NavLink>
-    <button className="header__mobile-logo" onClick={handleBtnClick}>
+    <button className="button header__hamburger-menu" onClick={handleBtnClick}>
     {streamingsBtnIsClicked ?
-     'hello' : 'hello too'}
+     '' : ''}
     </button>
     <div className="header__container">
     <nav className="header__navigation">

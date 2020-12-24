@@ -15,7 +15,7 @@
     height: 56px;
   }
   }
-  @media screen and (max-width: 320px){
+  @media screen and (max-width: 420px){
     .search__input{
       width: 288px;
       padding-right: 0;
