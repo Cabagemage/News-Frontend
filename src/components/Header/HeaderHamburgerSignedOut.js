@@ -14,7 +14,7 @@ function HeaderHamburgerSignedOut({handleLoginPopup}) {
     </nav>
     <button
     onClick={handleLoginPopup}
-    className="button button_place_loggedout button_theme_black">Авторизироваться</button>
+    className="button button_place_loggedout button_theme_white">Авторизироваться</button>
     </div>
   );
 }
