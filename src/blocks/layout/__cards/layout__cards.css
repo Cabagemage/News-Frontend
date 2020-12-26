@@ -1,5 +1,6 @@
 .layout__cards{
-  max-width: 100%;
+  width: 100%;
   background-color: #F5F6F7;
   grid-area: cards;
 }
+

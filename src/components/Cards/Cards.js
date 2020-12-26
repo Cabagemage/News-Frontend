@@ -7,7 +7,7 @@ function Cards({loggedIn}) {
   return (
     <>
     <div className="layout__cards">
-      <h2 className="cards__results">Результаты поиска</h2>
+    <h2 className="cards__results">Результаты поиска</h2>
     <div className="cards">
       <Card loggedIn={loggedIn} />
       <Card loggedIn={loggedIn} />

@@ -23,7 +23,7 @@
   height: 56px;
   }
   }
-  @media screen and (max-width: 320px){
+  @media screen and (max-width: 478px){
     .button_place_search{
     width: 288px;
     height: 56px;

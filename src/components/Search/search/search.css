@@ -14,18 +14,16 @@ grid-template-areas: "search-input search-button";
   .search{
     width: 448px;
     height: 56px;
-    padding-top: 22px;
     margin: 0 auto;
   }
   }
 
 
-@media screen and (max-width: 420px){
+@media screen and (max-width: 480px){
   .search{
     width: 288px;
     height: 56px;
-    padding-top: 22px;
-    grid-template-columns:  280px;
+    grid-template-columns:  288px;
     grid-template-rows: 68px 68px;
     grid-template-areas: "search-input" "search-button";
   }
