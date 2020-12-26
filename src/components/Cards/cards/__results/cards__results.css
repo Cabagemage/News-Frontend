@@ -1,4 +1,33 @@
 .cards__results{
-  width: 200px;
-  margin: 0 auto;
+  max-width: 712px;
+  width: 100%;
+  box-sizing: border-box;
+  color: #1A1B22;
+  align-self: flex-start;
+  font-family: 'Roboto Slab', 'Helvetica Neue', Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 30px;
+  line-height: 34px;
 }
+
+@media screen and (max-width: 1200px){
+  .cards__results{
+    max-width: 336px;
+    padding-left: 40px;
+  }
+  }
+
+@media screen and (max-width: 768px){
+  .cards__results{
+    max-width: 336px;
+  }
+  }
+
+
+@media screen and (max-width: 450px){
+  .cards__results{
+    max-width: 288px;
+    margin: 0 auto;
+  }
+  }

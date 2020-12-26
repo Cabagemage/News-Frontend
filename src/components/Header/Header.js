@@ -11,7 +11,6 @@ function Header({loggedIn, handleLoginPopup}) {
   const handleBtnClick = () => {
     setStreamingsIsOpen(!streamingsIsOpen);
     setStreamingsBtnIsClicked(!streamingsBtnIsClicked);
-    console.log('one two')
   };
 
   return (

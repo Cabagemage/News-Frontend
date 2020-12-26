@@ -28,6 +28,7 @@
 .header{
   max-width: 768px;
   height: 66px;
+  margin-bottom: 38px;
 }
 }
 
@@ -43,13 +44,13 @@
 @media screen and (max-width: 639px){
   .header{
     max-width: 570px;
+    margin-bottom: 50px;
     height: 66px;
-    margin: 0;
     padding-top: 0;
   }
   }
 
-  @media screen and (max-width: 480px){
+  @media screen and (max-width: 500px){
     .header{
       max-width: 570px;
       height: 66px;

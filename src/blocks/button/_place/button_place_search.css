@@ -23,9 +23,19 @@
   height: 56px;
   }
   }
-  @media screen and (max-width: 478px){
+  @media screen and (max-width: 600px){
     .button_place_search{
-    width: 288px;
-    height: 56px;
+    width: 160px;
     }
     }
+
+    @media screen and (max-width: 555px){
+      .button_place_search{
+      width: 415px;
+      }
+      }
+      @media screen and (max-width: 475px){
+        .button_place_search{
+        width: 288px;
+        }
+        }

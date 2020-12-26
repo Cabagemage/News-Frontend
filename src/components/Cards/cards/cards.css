@@ -1,7 +1,7 @@
 @import url(./__results/cards__results.css);
+@import url(./__container/cards__container.css);
 
 .cards{
-max-width: 1440px;
 justify-content: center;
 justify-items: center;
 margin: 0 auto;
