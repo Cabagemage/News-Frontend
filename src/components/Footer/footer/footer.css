@@ -15,8 +15,7 @@
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
-  padding-left: 104px;
-  padding-right: 104px;
+
   align-items: center;
   grid-area: footer;
 }
