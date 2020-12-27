@@ -9,7 +9,7 @@
 .footer{
   max-width: 1232px;
   height: 26px;
-  padding-bottom: 26px;
+  padding: 26px 0 26px 0;
   font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
   box-sizing: border-box;
   margin: 0 auto;

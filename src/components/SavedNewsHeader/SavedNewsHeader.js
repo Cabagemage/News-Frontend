@@ -5,11 +5,16 @@ import "./savednews/savednews.css";
 function SavedNewsHeader() {
   return (
     <div className="savednews">
-      <h2 className="savednews__saved">Сохраненные статьи</h2>
-      <h3 className="savednews__name" placeholder="Найти"></h3>
-      <p className="savednews__keywords">
-        По ключевым словам: <span>One, two, three</span>
-      </p>
+      <div className="savednews__content">
+        <h2 className="savednews__title">Сохраненные статьи</h2>
+        <h3 className="savednews__subtitle">
+          Грета, у вас 3 сохраненные статьи
+        </h3>
+        <p className="savednews__keywords">
+          По ключевым словам:{" "}
+          <span className="savednews__keyword">Природа, Авиация, Поезда</span>
+        </p>
+      </div>
     </div>
   );
 }

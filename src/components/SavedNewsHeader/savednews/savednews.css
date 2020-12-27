@@ -1,9 +1,16 @@
+@import url(./__title/savednews__title.css);
+@import url(./__content/savednews__content.css);
+@import url(./__keyword/savednews__keyword.css);
+@import url(./__keywords/savednews__keywords.css);
+@import url(./__subtitle/savednews__subtitle.css);
+
 .savednews {
-  width: 1440px;
-  max-width: 100%;
+  max-width: 712px;
+  width: 100%;
   display: flex;
+  padding-bottom: 56px;
+  align-items: center;
   flex-direction: column;
-  margin: 0 auto;
   grid-area: savednews;
 }
 
