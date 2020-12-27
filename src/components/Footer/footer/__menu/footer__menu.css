@@ -1,5 +1,4 @@
-.footer__links{
+.footer__menu{
   display: flex;
   flex-direction: row;
-  margin: 0 auto;
 }

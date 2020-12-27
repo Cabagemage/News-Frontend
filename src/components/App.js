@@ -9,6 +9,7 @@ import Cards from "./Cards/Cards";
 import LoginPopup from "./PopupAuth/LoginPopup";
 import RegistrationPopup from "./PopupAuth/RegistrationPopup";
 import { Switch, Route } from "react-router-dom";
+
 function App() {
   const [isLoginPopupOpen, setLoginPopupOpen] = useState(false);
   const [formToggle, setFormToggle] = useState(false);
@@ -60,7 +61,7 @@ function App() {
         </Route>
       </Switch>
 
-      {/* <Footer /> */}
+      <Footer />
 
       {!formToggle ? (
         <LoginPopup

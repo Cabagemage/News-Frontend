@@ -3,6 +3,9 @@
 @import url(./__nav/footer__nav.css);
 @import url(./__links/footer__links.css);
 @import url(./__icons/footer__icons.css);
+@import url(./__link/footer__link.css);
+@import url(./__list-item/footer__list-item.css);
+@import url(./__menu/footer__menu.css);
 .footer{
   max-width: 1232px;
   height: 26px;

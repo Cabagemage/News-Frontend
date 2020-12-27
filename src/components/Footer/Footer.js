@@ -1,27 +1,45 @@
-import React, {useState, useEffect} from "react";
-import facebook from "../../images/facebook.svg"
-import github from "../../images/github.svg"
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import facebook from "../../images/facebook.svg";
+import github from "../../images/github.svg";
+import { Link } from "react-router-dom";
 import "./footer/footer.css";
 
 function Footer() {
   return (
     <footer className="footer">
       <p className="footer__copyright">© 2020 Supersite, Powered by News API</p>
+
+      <div className="footer__menu">
       <nav className="footer__nav">
-        <div className="footer__links">
-        <a className="link link_theme_black" href="/">Главная</a>
-        <a className="link link_theme_black" target="_blank" href='https://praktikum.yandex.ru'>Яндекс.Практикум</a>
-        </div>
+        <ul className="footer__links">
+          <li className="footer__list-item">
+            <a className="link link_theme_black footer__link" href="/">
+              Главная
+            </a>
+          </li>
+          <li className="footer__list-item">
+            <a
+              className="link link_theme_black footer__link"
+              target="_blank"
+              href="https://praktikum.yandex.ru"
+            >
+              Яндекс.Практикум
+            </a>
+          </li>
+        </ul>
+        </nav>
         <div className="footer__icons">
-        <a target="_blank" href='https://facebook.com'> <img className="footer__social" src={facebook} /> </a>
-        <a target="_blank" href="https://github.com/Cabagemage">
-        <img className="footer__social" src={github} />
-        </a>
+          <a target="_blank" href="https://facebook.com">
+            {" "}
+            <img className="footer__social" src={facebook} />{" "}
+          </a>
+          <a target="_blank" href="https://github.com/Cabagemage">
+            <img className="footer__social" src={github} />
+          </a>
         </div>
-      </nav>
-   </footer>
-  )
+        </div>
+    </footer>
+  );
 }
 
 export default Footer;
