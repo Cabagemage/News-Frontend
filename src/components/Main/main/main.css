@@ -20,16 +20,17 @@ grid-area: main;
   }
   }
   @media screen and (max-width: 560px){
-    .main{
-      max-width: 400px;
-      margin-bottom: 32px;
+  .main{
+    max-width: 400px;
+    margin-bottom: 32px;
     }
     }
+
     @media screen and (max-width: 450px){
-      .main{
-        max-width: 320px;
-      }
-      }
+    .main{
+     max-width: 320px;
+     }
+    }
 
   @media screen and (max-width: 320px){
     .main{

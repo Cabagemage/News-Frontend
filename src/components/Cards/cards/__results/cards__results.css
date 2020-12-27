@@ -5,6 +5,8 @@
   color: #1A1B22;
   align-self: flex-start;
   font-family: 'Roboto Slab', 'Helvetica Neue', Arial, sans-serif;
+  margin: 0;
+  padding-bottom: 64px;
   font-style: normal;
   font-weight: normal;
   font-size: 30px;
@@ -13,14 +15,16 @@
 
 @media screen and (max-width: 1200px){
   .cards__results{
-    max-width: 336px;
-    padding-left: 40px;
+    max-width: 536px;
+    padding-left: 104px;
   }
   }
 
-@media screen and (max-width: 768px){
+@media screen and (max-width: 860px){
   .cards__results{
     max-width: 336px;
+    padding-left: 20px;
+    padding-bottom: 32px;
   }
   }
 
@@ -28,6 +32,8 @@
 @media screen and (max-width: 450px){
   .cards__results{
     max-width: 288px;
+    padding-bottom: 24px;
+    padding-left: 16px;
     margin: 0 auto;
   }
   }

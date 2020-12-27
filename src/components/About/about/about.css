@@ -4,10 +4,9 @@
 @import url(./__subtitle/about__subtitle.css);
 @import url(./__content/about__content.css);
 .about{
-
   width: 100%;
   background-color: white;
-
+  padding-bottom: 80px;
   margin: 0 auto;
   font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
   grid-area: about;
@@ -15,21 +14,13 @@
 
 @media screen and (max-width: 768px){
   .about{
-    padding-top: 22px;
-    justify-content: center;
-    align-items: center;
+    padding-bottom: 61px;
   }
   }
 
-  @media screen and (max-width: 600px){
-    .about{
-      max-width: 400px;
-    }
-    }
 
 @media screen and (max-width: 650px){
   .about{
-    max-width: 520px;
-    flex-direction: column;
+    padding-bottom: 80px;
   }
   }

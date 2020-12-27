@@ -8,7 +8,7 @@ import SavedNewsHeader from "./SavedNewsHeader/SavedNewsHeader"
 import Cards from "./Cards/Cards"
 import LoginPopup from "./PopupAuth/LoginPopup"
 import RegistrationPopup from "./PopupAuth/RegistrationPopup"
-import { Switch, NavLink, Link, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 function App() {
 
   const [isLoginPopupOpen, setLoginPopupOpen] = useState(false);
@@ -62,10 +62,12 @@ function App() {
 
       </Switch>
 
-      {/* <Footer /> */}
+      <Footer />
 
       {!formToggle
+
       ?
+
       <LoginPopup
       isOpen={isLoginPopupOpen}
       toggled={formToggle}
