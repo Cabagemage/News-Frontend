@@ -2,14 +2,8 @@
 .header__container{
   display: flex;
   align-items: center;
-  padding-right: 104px;
 }
 
-@media screen and (max-width: 768px){
-  .header__container{
-    padding-right: 40px;
-  }
-  }
 @media screen and (max-width: 560px){
   .header__container{
       padding-right: 16px;

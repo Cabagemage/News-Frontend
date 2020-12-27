@@ -14,7 +14,8 @@
   z-index: 100000;
   height: 80px;
   display: flex;
-  box-sizing: content-box;
+  padding: 0 104px 0 104px;
+  box-sizing: border-box;
   align-items: center;
   justify-content: space-between;
   font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
@@ -29,6 +30,7 @@
   max-width: 768px;
   height: 66px;
   margin-bottom: 38px;
+  padding: 0 40px 0 40px;
 }
 }
 
@@ -36,7 +38,7 @@
   .header{
     max-width: 640px;
     height: 66px;
-    padding-top: 22px;
+    padding: 22px 20px 0 20px;
   }
   }
 
@@ -46,15 +48,13 @@
     max-width: 570px;
     margin-bottom: 50px;
     height: 66px;
-    padding-top: 0;
+    padding: 0 16px 0 16px;
   }
   }
 
   @media screen and (max-width: 500px){
     .header{
-      max-width: 570px;
-      height: 66px;
+      max-width: 500px;
       margin-bottom: 30px;
-      padding-top: 0;
     }
     }
