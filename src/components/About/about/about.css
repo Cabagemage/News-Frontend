@@ -2,14 +2,12 @@
 @import url(./__title/about__title.css);
 @import url(./__text/about__text.css);
 @import url(./__subtitle/about__subtitle.css);
-
+@import url(./__content/about__content.css);
 .about{
-  max-width: 1120px;
+
   width: 100%;
   background-color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+
   margin: 0 auto;
   font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
   grid-area: about;
@@ -17,9 +15,9 @@
 
 @media screen and (max-width: 768px){
   .about{
-    max-width: 768px;
     padding-top: 22px;
     justify-content: center;
+    align-items: center;
   }
   }
 
