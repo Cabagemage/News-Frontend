@@ -1,9 +1,9 @@
-.header__container_version_mobile{
+.header__container_version_mobile {
   display: none;
 }
 
-@media screen and (max-width: 560px){
-  .header__container_version_mobile{
+@media screen and (max-width: 560px) {
+  .header__container_version_mobile {
     display: flex;
     position: absolute;
     height: 240px;
@@ -12,6 +12,6 @@
     justify-content: center;
     flex-direction: column;
     width: 100vw;
-    background-color: #1A1B22;
-    }
-    }
+    background-color: #1a1b22;
+  }
+}

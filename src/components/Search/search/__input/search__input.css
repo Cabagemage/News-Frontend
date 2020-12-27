@@ -1,4 +1,4 @@
-.search__input{
+.search__input {
   max-width: 608px;
   width: 100%;
   height: 64px;
@@ -9,26 +9,26 @@
   border-radius: 100px;
 }
 
-@media screen and (max-width: 768px){
-  .search__input{
+@media screen and (max-width: 768px) {
+  .search__input {
     width: 448px;
     height: 56px;
   }
+}
+@media screen and (max-width: 555px) {
+  .search__input {
+    width: 415px;
+    padding-right: 0;
+    margin-bottom: 16px;
+    height: 56px;
   }
-  @media screen and (max-width: 555px){
-    .search__input{
-      width: 415px;
-      padding-right: 0;
-      margin-bottom :16px;
-      height: 56px;
-    }
-    }
+}
 
-  @media screen and (max-width: 470px){
-    .search__input{
-      width: 288px;
-      padding-right: 0;
-      margin-bottom :16px;
-      height: 56px;
-    }
-    }
+@media screen and (max-width: 470px) {
+  .search__input {
+    width: 288px;
+    padding-right: 0;
+    margin-bottom: 16px;
+    height: 56px;
+  }
+}

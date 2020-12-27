@@ -1,4 +1,4 @@
-.header__hamburger-menu_clicked{
+.header__hamburger-menu_clicked {
   position: absolute;
   display: none;
   right: 16px;
@@ -7,15 +7,13 @@
   background-color: transparent;
   border: none;
   background-image: url(../../../../../images/hamburger-close.svg);
-  background-position:center;
+  background-position: center;
   background-repeat: none;
   background-size: cover;
 }
 
-
 @media screen and (max-width: 560px) {
   .header__hamburger-menu_clicked {
     display: inline-block;
-
   }
 }

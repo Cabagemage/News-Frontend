@@ -1,4 +1,4 @@
-.button_place_show{
+.button_place_show {
   width: 288px;
   height: 64px;
   justify-self: flex-end;
@@ -7,19 +7,19 @@
   align-self: center;
 }
 
-.button_place_show:hover{
+.button_place_show:hover {
   transition: 0.2s ease-in;
-  background-color: #347EFF;
+  background-color: #347eff;
 }
 
-@media screen and (max-width: 768px){
-  .button_place_show{
-  width: 240px;
+@media screen and (max-width: 768px) {
+  .button_place_show {
+    width: 240px;
   }
-  }
+}
 
-  @media screen and (max-width: 475px){
-  .button_place_show{
-   width: 288px;
-    }
-    }
+@media screen and (max-width: 475px) {
+  .button_place_show {
+    width: 288px;
+  }
+}

@@ -3,7 +3,7 @@
 @import url(./_popup/link_style_popup.css);
 @import url(./_active/link_black_active.css);
 @import url(./_active/link_white_active.css);
-.link{
+.link {
   font-weight: 500;
   font-size: 18px;
   background-color: transparent;
@@ -12,6 +12,6 @@
   margin-right: 32px;
 }
 
-.link:last-child{
+.link:last-child {
   margin-right: 0;
 }

@@ -5,9 +5,8 @@ function RegistrationPopup({
   isOpen,
   isClose,
   closeToOverlay,
-  handleFormToggle
+  handleFormToggle,
 }) {
-
   function handleSubmit(e) {
     e.preventDefault();
   }
@@ -59,6 +58,5 @@ function RegistrationPopup({
     />
   );
 }
-
 
 export default RegistrationPopup;

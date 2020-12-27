@@ -1,13 +1,7 @@
 import React from "react";
 import PopupWithForm from "./PopupWithForm";
 
-function LoginPopup({
-  isOpen,
-  isClose,
-  closeToOverlay,
-  handleFormToggle,
-}) {
-
+function LoginPopup({ isOpen, isClose, closeToOverlay, handleFormToggle }) {
   function handleSubmit(e) {
     e.preventDefault();
   }
@@ -52,6 +46,5 @@ function LoginPopup({
     />
   );
 }
-
 
 export default LoginPopup;

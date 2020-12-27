@@ -1,19 +1,18 @@
-.card__article{
+.card__article {
   margin: 0;
   padding: 0 0 16px 0;
-  font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
 }
 
-@media screen and (max-width: 768px){
-  .card__article{
+@media screen and (max-width: 768px) {
+  .card__article {
     font-size: 22px;
     line-height: 24px;
   }
-  }
+}
 
-
-@media screen and (max-width: 320px){
-  .card__article{
+@media screen and (max-width: 320px) {
+  .card__article {
     line-height: 26px;
   }
-  }
+}

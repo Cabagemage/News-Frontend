@@ -1,23 +1,22 @@
-
-.header__logo{
- width: 200px;
- color: white;
+.header__logo {
+  width: 200px;
+  color: white;
   height: 24px;
-  font-family: 'Roboto Slab', 'Helvetica Neue', Arial, sans-serif;
- font-style: normal;
- font-weight: bold;
- font-size: 20px;
- line-height: 24px;
- align-self: center;
+  font-family: "Roboto Slab", "Helvetica Neue", Arial, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 24px;
+  align-self: center;
 }
-@media screen and (max-width: 768px){
-  .header__logo{
+@media screen and (max-width: 768px) {
+  .header__logo {
     max-width: 768px;
   }
-  }
+}
 
-  @media screen and (max-width: 320px){
-    .header__logo{
-      max-width: 768px;
-    }
-    }
+@media screen and (max-width: 320px) {
+  .header__logo {
+    max-width: 768px;
+  }
+}

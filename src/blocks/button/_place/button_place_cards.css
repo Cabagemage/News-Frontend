@@ -1,6 +1,6 @@
-.button_place_cards{
+.button_place_cards {
   width: 168px;
-  background-color: #2F71E5;
+  background-color: #2f71e5;
   color: white;
   justify-self: flex-end;
   cursor: pointer;
@@ -10,7 +10,7 @@
   align-self: center;
 }
 
-.button_place_cards:hover{
+.button_place_cards:hover {
   transition: 0.2s ease-in;
-  background-color: #347EFF;
+  background-color: #347eff;
 }

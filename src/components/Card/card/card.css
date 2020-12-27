@@ -7,36 +7,34 @@
 @import url(./__icon/card__icon.css);
 @import url(./__keyword/card__keyword.css);
 @import url(./__hover/card__hover.css);
-.card{
+.card {
   width: 400px;
   height: 576px;
   background-color: white;
-  font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
   position: relative;
   overflow: hidden;
   border-radius: 20px;
 }
 
-
-@media screen and (max-width: 768px){
-  .card{
+@media screen and (max-width: 768px) {
+  .card {
     width: 224px;
     height: 420px;
   }
-  }
+}
 
-
-@media screen and (max-width: 510px){
-  .card{
+@media screen and (max-width: 510px) {
+  .card {
     width: 288px;
     height: 440px;
     margin-right: 0;
   }
-  }
+}
 
-.card:nth-child(-n+3){
+.card:nth-child(-n + 3) {
   margin-top: 0px;
 }
-.card:nth-child(3n+3){
+.card:nth-child(3n + 3) {
   margin-right: 0px;
 }

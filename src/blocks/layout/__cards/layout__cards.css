@@ -1,15 +1,15 @@
-.layout__cards{
+.layout__cards {
   width: 100%;
-  background-color: #F5F6F7;
+  background-color: #f5f6f7;
   grid-area: cards;
 }
 
-  @media screen and (max-width: 768px){
-  .layout__cards{
+@media screen and (max-width: 768px) {
+  .layout__cards {
   }
-  }
+}
 
-  @media screen and (max-width: 500px){
-    .layout__cards{
-    }
-    }
+@media screen and (max-width: 500px) {
+  .layout__cards {
+  }
+}

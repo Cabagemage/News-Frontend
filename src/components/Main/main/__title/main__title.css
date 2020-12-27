@@ -1,4 +1,4 @@
-.main__title{
+.main__title {
   max-width: 608px;
   width: 100%;
   color: #ffffff;
@@ -8,22 +8,20 @@
   margin: 0;
   font-size: 60px;
   line-height: 64px;
-  font-family: 'Roboto Slab', 'Helvetica Neue', Arial, sans-serif;
-
+  font-family: "Roboto Slab", "Helvetica Neue", Arial, sans-serif;
 }
 
-@media screen and (max-width: 768px){
-  .main__title{
+@media screen and (max-width: 768px) {
+  .main__title {
     width: 385px;
     font-size: 36px;
     line-height: 40px;
   }
-  }
+}
 
-
-@media screen and (max-width: 768px){
-  .main__title{
+@media screen and (max-width: 768px) {
+  .main__title {
     width: 288px;
     padding-bottom: 16px;
   }
-  }
+}

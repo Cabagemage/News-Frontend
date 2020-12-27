@@ -1,10 +1,10 @@
-.cards__results{
+.cards__results {
   max-width: 712px;
   width: 100%;
   box-sizing: border-box;
-  color: #1A1B22;
+  color: #1a1b22;
   align-self: flex-start;
-  font-family: 'Roboto Slab', 'Helvetica Neue', Arial, sans-serif;
+  font-family: "Roboto Slab", "Helvetica Neue", Arial, sans-serif;
   margin: 0;
   padding-bottom: 64px;
   font-style: normal;
@@ -13,27 +13,26 @@
   line-height: 34px;
 }
 
-@media screen and (max-width: 1200px){
-  .cards__results{
+@media screen and (max-width: 1200px) {
+  .cards__results {
     max-width: 536px;
     padding-left: 104px;
   }
-  }
+}
 
-@media screen and (max-width: 860px){
-  .cards__results{
+@media screen and (max-width: 860px) {
+  .cards__results {
     max-width: 336px;
     padding-left: 20px;
     padding-bottom: 32px;
   }
-  }
+}
 
-
-@media screen and (max-width: 450px){
-  .cards__results{
+@media screen and (max-width: 450px) {
+  .cards__results {
     max-width: 288px;
     padding-bottom: 24px;
     padding-left: 16px;
     margin: 0 auto;
   }
-  }
+}

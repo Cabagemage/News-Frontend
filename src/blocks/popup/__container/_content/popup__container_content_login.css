@@ -1,10 +1,10 @@
-.popup__container_content_login{
-    background-color: transparent;
-    font-family: Inter;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 12px;
-    line-height: 15px;
-    color: #FFFFFF;
-    margin: 10px 0 0 0;
+.popup__container_content_login {
+  background-color: transparent;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  color: #ffffff;
+  margin: 10px 0 0 0;
 }
