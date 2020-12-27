@@ -1,24 +1,38 @@
 @import url(./__copyright/footer__copyright.css);
 @import url(./__social/footer__social.css);
 @import url(./__nav/footer__nav.css);
+@import url(./__links/footer__links.css);
 @import url(./__icons/footer__icons.css);
 .footer{
-  max-width: 1440px;
-  height: 80px;
+  max-width: 1232px;
+  height: 26px;
+  padding-bottom: 26px;
+  font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  box-sizing: border-box;
+  margin: 0 auto;
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: 0 auto;
   width: 100%;
+  padding-left: 104px;
+  padding-right: 104px;
   align-items: center;
   grid-area: footer;
 }
+@media screen and (max-width: 1024px){
+  .footer{
+    padding-left: 60px;
+    padding-right: 40px;
+  }
+  }
 
 @media screen and (max-width: 768px){
   .footer{
-    width: 720px;
+    max-width: 768px;
     height: 64px;
+    padding-left: 40px;
+    padding-right: 20px;
     padding-top: 22px;
   }
   }
