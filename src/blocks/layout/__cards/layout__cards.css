@@ -4,3 +4,12 @@
   grid-area: cards;
 }
 
+  @media screen and (max-width: 768px){
+  .layout__cards{
+  }
+  }
+
+  @media screen and (max-width: 500px){
+    .layout__cards{
+    }
+    }

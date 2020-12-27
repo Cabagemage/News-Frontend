@@ -9,6 +9,7 @@
 .card{
   width: 400px;
   height: 576px;
+
   background-color: white;
   font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
   position: relative;
@@ -25,7 +26,7 @@
   }
 
 
-@media screen and (max-width: 320px){
+@media screen and (max-width: 510px){
   .card{
     width: 288px;
     height: 440px;

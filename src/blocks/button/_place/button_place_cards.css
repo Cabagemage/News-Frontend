@@ -10,7 +10,7 @@
   align-self: center;
 }
 
-.search__button:hover{
+.button_place_cards:hover{
   transition: 0.2s ease-in;
   background-color: #347EFF;
 }

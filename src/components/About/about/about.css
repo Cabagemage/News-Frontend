@@ -1,29 +1,37 @@
 @import url(./__avatar/about__avatar.css);
 @import url(./__title/about__title.css);
 @import url(./__text/about__text.css);
-@import url(./__info/about__info.css);
+@import url(./__subtitle/about__subtitle.css);
 
 .about{
-  width: 1440px;
-  max-width: 100%;
+  max-width: 1120px;
+  width: 100%;
   background-color: white;
   display: flex;
-  margin: 0 auto 30px auto;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
   font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
   grid-area: about;
 }
 
 @media screen and (max-width: 768px){
   .about{
-    width: 768px;
-    flex-direction: column;
+    max-width: 768px;
     padding-top: 22px;
+    justify-content: center;
   }
   }
 
+  @media screen and (max-width: 600px){
+    .about{
+      max-width: 400px;
+    }
+    }
 
-@media screen and (max-width: 398px){
+@media screen and (max-width: 650px){
   .about{
-    width: 320px;
+    max-width: 520px;
+    flex-direction: column;
   }
   }

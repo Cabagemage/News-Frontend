@@ -6,6 +6,7 @@
 @import url(./__login/popup__login.css);
 @import url(./__inputs/popup__inputs.css);
 @import url(./__span/popup__span.css);
+
 .popup{
     display: flex;
     position: fixed;

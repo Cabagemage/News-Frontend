@@ -13,6 +13,7 @@ function Cards({loggedIn}) {
       <Card loggedIn={loggedIn} />
       <Card loggedIn={loggedIn} />
    </div>
+   <button className="button button_theme_white button_place_show">Показать еще</button>
    </div>
    </div>
    </>

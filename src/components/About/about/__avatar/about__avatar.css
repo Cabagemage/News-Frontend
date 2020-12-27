@@ -1,7 +1,10 @@
 .about__avatar{
   width: 464px;
   height: 464px;
+  margin-right: 56px;
+  margin-top: 80px;
   border-radius: 1000px;
+  box-sizing: content-box;
 }
 
 
@@ -9,8 +12,8 @@
   .about__avatar{
     width: 232px;
     height: 232px;
-    flex-direction: column;
-    padding-top: 22px;
+    margin-right: 16px;
+    margin-top: 61px;
   }
   }
 
@@ -19,7 +22,6 @@
   .about__avatar{
     width: 272px;
     height: 272px;
-    flex-direction: column;
-    padding-top: 22px;
+    margin-top: 32px;
   }
   }
