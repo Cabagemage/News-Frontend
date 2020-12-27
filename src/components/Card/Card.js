@@ -1,17 +1,44 @@
-import React from "react";
+import React, {useState} from "react";
 import testImage from '../../images/test.png'
 import "./card/card.css";
 
 function Card({loggedIn}) {
+
+  const [isShown, setIsShown] = useState(false);
+
   return (
     <div className="card">
       <img className="card__image" src={testImage}></img>
       {loggedIn ? <span className="card__keyword">Природа</span> : null}
-      {loggedIn ?
-      <button className="card__icon card__icon_function_remove"></button>
-      : <button className="card__icon card__icon_function_favorite"></button>
-      }
 
+      {loggedIn ?
+      <button
+      className="card__icon card__icon_function_remove"
+      onMouseEnter={() => setIsShown(true)}
+      onMouseLeave={() => setIsShown(false)}
+      ></button>
+
+      :
+
+      <button
+      className="card__icon card__icon_function_favorite"
+      onMouseEnter={() => setIsShown(true)}
+      onMouseLeave={() => setIsShown(false)}
+      ></button>
+
+      }
+      {isShown && (
+        <p className="card__hover">
+          Войдите, чтобы сохранять статьи
+        </p>
+      )
+        }
+          {
+         isShown && loggedIn && (
+          <p className="card__hover">
+            Убрать из сохранённых
+          </p>
+      )}
       <div className="card__text">
       <p className="card__date">12 августа, 2019</p>
       <h2 className="card__article">OneTwoThree</h2>
