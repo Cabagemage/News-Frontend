@@ -11,6 +11,16 @@ function HeaderHamburgerSignedOut({ handleLoginPopup }) {
             Главная
           </NavLink>
         </Route>
+        <Route>
+                <NavLink
+                  className="link link_theme_white"
+                  activeClassName="header__link_active"
+                  exact
+                  to="/saved-news"
+                >
+                  Сохраненные статьи
+                </NavLink>
+              </Route>
       </nav>
       <button
         onClick={handleLoginPopup}

@@ -8,8 +8,9 @@
 }
 
 .button_place_show:hover {
-  transition: 0.2s ease-in;
-  background-color: #347eff;
+  transition: 0.3s ease-in;
+  background-color: #FFFFFF;
+  opacity: 0.9;
 }
 
 @media screen and (max-width: 768px) {

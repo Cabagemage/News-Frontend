@@ -1,8 +1,5 @@
 .header__link {
   font-weight: 500;
-  font-size: 18px;
-  text-decoration: none;
-  line-height: 24px;
   color: #808080;
   margin-right: 32px;
 }
@@ -23,6 +20,14 @@
   }
   .header__link_active {
     padding-bottom: 23px;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .header__link {
+    font-size: 16px;
+    line-height: 24px;
+    padding-bottom: 26px;
   }
 }
 
