@@ -1,5 +1,6 @@
 .card__hover {
-  width: 182px;
+  max-width: 182px;
+  width: 100%;
   align-items: center;
   font-style: normal;
   font-weight: 500;
@@ -19,6 +20,15 @@
 
 @media screen and (max-width: 768px) {
   .card__hover {
-    display: none;
+    max-width: 150px;
+    top: 8px;
+    right: 55px;
+  }
+}
+@media screen and (max-width: 450px) {
+  .card__hover {
+    max-width: 150px;
+    top: 8px;
+    right: 60px;
   }
 }

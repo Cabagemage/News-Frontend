@@ -3,24 +3,23 @@
 @import url(./__text/about__text.css);
 @import url(./__subtitle/about__subtitle.css);
 @import url(./__content/about__content.css);
-.about{
+.about {
   width: 100%;
   background-color: white;
   margin-bottom: 80px;
   margin: 0 auto;
-  font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
   grid-area: about;
 }
 
-@media screen and (max-width: 768px){
-  .about{
+@media screen and (max-width: 768px) {
+  .about {
     margin-bottom: 61px;
   }
-  }
+}
 
-
-@media screen and (max-width: 650px){
-  .about{
+@media screen and (max-width: 650px) {
+  .about {
     margin-bottom: 80px;
   }
-  }
+}

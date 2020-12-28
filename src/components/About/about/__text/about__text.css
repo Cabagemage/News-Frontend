@@ -1,36 +1,36 @@
-.about__text{
+.about__text {
   max-width: 600px;
   padding-top: 130px;
   padding-left: 56px;
   align-self: flex-start;
-  font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
 }
 
-@media screen and (max-width: 908px){
-  .about__text{
+@media screen and (max-width: 908px) {
+  .about__text {
     padding-top: 40px;
     align-items: center;
     justify-content: center;
     text-align: left;
     padding-left: 36px;
   }
-  }
+}
 
-@media screen and (max-width: 768px){
-  .about__text{
+@media screen and (max-width: 768px) {
+  .about__text {
     padding-top: 40px;
     align-items: center;
     justify-content: center;
     text-align: left;
     padding-left: 32px;
   }
-  }
+}
 
-  @media screen and (max-width: 650px){
-    .about__text{
-      padding-top: 24px;
-      padding-left: 15;
-      margin: 0 auto;
-      text-align: left;
-    }
-    }
+@media screen and (max-width: 650px) {
+  .about__text {
+    padding-top: 24px;
+    padding-left: 15;
+    margin: 0 auto;
+    text-align: left;
+  }
+}

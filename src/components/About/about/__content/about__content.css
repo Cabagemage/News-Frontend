@@ -1,4 +1,4 @@
-.about__content{
+.about__content {
   max-width: 1120px;
   width: 100%;
   display: flex;
@@ -7,22 +7,22 @@
   margin: 0 auto;
 }
 
-@media screen and (max-width: 768px){
-  .about__content{
+@media screen and (max-width: 768px) {
+  .about__content {
     max-width: 688px;
     padding-top: 22px;
   }
+}
+
+@media screen and (max-width: 600px) {
+  .about__content {
+    max-width: 400px;
+    flex-direction: column;
   }
+}
 
-  @media screen and (max-width: 600px){
-    .about__content{
-      max-width: 400px;
-      flex-direction: column;
-    }
-    }
-
-@media screen and (max-width: 500px){
-  .about__content{
+@media screen and (max-width: 500px) {
+  .about__content {
     max-width: 288px;
   }
-  }
+}

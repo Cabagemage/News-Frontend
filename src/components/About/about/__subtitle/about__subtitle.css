@@ -1,28 +1,28 @@
-.about__subtitle{
+.about__subtitle {
   font-style: normal;
-  font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
   margin: 0;
   font-weight: normal;
   font-size: 18px;
   line-height: 24px;
   padding-bottom: 10px;
 }
-.about__subtitle:last-child{
+.about__subtitle:last-child {
   padding-bottom: 0;
 }
 
-@media screen and (max-width: 768px){
-  .about__subtitle{
+@media screen and (max-width: 768px) {
+  .about__subtitle {
     max-width: 424px;
     align-items: center;
     text-align: left;
   }
-  }
+}
 
-  @media screen and (max-width: 500px){
-    .about__subtitle{
-      max-width: 288px;
-      align-items: center;
-      text-align: left;
-    }
-    }
+@media screen and (max-width: 500px) {
+  .about__subtitle {
+    max-width: 288px;
+    align-items: center;
+    text-align: left;
+  }
+}

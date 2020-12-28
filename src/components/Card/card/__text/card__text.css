@@ -3,6 +3,4 @@
   padding-left: 24px;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }

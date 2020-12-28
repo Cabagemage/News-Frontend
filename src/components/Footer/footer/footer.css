@@ -6,11 +6,11 @@
 @import url(./__link/footer__link.css);
 @import url(./__list-item/footer__list-item.css);
 @import url(./__menu/footer__menu.css);
-.footer{
+.footer {
   max-width: 1232px;
   height: 26px;
   padding: 26px 0 26px 0;
-  font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
   box-sizing: border-box;
   margin: 0 auto;
   width: 100%;
@@ -22,29 +22,29 @@
   align-items: center;
   grid-area: footer;
 }
-@media screen and (max-width: 1024px){
-  .footer{
+@media screen and (max-width: 1024px) {
+  .footer {
     padding-left: 60px;
     padding-right: 40px;
   }
-  }
+}
 
-@media screen and (max-width: 768px){
-  .footer{
+@media screen and (max-width: 768px) {
+  .footer {
     max-width: 768px;
     height: 64px;
     padding: 22px 20px 0 40px;
   }
-  }
+}
 
-  @media screen and (max-width: 660px){
-    .footer{
-      max-width: 620px;
-      height: 176px;
-      padding-bottom: 22px;
-      display: grid;
-      grid-template-columns: repeat(1, minmax(150px, 1fr));
-      grid-template-rows: repeat(1, minmax(100px, 1fr));
-      grid-template-areas:  "navigation icons" "copyright" ;
-    }
-    }
+@media screen and (max-width: 660px) {
+  .footer {
+    max-width: 620px;
+    height: 176px;
+    padding-bottom: 22px;
+    display: grid;
+    grid-template-columns: repeat(1, minmax(150px, 1fr));
+    grid-template-rows: repeat(1, minmax(100px, 1fr));
+    grid-template-areas: "navigation icons" "copyright";
+  }
+}
