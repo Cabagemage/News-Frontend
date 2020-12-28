@@ -1,6 +1,9 @@
 .about__subtitle {
+  max-width: 600px;
+  width: 100%;
   font-style: normal;
   font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
+  text-align: justify;
   margin: 0;
   font-weight: normal;
   font-size: 18px;
@@ -14,15 +17,11 @@
 @media screen and (max-width: 768px) {
   .about__subtitle {
     max-width: 424px;
-    align-items: center;
-    text-align: left;
   }
 }
 
 @media screen and (max-width: 500px) {
   .about__subtitle {
     max-width: 288px;
-    align-items: center;
-    text-align: left;
   }
 }

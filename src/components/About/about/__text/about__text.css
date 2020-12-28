@@ -1,36 +1,46 @@
 .about__text {
   max-width: 600px;
+  width: 100%;
   padding-top: 130px;
   padding-left: 56px;
   align-self: flex-start;
   font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
 }
 
-@media screen and (max-width: 908px) {
+@media screen and (max-width: 975px) {
   .about__text {
     padding-top: 40px;
     align-items: center;
     justify-content: center;
-    text-align: left;
+    text-align: justify;
     padding-left: 36px;
   }
 }
 
 @media screen and (max-width: 768px) {
   .about__text {
+    max-width: 424px;
     padding-top: 40px;
     align-items: center;
     justify-content: center;
-    text-align: left;
     padding-left: 32px;
+  }
+}
+
+
+@media screen and (max-width: 700px) {
+  .about__text {
+    max-width: 288px;
+    padding-top: 24px;
+    margin: 0;
   }
 }
 
 @media screen and (max-width: 650px) {
   .about__text {
-    padding-top: 24px;
-    padding-left: 15;
-    margin: 0 auto;
-    text-align: left;
+    max-width: 288px;
+    align-self: center;
+    padding-left: 0;
+    margin: 0;
   }
 }
