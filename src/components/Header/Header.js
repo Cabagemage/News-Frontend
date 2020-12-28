@@ -4,8 +4,8 @@ import "./header/header.css";
 import { NavLink, Route } from "react-router-dom";
 import HeaderHamburgerSignedOut from "./HeaderHamburgerSignedOut";
 import HeaderHamburgerSignedIn from "./HeaderHamburgerSignedIn";
+import leaveIcon  from "../../images/leave-button.svg";
 function Header({ loggedIn, handleLoginPopup }) {
-  
   const [streamingsIsOpen, setStreamingsIsOpen] = useState(true);
   const [streamingsBtnIsClicked, setStreamingsBtnIsClicked] = useState(false);
 
@@ -18,12 +18,21 @@ function Header({ loggedIn, handleLoginPopup }) {
     <>
       {loggedIn ? (
         <header className="header header_status_savednews">
-          <NavLink
-            to="/"
-            className="link header__logo header__logo_theme_black"
-          >
-            NewsExplorer
-          </NavLink>
+          {!streamingsBtnIsClicked ? (
+            <NavLink
+              to="/"
+              className="link header__logo header__logo_theme_black"
+            >
+              NewsExplorer
+            </NavLink>
+          ) : (
+            <NavLink
+              to="/"
+              className="link header__logo header__logo_theme_white"
+            >
+              NewsExplorer
+            </NavLink>
+          )}
           {streamingsBtnIsClicked ? (
             <button
               className="button header__hamburger-menu_clicked "
@@ -58,7 +67,7 @@ function Header({ loggedIn, handleLoginPopup }) {
               </Route>
             </nav>
             <button className="button button_place_loggedin button_theme_black">
-              Грета
+              Грета <img className="icon icon_place_header" src={leaveIcon}></img>
             </button>
           </div>
         </header>

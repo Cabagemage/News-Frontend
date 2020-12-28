@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink, Route } from "react-router-dom";
 import "./header/header.css";
 import "../../App.css";
+import leaveIcon  from "../../images/leave-button.svg";
 function HeaderHamburgerSignedIn() {
   return (
     <div className="header__container_version_mobile">
@@ -18,7 +19,7 @@ function HeaderHamburgerSignedIn() {
         </Route>
       </nav>
       <button className="button button_place_loggedin button_theme_white">
-        name
+        Грета <img className="icon icon_place_header" src={leaveIcon}></img>
       </button>
     </div>
   );
