@@ -1,15 +1,13 @@
-.footer__link{
-  font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+.footer__link {
+  font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
   font-size: 18px;
   line-height: 24px;
   padding-right: 30px;
 }
 
-@media screen and (max-width: 768px){
-  .footer__link{
-    font-style: normal;
-    font-weight: normal;
+@media screen and (max-width: 768px) {
+  .footer__link {
     font-size: 18px;
     line-height: 24px;
   }
-  }
+}

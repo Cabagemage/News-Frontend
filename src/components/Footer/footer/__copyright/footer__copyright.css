@@ -2,8 +2,10 @@
 color: #B6BCBF;
 font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
 margin: 0;
-font-style: normal;
-font-weight: normal;
 font-size: 16px;
 line-height: 22px;
+grid-area: copyright;
+grid-row: 2/2 ;
+grid-column: 1/2;
 }
+

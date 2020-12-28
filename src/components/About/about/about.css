@@ -6,7 +6,7 @@
 .about{
   width: 100%;
   background-color: white;
-  padding-bottom: 80px;
+  margin-bottom: 80px;
   margin: 0 auto;
   font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
   grid-area: about;
@@ -14,13 +14,13 @@
 
 @media screen and (max-width: 768px){
   .about{
-    padding-bottom: 61px;
+    margin-bottom: 61px;
   }
   }
 
 
 @media screen and (max-width: 650px){
   .about{
-    padding-bottom: 80px;
+    margin-bottom: 80px;
   }
   }
