@@ -1,5 +1,5 @@
 .popup__container {
-  max-width: 100%;
+  width: 100%;
   box-sizing: border-box;
   background-color: white;
   color: black;
@@ -12,14 +12,9 @@
   z-index: 10000000000;
 }
 
-@media screen and (max-width: 470px) {
+@media screen and (max-width: 515px) {
   .popup__container {
-    max-width: 270px;
+    max-width: 300px;
   }
 }
 
-@media screen and (max-width: 350px) {
-  .popup__container {
-    max-width: 250px;
-  }
-}
