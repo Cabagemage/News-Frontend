@@ -9,13 +9,17 @@
   grid-area: copyright;
   grid-column-start: 1;
   grid-column-end: 2;
-  grid-column: 1/2;
+}
+
+@media screen and (max-width: 768px) {
+  .footer__copyright {
+    max-width: 288px;
+    margin: 0;
+  }
 }
 
 @media screen and (max-width: 660px) {
   .footer__copyright {
-    max-width: 288px;
     margin: 0 auto;
-    word-wrap: none;
   }
 }

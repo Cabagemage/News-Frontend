@@ -36,7 +36,7 @@
 
 @media screen and (max-width: 700px) {
   .header {
-    max-width: 640px;
+    max-width: 700px;
     height: 66px;
     padding: 0 20px 0 20px;
   }
@@ -44,7 +44,7 @@
 
 @media screen and (max-width: 639px) {
   .header {
-    max-width: 570px;
+    max-width: 639px;
     margin-bottom: 50px;
     height: 66px;
     padding: 0 16px 0 16px;
