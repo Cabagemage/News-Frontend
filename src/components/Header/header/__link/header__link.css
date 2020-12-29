@@ -13,13 +13,13 @@
   border-bottom: white 2px solid;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 790px) {
   .header__link {
     font-size: 16px;
     line-height: 24px;
   }
   .header__link_active {
-    padding-bottom: 23px;
+    padding-bottom: 22px;
   }
 }
 

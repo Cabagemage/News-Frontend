@@ -13,8 +13,8 @@ function RegistrationPopup({
 
   return (
     <PopupWithForm
-      name="login"
-      form="login"
+      name="registration"
+      form="registration"
       title="Регистрация"
       buttonText="Зарегистрироваться"
       link="Войти"

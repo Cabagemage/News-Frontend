@@ -67,7 +67,7 @@ function Header({ loggedIn, handleLoginPopup }) {
               </Route>
             </nav>
             <button className="button button_place_loggedin button_theme_black">
-              Грета <img className="icon icon_place_header" src={leaveIcon} alt="выйти"></img>
+              Грета <img className="icon icon_place_header" src={leaveIcon} alt="войти"></img>
             </button>
           </div>
         </header>
