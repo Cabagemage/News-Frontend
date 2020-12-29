@@ -16,6 +16,13 @@
 
 @media screen and (max-width: 768px) {
   .savednews {
-    width: 768px;
+    max-width: 768px;
   }
 }
+
+@media screen and (max-width: 600px) {
+  .savednews {
+    max-width: 400px;
+  }
+}
+

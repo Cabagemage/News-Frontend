@@ -5,9 +5,15 @@
   padding-right: 30px;
 }
 
-@media screen and (max-width: 768px) {
+
+
+@media screen and (max-width: 660px) {
   .footer__link {
     font-size: 18px;
     line-height: 24px;
+    padding-right: 0;
+  }
+  .footer__link:last-child {
+    padding-right: 0;
   }
 }
