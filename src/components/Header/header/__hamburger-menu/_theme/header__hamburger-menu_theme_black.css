@@ -20,7 +20,7 @@
   outline: none;
 }
 
-@media screen and (max-width: 560px) {
+@media screen and (max-width: 660px) {
   .header__hamburger-menu_theme_black {
     display: inline-block;
   }

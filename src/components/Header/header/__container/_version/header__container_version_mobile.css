@@ -2,7 +2,7 @@
   display: none;
 }
 
-@media screen and (max-width: 560px) {
+@media screen and (max-width: 660px) {
   .header__container_version_mobile {
     display: flex;
     position: absolute;

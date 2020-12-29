@@ -25,7 +25,7 @@ function PopupWithForm({
       className={`popup ${isOpen && "popup_opened"}   popup_function_${name}  `}
       onClick={closeToOverlay}
     >
-      <form noValidate className={`popup__form popup__form_function_${form}`}>
+      <form className={`popup__form popup__form_function_${form}`}>
         <div id="form" className="popup__container">
           <button
             type="button"

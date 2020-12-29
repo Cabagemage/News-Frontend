@@ -47,7 +47,7 @@ function RegistrationPopup({
             />
             <label className="popup__label">Имя</label>
             <input
-              name="email"
+              name="name"
               required
               className="popup__input popup__input_type_link"
               placeholder="Введите имя"

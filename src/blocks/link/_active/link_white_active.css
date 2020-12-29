@@ -1,5 +1,22 @@
 .link_white_active {
   color: black;
-  padding-bottom: 30px;
+  padding-bottom: 29px;
   border-bottom: 2px solid black;
+}
+
+@media screen and (max-width: 870px) {
+  .link_white_active {
+    font-size: 16px;
+    line-height: 24px;
+    padding-bottom: 29px;
+  }
+}
+
+
+@media screen and (max-width: 762px) {
+  .link_white_active {
+    font-size: 16px;
+    line-height: 24px;
+    padding-bottom: 20px;
+  }
 }
