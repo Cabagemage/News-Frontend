@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import facebook from "../../images/facebook.svg";
 import github from "../../images/github.svg";
-import { Link } from "react-router-dom";
 import "./footer/footer.css";
-
+import "../../App.css";
 function Footer() {
   return (
     <footer className="footer">

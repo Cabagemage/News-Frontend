@@ -39,7 +39,7 @@
   .footer {
     max-width: 620px;
     height: 176px;
-    padding-bottom: 22px;
+    padding: 0 0 22px 0;
     display: grid;
     grid-template-columns: repeat(1, minmax(150px, 1fr));
     grid-template-rows: repeat(1, minmax(100px, 1fr));

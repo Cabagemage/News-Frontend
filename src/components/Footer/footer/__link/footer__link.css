@@ -9,7 +9,6 @@
   .footer__link {
     font-size: 18px;
     line-height: 24px;
-    padding-right: 12;
   }
   .footer__link:last-child {
     padding-right: 0;
@@ -21,7 +20,6 @@
   .footer__link {
     font-size: 18px;
     line-height: 24px;
-    padding-right: 12;
   }
   .footer__link:last-child {
     padding-right: 0;
