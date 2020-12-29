@@ -3,10 +3,10 @@ import "./search/search.css";
 
 function Search() {
   return (
-    <div className="search">
+    <form className="search">
       <input required className="search__input" placeholder="Найти"></input>
       <button className="button button_place_search">Искать</button>
-    </div>
+    </form>
   );
 }
 
