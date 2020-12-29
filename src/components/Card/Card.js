@@ -11,7 +11,9 @@ function Card({ loggedIn }) {
 
   return (
     <div className="card">
-      <img className="card__image" src={testImage}></img>
+      <img className="card__image"
+      src={testImage}
+      alt="растения"></img>
       {loggedIn ? <span className="card__keyword">Природа</span> : null}
 
       {loggedIn ? (

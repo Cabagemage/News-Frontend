@@ -28,10 +28,10 @@ function Footer() {
         </nav>
         <div className="footer__icons">
           <a target="_blank" href="https://facebook.com">
-            <img className="footer__social" src={facebook} />
+            <img className="footer__social" src={facebook} alt="facebook" />
           </a>
           <a target="_blank" href="https://github.com/Cabagemage">
-            <img className="footer__social" src={github} />
+            <img className="footer__social" src={github} alt="github" />
           </a>
         </div>
       </div>

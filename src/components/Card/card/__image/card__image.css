@@ -5,16 +5,16 @@
   padding-bottom: 20px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 790px) {
   .card__image {
-    width: 224px;
+    max-width: 224px;
     height: 150px;
   }
 }
 
 @media screen and (max-width: 560px) {
   .card__image {
-    width: 288px;
+    max-width: 288px;
     height: 196px;
   }
 }

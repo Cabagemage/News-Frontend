@@ -9,6 +9,7 @@ function About() {
         <img
           className="about__avatar"
           src="https://s15.stc.all.kpcdn.net/russia/wp-content/uploads/2020/05/devushka-v-shlyape.jpg"
+          alt="девушка"
         />
         <div className="about__text">
           <h2 className="about__title">Об авторе</h2>

@@ -25,7 +25,7 @@
   grid-area: header;
 }
 
-@media screen and (max-width: 772px) {
+@media screen and (max-width: 790px) {
   .header {
     max-width: 768px;
     height: 66px;

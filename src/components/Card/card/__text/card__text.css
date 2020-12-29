@@ -4,3 +4,10 @@
   display: flex;
   flex-direction: column;
 }
+
+@media screen and (max-width: 790px) {
+  .card__text {
+    max-width: 224px;
+    height: 150px;
+  }
+}

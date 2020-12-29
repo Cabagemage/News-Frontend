@@ -19,7 +19,7 @@ function HeaderHamburgerSignedIn() {
         </Route>
       </nav>
       <button className="button button_place_loggedin button_theme_white">
-        Грета <img className="icon icon_place_header" src={leaveIcon}></img>
+        Грета <img className="icon icon_place_header" src={leaveIcon} alt="выйти"></img>
       </button>
     </div>
   );
