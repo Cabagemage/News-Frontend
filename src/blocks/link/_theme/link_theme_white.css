@@ -1,0 +1,18 @@
+.link_theme_white {
+  color: #ffffff;
+}
+
+.link_theme_white:hover {
+  color: #808080;
+}
+
+@media screen and (max-width: 560px) {
+  .link_theme_white {
+    font-size: 16px;
+    line-height: 24px;
+    padding-bottom: 26px;
+  }
+  .link_theme_white:last-child{
+    padding-bottom: 0;
+  }
+}

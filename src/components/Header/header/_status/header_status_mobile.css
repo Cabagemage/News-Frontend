@@ -1,0 +1,11 @@
+.header_status_mobile {
+  width: 320px;
+  position: absolute;
+  background-color: grey;
+  z-index: 500;
+}
+
+@media screen and (max-width: 600px) {
+  .header_status_mobile {
+  }
+}

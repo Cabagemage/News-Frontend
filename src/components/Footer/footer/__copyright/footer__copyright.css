@@ -1,0 +1,25 @@
+.footer__copyright {
+  color: #b6bcbf;
+  width: 100%;
+  max-width: 433px;
+  font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
+  margin: 0;
+  font-size: 16px;
+  line-height: 22px;
+  grid-area: copyright;
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+
+@media screen and (max-width: 768px) {
+  .footer__copyright {
+    max-width: 288px;
+    margin: 0;
+  }
+}
+
+@media screen and (max-width: 660px) {
+  .footer__copyright {
+    margin: 0 auto;
+  }
+}

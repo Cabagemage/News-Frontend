@@ -1,0 +1,4 @@
+.footer__nav {
+  grid-area: navigation;
+  padding-right: 40px;
+}

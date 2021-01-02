@@ -1,0 +1,38 @@
+.header__link {
+  font-weight: 500;
+  color: #808080;
+  margin-right: 32px;
+}
+.header__link:hover {
+  color: #ffffff;
+}
+
+.header__link_active {
+  color: #ffffff;
+  padding-bottom: 28px;
+  border-bottom: white 2px solid;
+}
+
+@media screen and (max-width: 790px) {
+  .header__link {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .header__link_active {
+    padding-bottom: 22px;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .header__link {
+    font-size: 16px;
+    line-height: 24px;
+    padding-bottom: 26px;
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .header__link_active {
+    padding-bottom: 20px;
+  }
+}

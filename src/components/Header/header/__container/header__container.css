@@ -1,0 +1,12 @@
+@import url(./_version/header__container_version_mobile.css);
+.header__container {
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (max-width: 660px) {
+  .header__container {
+    padding-right: 16px;
+    display: none;
+  }
+}

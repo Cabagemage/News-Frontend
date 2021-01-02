@@ -1,0 +1,19 @@
+.header__navigation {
+  padding-right: 32px;
+}
+
+@media screen and (max-width: 768px) {
+  .header__navigation {
+    padding-right: 16px;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .header__navigation {
+    display: flex;
+    flex-direction: column;
+    margin-top: 16px;
+    padding-top: 16px;
+    padding-left: 16px;
+  }
+}

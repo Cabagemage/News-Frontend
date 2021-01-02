@@ -1,0 +1,29 @@
+@import url(./__title/savednews__title.css);
+@import url(./__content/savednews__content.css);
+@import url(./__keyword/savednews__keyword.css);
+@import url(./__keywords/savednews__keywords.css);
+@import url(./__subtitle/savednews__subtitle.css);
+
+.savednews {
+  max-width: 1440px;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  padding-bottom: 56px;
+  flex-direction: column;
+  grid-area: savednews;
+}
+
+@media screen and (max-width: 768px) {
+  .savednews {
+    max-width: 768px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .savednews {
+    max-width: 289px;
+  }
+}
+

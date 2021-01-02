@@ -1,0 +1,41 @@
+.button_place_search {
+  background-color: #2f71e5;
+  width: 168px;
+  height: 68px;
+  color: white;
+  justify-self: flex-end;
+  cursor: pointer;
+  border-color: transparent;
+  position: absolute;
+  right: 0;
+  align-self: center;
+  grid-area: search-button;
+}
+
+.button_place_search:hover {
+  transition: 0.2s ease-in;
+  background-color: #347eff;
+}
+
+@media screen and (max-width: 768px) {
+  .button_place_search {
+    width: 160px;
+    height: 56px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .button_place_search {
+    width: 160px;
+  }
+}
+
+@media screen and (max-width: 555px) {
+  .button_place_search {
+    width: 415px;
+  }
+}
+@media screen and (max-width: 474px) {
+  .button_place_search {
+    width: 288px;
+  }
+}

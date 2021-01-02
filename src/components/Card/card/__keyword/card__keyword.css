@@ -1,0 +1,29 @@
+.card__keyword {
+  color: black;
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  width: 88px;
+  font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 10px;
+  background-color: #ffffff;
+}
+
+@media screen and (max-width: 768px) {
+  .card__keyword {
+    top: 8px;
+    left: 8px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .card__keyword {
+    top: 16px;
+    left: 16px;
+  }
+}

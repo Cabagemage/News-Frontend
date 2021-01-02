@@ -1,0 +1,48 @@
+@import url(./__copyright/footer__copyright.css);
+@import url(./__social/footer__social.css);
+@import url(./__nav/footer__nav.css);
+@import url(./__links/footer__links.css);
+@import url(./__icons/footer__icons.css);
+@import url(./__link/footer__link.css);
+@import url(./__list-item/footer__list-item.css);
+@import url(./__menu/footer__menu.css);
+.footer {
+  max-width: 1232px;
+  height: 26px;
+  padding: 26px 0 26px 0;
+  font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
+  box-sizing: border-box;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  grid-area: footer;
+}
+@media screen and (max-width: 1024px) {
+  .footer {
+    padding-left: 60px;
+    padding-right: 40px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .footer {
+    max-width: 768px;
+    height: 64px;
+    padding: 22px 20px 0 40px;
+  }
+}
+
+@media screen and (max-width: 660px) {
+  .footer {
+    max-width: 620px;
+    height: 176px;
+    padding: 0 0 22px 0;
+    display: grid;
+    grid-template-columns: repeat(1, minmax(150px, 1fr));
+    grid-template-rows: repeat(1, minmax(100px, 1fr));
+    grid-template-areas: "navigation icons" "copyright";
+  }
+}

@@ -1,0 +1,27 @@
+.about__subtitle {
+  max-width: 600px;
+  width: 100%;
+  font-style: normal;
+  font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
+  text-align: justify;
+  margin: 0;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 24px;
+  padding-bottom: 10px;
+}
+.about__subtitle:last-child {
+  padding-bottom: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .about__subtitle {
+    max-width: 424px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .about__subtitle {
+    max-width: 288px;
+  }
+}
