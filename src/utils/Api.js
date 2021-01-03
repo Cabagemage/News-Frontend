@@ -17,20 +17,19 @@ class Api {
   }
 
   // Получение массива карточек с сервера
-  getCards() {
-      return fetch(`${this.baseUrl}/cards`, {
+  async getCards() {
+      return await fetch(`${this.baseUrl}/everything?q=bitcoin&${this.key}`, {
           headers: {
               'Accept': 'application/json',
-              'Content-Type': 'application/json',
-              'Authorization': this.key,
+              'Authorization': `Bearer ${this.key}`,
             }
       })
           .then(this.checkStatus)
   }
 
   // Метод для создания новой карточки
-  postNewCard(data, token) {
-      return fetch(`${this.baseUrl}/cards`, {
+  async postNewCard(data, token) {
+      return await fetch(`${this.baseUrl}/cards`, {
           method: 'POST',
           headers: {
               'Accept': 'application/json',
@@ -63,5 +62,5 @@ class Api {
 }
 export const apiProfile = new Api({
   baseUrl: 'https://newsapi.org/v2',
-  key: 'a6bc5e9cee064009922dda5c700fd78a'
+  key: '2b98028da4304250b046d57668402fac'
 });

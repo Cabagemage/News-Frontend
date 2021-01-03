@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import "../App.css";
 import Header from "./Header/Header";
 import Main from "./Main/Main";
@@ -8,9 +8,11 @@ import SavedNewsHeader from "./SavedNewsHeader/SavedNewsHeader";
 import Cards from "./Cards/Cards";
 import LoginPopup from "./PopupAuth/LoginPopup";
 import RegistrationPopup from "./PopupAuth/RegistrationPopup";
+import { apiProfile } from '../utils/Api'
 import { Switch, Route,   useHistory,
   Redirect } from "react-router-dom";
 import * as Auth from "../utils/Auth"
+
 
 
 function App() {
@@ -18,14 +20,23 @@ function App() {
   const [isLoginPopupOpen, setLoginPopupOpen] = useState(false);
   const [formToggle, setFormToggle] = useState(false);
   const [loggedIn, setLoginIn] = useState(false);
+  const [cards, setCards] = useState([]);
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [token, setToken] = useState("")
 
 
-  Auth.getOwnerInfo(token).then((res) =>{
-    setName(res.name)
-   })
+  useEffect(() => {
+    Auth.getOwnerInfo(token).then((res) =>{
+      setName(res.name)
+     }).then(() => {
+    apiProfile.getCards().then(cards => {
+      setCards(cards.articles)
+      console.log(cards.articles)
+       })
+      })
+  },[token])
+
 
    const handleLoginPopup = () => {
     setLoginPopupOpen(true);
@@ -125,7 +136,7 @@ React.useEffect(() => {
             handleLoginPopup={handleLoginPopup} />
             <Main />
           </div>
-          <Cards loggedIn={loggedIn} />
+          <Cards cards={cards} loggedIn={loggedIn} />
           <About />
         </Route>
 
