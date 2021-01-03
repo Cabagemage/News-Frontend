@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../../App.css";
 import "./header/header.css";
 import { NavLink, Route } from "react-router-dom";
+import currentThemeContext from '../../contexts/currentThemeContext'
 import HeaderHamburgerSignedOut from "./HeaderHamburgerSignedOut";
 import HeaderHamburgerSignedIn from "./HeaderHamburgerSignedIn";
 import leaveIcon  from "../../images/leave-button.svg";

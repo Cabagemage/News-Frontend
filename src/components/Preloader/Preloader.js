@@ -1,10 +1,20 @@
-import React from "react";
-import LoginPopup from "./LoginPopup";
-import RegistrationPopup from "./RegistrationPopup";
-import  "../preloader/preloader.css";
+import React, {Component} from "react";
+import  "./preloader/preloader.css";
 
-const Preloader = ({ onClick, handleFormToggle }) => (
-  <i class="circle-preloader"></i>
-);
+class Preloader extends Component {
+  constructor(props) {
+    super(props)
+    this.viewRef = React.createRef()  }
+
+render(){
+  return(
+    <i ref={this.viewRef} className="circle-preloader"></i>
+  );
+}
+componentWillUnmount(){
+  this.viewRef.current.style.opacity= 0
+
+}
+}
 
 export default Preloader;

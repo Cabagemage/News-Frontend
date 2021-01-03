@@ -1,23 +1,25 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, Suspense, lazy} from "react";
 import "../App.css";
 import Header from "./Header/Header";
 import Main from "./Main/Main";
 import About from "./About/About";
 import Footer from "./Footer/Footer";
 import SavedNewsHeader from "./SavedNewsHeader/SavedNewsHeader";
-import Cards from "./Cards/Cards";
 import LoginPopup from "./PopupAuth/LoginPopup";
 import RegistrationPopup from "./PopupAuth/RegistrationPopup";
 import { apiProfile } from '../utils/Api'
 import { Switch, Route,   useHistory,
   Redirect } from "react-router-dom";
 import * as Auth from "../utils/Auth"
+import Preloader from "./Preloader/Preloader";
+const Cards = lazy(() => import("./Cards/Cards"));
 
 
 
 function App() {
   const history = useHistory();
   const [isLoginPopupOpen, setLoginPopupOpen] = useState(false);
+  const [load, setLoader] = useState(null)
   const [formToggle, setFormToggle] = useState(false);
   const [loggedIn, setLoginIn] = useState(false);
   const [cards, setCards] = useState([]);
@@ -36,6 +38,8 @@ function App() {
        })
       })
   },[token])
+
+
 
 
    const handleLoginPopup = () => {
@@ -136,7 +140,9 @@ React.useEffect(() => {
             handleLoginPopup={handleLoginPopup} />
             <Main />
           </div>
+          <Suspense fallback={<Preloader />}>
           <Cards cards={cards} loggedIn={loggedIn} />
+          </Suspense>
           <About />
         </Route>
 
@@ -146,7 +152,9 @@ React.useEffect(() => {
             handleLoginPopup={handleLoginPopup}
           />
           <SavedNewsHeader />
-          <Cards loggedIn={!loggedIn} />
+          <Suspense fallback={<Preloader />}>
+          <Cards cards={cards} loggedIn={!loggedIn} />
+          </Suspense>
         </Route>
       </Switch>
 

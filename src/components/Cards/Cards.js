@@ -1,9 +1,9 @@
-import React, {useState} from "react";
+import React, {useState, } from "react";
 import Card from "../Card/Card";
 import "./cards/cards.css";
 
 function Cards({ loggedIn, cards }) {
-  const [cardsLength, setCardsLength]=useState(3)
+  const [cardsLength, setCardsLength] = useState(3)
 
 
   return (
@@ -18,6 +18,7 @@ function Cards({ loggedIn, cards }) {
           {cards.map((card) => (
             <Card
              keyword={card.title.slice(0,7)}
+             key={card.title}
              date={card.publishedAt}
              description={card.description}
              title={card.title}
