@@ -1,16 +1,30 @@
 import React from "react";
 import PopupWithForm from "./PopupWithForm";
 
-function RegistrationPopup({
-  isOpen,
-  isClose,
-  closeToOverlay,
-  handleFormToggle,
-}) {
-  function handleSubmit(e) {
-    e.preventDefault();
+class  RegistrationPopup extends React.Component{
+  constructor(props){
+    super(props)
+    this.state = {
+      email: '',
+      password: '',
+      name: ''
+    }
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  handleChange(e) {
+    const {name, value} = e.target;
+    this.setState({
+      [name]: value
+    });
+  }
+  handleSubmit(e){
+        e.preventDefault()
+        const {email, password, name} = this.state;
+        this.props.onRegister(email, password, name)
   }
 
+render() {
   return (
     <PopupWithForm
       name="registration"
@@ -19,12 +33,12 @@ function RegistrationPopup({
       buttonText="Зарегистрироваться"
       link="Войти"
       btnClassName="login"
-      onSubmit={handleSubmit}
-      handleFormToggle={handleFormToggle}
+      onSubmit={this.handleSubmit}
+      handleFormToggle={this.props.handleFormToggle}
       popupCloseName="login"
-      isOpen={isOpen}
-      isClose={isClose}
-      closeToOverlay={closeToOverlay}
+      isOpen={this.props.isOpen}
+      isClose={this.props.isClose}
+      closeToOverlay={this.props.closeToOverlay}
       children={
         <>
           <div className="popup__inputs">
@@ -32,6 +46,8 @@ function RegistrationPopup({
             <input
               type="email"
               name="email"
+              onChange={this.handleChange}
+              value={this.state.email}
               required
               className="popup__input popup__input_type_link"
               placeholder="Введите почту"
@@ -41,6 +57,8 @@ function RegistrationPopup({
             <input
               type="password"
               name="password"
+              onChange={this.handleChange}
+              value={this.state.password}
               required
               className="popup__input popup__input_type_link"
               placeholder="Введите пароль"
@@ -48,6 +66,8 @@ function RegistrationPopup({
             <label className="popup__label">Имя</label>
             <input
               name="name"
+              onChange={this.handleChange}
+              value={this.state.name}
               required
               className="popup__input popup__input_type_link"
               placeholder="Введите имя"
@@ -58,5 +78,5 @@ function RegistrationPopup({
     />
   );
 }
-
+}
 export default RegistrationPopup;

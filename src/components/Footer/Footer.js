@@ -27,7 +27,7 @@ function Footer() {
           </ul>
         </nav>
         <div className="footer__icons">
-          <a target="_blank" href="https://facebook.com">
+          <a target="_blank" href="https://www.facebook.com/cabagemage">
             <img className="footer__social" src={facebook} alt="facebook" />
           </a>
           <a target="_blank" href="https://github.com/Cabagemage">

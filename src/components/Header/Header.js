@@ -5,7 +5,7 @@ import { NavLink, Route } from "react-router-dom";
 import HeaderHamburgerSignedOut from "./HeaderHamburgerSignedOut";
 import HeaderHamburgerSignedIn from "./HeaderHamburgerSignedIn";
 import leaveIcon  from "../../images/leave-button.svg";
-function Header({ loggedIn, handleLoginPopup }) {
+function Header({ loggedIn, handleLoginPopup, signOut, name }) {
   const [streamingsIsOpen, setStreamingsIsOpen] = useState(true);
   const [streamingsBtnIsClicked, setStreamingsBtnIsClicked] = useState(false);
 
@@ -66,8 +66,8 @@ function Header({ loggedIn, handleLoginPopup }) {
                 </NavLink>
               </Route>
             </nav>
-            <button className="button button_place_loggedin button_theme_black">
-              Грета <img className="icon icon_place_header" src={leaveIcon} alt="войти"></img>
+            <button className="button button_place_loggedin button_theme_black" onClick={signOut}>
+              {name} <img className="icon icon_place_header" src={leaveIcon} alt="войти"></img>
             </button>
           </div>
         </header>
