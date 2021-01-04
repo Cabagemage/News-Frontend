@@ -43,7 +43,7 @@ function Card({ loggedIn, keyword, title,  image, description, link, date}) {
         <h2 className="card__article">{titleCut}</h2>
         <p className="card__about"> {phraseSub}</p>
 
-        <a href={link} target='_blank' className="card__source">
+        <a href={link} className="card__source">
          {link}
         </a>
       </div>

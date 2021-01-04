@@ -10,7 +10,7 @@ function Cards({ loggedIn, cards }) {
     <>
       <div className="layout__cards">
         <div className="cards__container">
-          {loggedIn ? null : (
+          {!loggedIn ? null : (
             <h2 className="cards__results">Результаты поиска</h2>
           )}
 
