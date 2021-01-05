@@ -66,7 +66,7 @@ function Header({ loggedIn, handleLoginPopup, signOut, name }) {
                  onClick={handleLoginPopup}
                >
                  Авторизоваться
-               </button> :  <button className="button button_place_loggedin button_theme_black" onClick={signOut}>
+               </button> :  <button className="button button_place_loggedout" onClick={signOut}>
               {name} <img className="icon icon_place_header" src={leaveIcon} alt="войти"></img>
             </button>}
           </div>

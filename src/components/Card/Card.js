@@ -10,6 +10,8 @@ function Card({ loggedIn, keyword, title,  image, description, link, date}) {
 
   const phraseSub = description.substring(0, 130) + "...";
   const titleCut = title.substring(0, 64) + "...";
+  const options = { day: 'numeric', month: 'long', year: 'numeric' };
+  const today  = new Date();
 
   return (
     <div className="card">
@@ -39,7 +41,7 @@ function Card({ loggedIn, keyword, title,  image, description, link, date}) {
         <p className="card__hover">Убрать из сохранённых</p>
       )}
       <div className="card__text">
-        <p className="card__date">{date}</p>
+        <p className="card__date">{today.toLocaleString("ru", options)}</p>
         <h2 className="card__article">{titleCut}</h2>
         <p className="card__about"> {phraseSub}</p>
 
