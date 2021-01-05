@@ -1,6 +1,7 @@
 import React, {useState, useEffect, Suspense, lazy} from "react";
 import "../App.css";
 import Header from "./Header/Header";
+import ProtectedRoute from "./HOC/ProtectedRoute"
 import Main from "./Main/Main";
 import About from "./About/About";
 import Footer from "./Footer/Footer";
@@ -144,11 +145,20 @@ React.useEffect(() => {
           <Cards cards={cards} loggedIn={loggedIn} />
           </Suspense>
           <About />
+          {/* <ProtectedRoute
+          path="/saved-news"
+          login={loggedIn}
+          component={SavedNewsHeader}
+          cards={cards}
+
+          ></ProtectedRoute> */}
         </Route>
 
         <Route path="/saved-news">
           <Header
             loggedIn={handleLoginIn}
+            signOut={signOut}
+            name={name}
             handleLoginPopup={handleLoginPopup}
           />
           <SavedNewsHeader />

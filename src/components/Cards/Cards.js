@@ -1,11 +1,12 @@
-import React, {useState, } from "react";
+import React, {useState, memo, useMemo} from "react";
 import Card from "../Card/Card";
 import "./cards/cards.css";
 
 function Cards({ loggedIn, cards }) {
-  const [cardsLength, setCardsLength] = useState(3)
-
-
+  const [toShow, setToShow] = useState(3)
+  const itemsToShow = cards.slice(0, toShow)
+ 
+  // const memoizedValue = useMemo(() => itemsToShow(3), [3]);
   return (
     <>
       <div className="layout__cards">
@@ -15,7 +16,7 @@ function Cards({ loggedIn, cards }) {
           )}
 
           <div className="cards">
-          {cards.map((card) => (
+          {itemsToShow.map((card) => (
             <Card
              keyword={card.title.slice(0,7)}
              key={card.title}
@@ -30,7 +31,7 @@ function Cards({ loggedIn, cards }) {
              ))}
           </div>
 
-          <button className="button button_theme_white button_place_show">
+          <button className="button button_theme_white button_place_show" onClick={_ => setToShow(toShow + 3)}>
             Показать еще
           </button>
 
@@ -40,4 +41,4 @@ function Cards({ loggedIn, cards }) {
   );
 }
 
-export default Cards;
+export default memo(Cards);

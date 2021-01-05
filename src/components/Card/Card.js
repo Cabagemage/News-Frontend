@@ -4,23 +4,19 @@ import "./card/card.css";
 
 function Card({ loggedIn, keyword, title,  image, description, link, date}) {
   const [isShown, setIsShown] = useState(false);
-
-
-
-
   const phraseSub = description.substring(0, 130) + "...";
   const titleCut = title.substring(0, 64) + "...";
   const options = { day: 'numeric', month: 'long', year: 'numeric' };
-  const today  = new Date();
+  const newsDate  = new Date(date);
 
   return (
     <div className="card">
       <img className="card__image"
       src={image}
       alt={title}></img>
-      {loggedIn ? <span className="card__keyword">{keyword}</span> : null}
+      {!loggedIn ? <span className="card__keyword">{keyword}</span> : null}
 
-      {loggedIn ? (
+      {!loggedIn ? (
         <button
           className="card__icon card__icon_function_remove"
           onMouseEnter={() => setIsShown(true)}
@@ -33,15 +29,15 @@ function Card({ loggedIn, keyword, title,  image, description, link, date}) {
           onMouseLeave={() => setIsShown(false)}
         ></button>
       )}
-      {isShown && (
-        <p className="card__hover">Войдите, чтобы сохранять статьи</p>
-      )}
+      {isShown  && !loggedIn  ?
+        <p className="card__hover">Войдите, чтобы сохранять статьи</p> : null
+      }
 
-      {isShown && loggedIn && (
+      {isShown && !loggedIn && (
         <p className="card__hover">Убрать из сохранённых</p>
       )}
       <div className="card__text">
-        <p className="card__date">{today.toLocaleString("ru", options)}</p>
+        <p className="card__date">{newsDate.toLocaleString("ru", options)}</p>
         <h2 className="card__article">{titleCut}</h2>
         <p className="card__about"> {phraseSub}</p>
 

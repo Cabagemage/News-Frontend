@@ -1,24 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "../../App.css";
 import "./header/header.css";
 import { NavLink, Route, Switch } from "react-router-dom";
-import currentThemeContext from '../../contexts/currentThemeContext'
 import HeaderHamburgerSignedOut from "./HeaderHamburgerSignedOut";
 import HeaderHamburgerSignedIn from "./HeaderHamburgerSignedIn";
 import leaveIcon  from "../../images/leave-button.svg";
+
 function Header({ loggedIn, handleLoginPopup, signOut, name }) {
   const [streamingsIsOpen, setStreamingsIsOpen] = useState(true);
   const [streamingsBtnIsClicked, setStreamingsBtnIsClicked] = useState(false);
-  const [currentTheme, setCurrentTheme] = useState();
-
-
   const handleBtnClick = () => {
     setStreamingsIsOpen(!streamingsIsOpen);
     setStreamingsBtnIsClicked(!streamingsBtnIsClicked);
   };
-  const changeCurrentTheme = () => {
-    setCurrentTheme(!currentTheme);
-  }
   return (
     <>
     <Switch>
@@ -77,7 +71,11 @@ function Header({ loggedIn, handleLoginPopup, signOut, name }) {
         ""
       )}
       {loggedIn && streamingsBtnIsClicked ? (
-        <HeaderHamburgerSignedIn loggedIn={loggedIn} name={name} signOut={signOut} handleLoginPopup={handleLoginPopup} />
+        <HeaderHamburgerSignedIn
+        loggedIn={loggedIn}
+        name={name}
+        signOut={signOut}
+        handleLoginPopup={handleLoginPopup} />
       ) : (
         ""
       )}
