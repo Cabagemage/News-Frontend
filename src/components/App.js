@@ -22,10 +22,12 @@ function App() {
   const [load, setLoader] = useState(null);
   const [formToggle, setFormToggle] = useState(false);
   const [loggedIn, setLoginIn] = useState(false);
-  const [cards, setCards] = useState([]);
+  const [savedCards, setSavedCards] = useState([]);
+  const [cards, setCards] = useState(null);
   const [name, setName] = useState("");
   const [keyword, setKeyword] = useState("");
   const [token, setToken] = useState("");
+  const [isSave, setSave] = useState(null);
   const [isSearch, setSearch] = useState(false);
   useEffect(() => {
     mainApi.getOwnerInfo(token).then((res) => {
@@ -36,12 +38,18 @@ function App() {
   // Эта функция выводит список карточек по ключевому слову.
   const handleGetCards = () => {
     apiProfile.getCards(keyword).then((cards) => {
-      setCards(cards.articles);
+      setCards([...cards.articles]);
       setSearch(true);
       return;
     });
   };
-
+  const handleSaveCard = () => {
+    mainApi.addNewCard(isSave).then((saveCard) => {
+      setSave(true);
+      savedCards.push(saveCard);
+    });
+  };
+  console.log(savedCards);
   const handleLoginPopup = () => {
     setLoginPopupOpen(true);
   };
@@ -140,6 +148,7 @@ function App() {
       value={{
         signOut,
         keyword,
+        handleSaveCard,
         setKeyword,
         handleLogin,
         handleGetCards,

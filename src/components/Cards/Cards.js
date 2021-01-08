@@ -49,29 +49,15 @@ function Cards({ loggedIn, cards }) {
           <div className="layout__cards">
             <div className="cards__container">
               <div className="cards">
-                {itemsToShow.map((card) => (
-                  <Card
-                    keyword={card.title.slice(0, 7)}
-                    key={card.title}
-                    date={card.publishedAt}
-                    description={card.description}
-                    title={card.title}
-                    author={card.author}
-                    //  id={card.source.id}
-                    link={card.source.name}
-                    image={card.urlToImage}
-                    about={card.text}
-                    loggedIn={loggedIn}
-                  />
-                ))}
+                <h2>Zdes chtoto budet</h2>
               </div>
 
-              <button
+              {/* <button
                 className="button button_theme_white button_place_show"
                 onClick={(_) => setToShow(toShow + 3)}
               >
                 Показать еще
-              </button>
+              </button> */}
             </div>
           </div>
         </Route>
