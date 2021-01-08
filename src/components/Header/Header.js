@@ -82,9 +82,11 @@ function Header({ loggedIn, handleLoginPopup, signOut, name }) {
       </Route>
       <Route exact path="/saved-news">
       <header className="header header_status_savednews">
-          <NavLink to="/" className="link header__logo header__logo_theme_black">
+          {streamingsBtnIsClicked ?<NavLink to="/" className="link header__logo header__logo_theme_white">
             NewsExplorer
-          </NavLink>
+          </NavLink> : <NavLink to="/" className="link header__logo header__logo_theme_black">
+            NewsExplorer
+          </NavLink>}
           {streamingsBtnIsClicked ? (
             <button
               className="button header__hamburger-menu_clicked "
@@ -92,7 +94,7 @@ function Header({ loggedIn, handleLoginPopup, signOut, name }) {
             ></button>
           ) : (
             <button
-              className="button header__hamburger-menu "
+              className="button header__hamburger-menu_theme_black "
               onClick={handleBtnClick}
             ></button>
           )}
@@ -101,7 +103,7 @@ function Header({ loggedIn, handleLoginPopup, signOut, name }) {
               <Route>
                 <NavLink
                   className="link link_theme_black"
-                  activeClassName="link_black_active"
+                  activeClassName="link_white_active"
                   exact
                   to="/"
                 >
@@ -109,7 +111,7 @@ function Header({ loggedIn, handleLoginPopup, signOut, name }) {
                 </NavLink>
                 <NavLink
                   className="link link_theme_black"
-                  activeClassName="link"
+                  activeClassName="link_white_active"
                   to="/saved-news"
                 >
                   Сохраненные статьи
@@ -120,7 +122,7 @@ function Header({ loggedIn, handleLoginPopup, signOut, name }) {
               {name} <img className="icon icon_place_header" src={leaveIcon} alt="войти"></img>
             </button>
           </div>
-          {!loggedIn && streamingsBtnIsClicked ? (
+          {/* {!loggedIn && streamingsBtnIsClicked ? (
         <HeaderHamburgerSignedOut handleLoginPopup={handleLoginPopup} />
       ) : (
         ""
@@ -129,8 +131,22 @@ function Header({ loggedIn, handleLoginPopup, signOut, name }) {
         <HeaderHamburgerSignedIn handleLoginPopup={handleLoginPopup} />
       ) : (
         ""
-      )}
+      )} */}
         </header>
+        {!loggedIn && streamingsBtnIsClicked ? (
+        <HeaderHamburgerSignedOut handleLoginPopup={handleLoginPopup} />
+      ) : (
+        ""
+      )}
+      {loggedIn && streamingsBtnIsClicked ? (
+        <HeaderHamburgerSignedIn
+        loggedIn={loggedIn}
+        name={name}
+        signOut={signOut}
+        handleLoginPopup={handleLoginPopup} />
+      ) : (
+        ""
+      )}
       </Route>
       )
 

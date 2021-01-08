@@ -17,8 +17,8 @@ class Api {
   }
 
   // Получение массива карточек с сервера
-  async getCards() {
-      return await fetch(`${this.baseUrl}/everything?q=bitcoin&${this.key}`, {
+  async getCards(keyword) {
+      return await fetch(`${this.baseUrl}/everything?q=${keyword}=ru&apiKey=${this.key}`, {
           headers: {
               'Accept': 'application/json',
               'Authorization': `Bearer ${this.key}`,
@@ -27,40 +27,8 @@ class Api {
           .then(this.checkStatus)
   }
 
-  // Метод для создания новой карточки
-  async postNewCard(data, token) {
-      return await fetch(`${this.baseUrl}/cards`, {
-          method: 'POST',
-          headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${token}`,
-            },
-          body: JSON.stringify({
-              name: data.name,
-              link: data.link,
-          }),
-      })
-          .then(this.checkStatus)
-  };
-
-  // Метод для удаления карточки
-  deleteThisCard(cardId, token) {
-      return fetch(`${this.baseUrl}/cards/${cardId}`, {
-          method: 'Delete',
-          headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${token}`,
-            }
-      })
-          .then(this.checkStatus)
-  }
-  // Метод для получения инфы профиля
-
-
 }
 export const apiProfile = new Api({
-  baseUrl: 'https://newsapi.org/v2',
+  baseUrl: ' https://nomoreparties.co/news/v2',
   key: '2b98028da4304250b046d57668402fac'
 });

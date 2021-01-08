@@ -35,23 +35,6 @@ export async function signIn(email, password)  {
 }
 
 
-export async function getOwnerInfo(token)  {
-  try{
-    const response = await fetch(`${BASE_URL}/users/me`, {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
-      },
-    })
-    return response.json()
-  }
-  catch(error){
-  console.log (error)
-  }
-}
-
 
 export const checkToken = (token) => {
   return fetch(`${BASE_URL}/users/me`, {
