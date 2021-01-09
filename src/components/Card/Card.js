@@ -3,18 +3,39 @@ import testImage from "../../images/test.png";
 import "./card/card.css";
 import { currentUserContext } from "../../contexts/currentUserContext";
 
-function Card({ loggedIn, keyword, title, image, description, link, date }) {
+function Card({ loggedIn, keyword, title, image, text, link, date }) {
   const [isShown, setIsShown] = useState(false);
-  const phraseSub = description.substring(0, 130) + "...";
-  const titleCut = title.substring(0, 64) + "...";
+  const phraseSub = text.substring(0, 20) + "...";
+  const titleCut = title.substring(0, 20) + "...";
   const options = { day: "numeric", month: "long", year: "numeric" };
   const newsDate = new Date(date);
   const currentUser = useContext(currentUserContext);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    currentUser.handleSaveCard({
+      keyword: keyword,
+      title: title,
+      text: phraseSub,
+      date: newsDate,
+      source: link,
+      link: link,
+      image: image,
+    });
+    console.log({
+      keyword: keyword,
+      title: title,
+      text: phraseSub,
+      date: newsDate,
+      source: link,
+      link: link,
+      image: image,
+    });
+  };
   return (
     <div className="card">
       <img className="card__image" src={image} alt={title}></img>
-      {!loggedIn ? <span className="card__keyword">{keyword}</span> : null}
+      {!loggedIn ? <span className="card__keyword"></span> : null}
 
       {!loggedIn ? (
         <button
@@ -25,7 +46,7 @@ function Card({ loggedIn, keyword, title, image, description, link, date }) {
       ) : (
         <button
           className="card__icon card__icon_function_favorite"
-          onClick={currentUser.handleSaveCard()}
+          onClick={handleSubmit}
           onMouseEnter={() => setIsShown(true)}
           onMouseLeave={() => setIsShown(false)}
         ></button>

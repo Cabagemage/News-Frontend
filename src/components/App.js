@@ -18,6 +18,7 @@ const Cards = lazy(() => import("./Cards/Cards"));
 
 function App() {
   const history = useHistory();
+  const [currentUser, setCurrentUser] = useState({});
   const [isLoginPopupOpen, setLoginPopupOpen] = useState(false);
   const [load, setLoader] = useState(null);
   const [formToggle, setFormToggle] = useState(false);
@@ -29,27 +30,46 @@ function App() {
   const [token, setToken] = useState("");
   const [isSave, setSave] = useState(null);
   const [isSearch, setSearch] = useState(false);
+
   useEffect(() => {
-    mainApi.getOwnerInfo(token).then((res) => {
-      setName(res.name);
-    });
-  }, [token]);
+    mainApi
+      .getOwnerInfo(token)
+      .then((res) => {
+        setName(res.name);
+      })
+      .then(() => {
+        mainApi
+          .getSavedCards(token)
+          .then((res) => {
+            setSavedCards(res.date);
+            console.log(res.date);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      });
+  }, [cards, token]);
 
   // Эта функция выводит список карточек по ключевому слову.
   const handleGetCards = () => {
     apiProfile.getCards(keyword).then((cards) => {
       setCards([...cards.articles]);
+      console.log([...cards.articles]);
       setSearch(true);
       return;
     });
   };
-  const handleSaveCard = () => {
-    mainApi.addNewCard(isSave).then((saveCard) => {
-      setSave(true);
-      savedCards.push(saveCard);
-    });
+
+  const handleSaveCard = (data) => {
+    mainApi
+      .addNewCard(data, token)
+      .then((res) => {
+        console.log(token)
+        setSavedCards([...savedCards, res]);
+      })
+      .catch((err) => console.log(err));
   };
-  console.log(savedCards);
+
   const handleLoginPopup = () => {
     setLoginPopupOpen(true);
   };
@@ -65,15 +85,6 @@ function App() {
 
   const closeAllPopups = () => {
     setLoginPopupOpen(false);
-  };
-
-  const handleOverlayClose = (e) => {
-    if (e.target !== e.currentTarget) {
-      return;
-    } else if (e.key === 27) {
-      return console.log(e.key);
-    }
-    closeAllPopups();
   };
 
   // Authorization
@@ -147,9 +158,11 @@ function App() {
     <currentUserContext.Provider
       value={{
         signOut,
+        savedCards,
+        token,
         keyword,
-        handleSaveCard,
         setKeyword,
+        handleSaveCard,
         handleLogin,
         handleGetCards,
         name,
@@ -170,7 +183,11 @@ function App() {
             </div>
             {isSearch ? (
               <Suspense fallback={<Preloader />}>
-                <Cards cards={cards} loggedIn={loggedIn} />
+                <Cards
+                  savedCards={savedCards}
+                  cards={cards}
+                  loggedIn={loggedIn}
+                />
               </Suspense>
             ) : null}
             <About />
@@ -193,7 +210,11 @@ function App() {
             <SavedNewsHeader />
             {isSearch ? (
               <Suspense fallback={<Preloader />}>
-                <Cards cards={cards} loggedIn={!loggedIn} />
+                <Cards
+                  cards={cards}
+                  savedCards={savedCards}
+                  loggedIn={!loggedIn}
+                />
               </Suspense>
             ) : null}
           </Route>
@@ -208,7 +229,6 @@ function App() {
             handleLogin={handleLogin}
             handleFormToggle={handleFormToggle}
             isClose={closeAllPopups}
-            closeToOverlay={handleOverlayClose}
           ></LoginPopup>
         ) : (
           <RegistrationPopup
@@ -217,7 +237,6 @@ function App() {
             toggled={formToggle}
             handleFormToggle={handleFormToggle}
             isClose={closeAllPopups}
-            closeToOverlay={handleOverlayClose}
           ></RegistrationPopup>
         )}
       </div>

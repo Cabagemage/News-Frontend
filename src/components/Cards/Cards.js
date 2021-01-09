@@ -3,9 +3,10 @@ import Card from "../Card/Card";
 import { Route, Switch } from "react-router-dom";
 import "./cards/cards.css";
 
-function Cards({ loggedIn, cards }) {
+function Cards({ loggedIn, cards, savedCards }) {
   const [toShow, setToShow] = useState(3);
   const itemsToShow = cards.slice(0, toShow);
+  console.log(savedCards);
 
   return (
     <>
@@ -23,9 +24,8 @@ function Cards({ loggedIn, cards }) {
                     keyword={card.title.slice(0, 7)}
                     key={card.title}
                     date={card.publishedAt}
-                    description={card.description}
+                    text={card.description}
                     title={card.title}
-                    author={card.author}
                     id={card.source.id}
                     link={card.source.name}
                     image={card.urlToImage}
@@ -49,7 +49,18 @@ function Cards({ loggedIn, cards }) {
           <div className="layout__cards">
             <div className="cards__container">
               <div className="cards">
-                <h2>Zdes chtoto budet</h2>
+                {savedCards.map((card) => (
+                  <Card
+                    keyword={card.keyword}
+                    key={card.title}
+                    date={card.date}
+                    text={card.text}
+                    title={card.title}
+                    id={card._id}
+                    image={card.image}
+                    loggedIn={loggedIn}
+                  />
+                ))}
               </div>
 
               {/* <button
