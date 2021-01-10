@@ -3,7 +3,7 @@ import Card from "../Card/Card";
 import { Route, Switch } from "react-router-dom";
 import "./cards/cards.css";
 
-function Cards({ loggedIn, cards, savedCards }) {
+function Cards({ loggedIn, cards, savedCards, handleDeleteCard }) {
   const [toShow, setToShow] = useState(3);
   const itemsToShow = cards.slice(0, toShow);
   console.log(savedCards);
@@ -27,7 +27,8 @@ function Cards({ loggedIn, cards, savedCards }) {
                     text={card.description}
                     title={card.title}
                     id={card.source.id}
-                    link={card.source.name}
+                    link={card.url}
+                    source={card.source.name}
                     image={card.urlToImage}
                     about={card.text}
                     loggedIn={loggedIn}
@@ -51,6 +52,8 @@ function Cards({ loggedIn, cards, savedCards }) {
               <div className="cards">
                 {savedCards.map((card) => (
                   <Card
+                    owner={card.owner}
+                    handleDeleteCard={handleDeleteCard}
                     keyword={card.keyword}
                     key={card.title}
                     date={card.date}

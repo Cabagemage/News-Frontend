@@ -3,22 +3,36 @@ import testImage from "../../images/test.png";
 import "./card/card.css";
 import { currentUserContext } from "../../contexts/currentUserContext";
 
-function Card({ loggedIn, keyword, title, image, text, link, date }) {
+function Card({
+  loggedIn,
+  keyword,
+  source,
+  title,
+  image,
+  text,
+  link,
+  date,
+  id,
+  owner,
+}) {
   const [isShown, setIsShown] = useState(false);
   const phraseSub = text.substring(0, 20) + "...";
   const titleCut = title.substring(0, 20) + "...";
   const options = { day: "numeric", month: "long", year: "numeric" };
   const newsDate = new Date(date);
   const currentUser = useContext(currentUserContext);
-
+  const handleDelete = (e) => {
+    e.preventDefault();
+    currentUser.handleDeleteCard(id);
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     currentUser.handleSaveCard({
       keyword: keyword,
-      title: title,
+      title: titleCut,
       text: phraseSub,
       date: newsDate,
-      source: link,
+      source: source,
       link: link,
       image: image,
     });
@@ -35,11 +49,12 @@ function Card({ loggedIn, keyword, title, image, text, link, date }) {
   return (
     <div className="card">
       <img className="card__image" src={image} alt={title}></img>
-      {!loggedIn ? <span className="card__keyword"></span> : null}
+      {!loggedIn ? <span className="card__keyword">{keyword}</span> : null}
 
       {!loggedIn ? (
         <button
           className="card__icon card__icon_function_remove"
+          onClick={handleDelete}
           onMouseEnter={() => setIsShown(true)}
           onMouseLeave={() => setIsShown(false)}
         ></button>
@@ -64,7 +79,7 @@ function Card({ loggedIn, keyword, title, image, text, link, date }) {
         <p className="card__about"> {phraseSub}</p>
 
         <a href={link} className="card__source">
-          {link}
+          {source}
         </a>
       </div>
     </div>
