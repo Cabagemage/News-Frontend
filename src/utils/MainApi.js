@@ -40,19 +40,28 @@ class MainApi {
   }
 
   // Метод для создания новой карточки
-  async addNewCard(keyword, title, text, date, link, image, source, token) {
+  async addNewCard(token, { keyword, title, text, date, source, link, image }) {
     return await fetch(`${this.baseUrl}/articles`, {
       method: "POST",
       headers: {
         Accept: "application/json",
+        "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify(keyword, title, text, date, source, link, image),
+      body: JSON.stringify({
+        keyword,
+        title,
+        text,
+        date,
+        source,
+        link,
+        image,
+      }),
     }).then(this.checkStatus);
   }
 
   // Метод для удаления карточки
-  async deleteThisCard(cardId, token) {
+  async deleteThisCard(token, cardId) {
     return await fetch(`${this.baseUrl}/articles/${cardId}`, {
       method: "Delete",
       headers: {

@@ -60,12 +60,30 @@ function App() {
     });
   };
 
-  const handleSaveCard = (data) => {
+  const handleSaveCard = ({
+    keyword,
+    title,
+    text,
+    date,
+    source,
+    link,
+    image,
+  }) => {
     mainApi
-      .addNewCard(data, token)
+      .addNewCard(token, { keyword, title, text, date, source, link, image })
       .then((res) => {
-        console.log(token)
+        console.log(token);
         setSavedCards([...savedCards, res]);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const handleDeleteCard = (id) => {
+    mainApi
+      .deleteThisCard(token, id)
+      .then(() => {
+        const newCards = savedCards.filter(item => item.id !== id);
+        setSavedCards(newCards);
       })
       .catch((err) => console.log(err));
   };
@@ -162,6 +180,7 @@ function App() {
         token,
         keyword,
         setKeyword,
+        handleDeleteCard,
         handleSaveCard,
         handleLogin,
         handleGetCards,
