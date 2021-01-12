@@ -1,5 +1,7 @@
 import React, {useState, memo, useMemo} from "react";
 import Card from "../Card/Card";
+import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader"
+
 import "./cards/cards.css";
 
 function General({ loggedIn, cards }) {
@@ -8,6 +10,7 @@ function General({ loggedIn, cards }) {
 
   return (
     <>
+    <SavedNewsHeader />
       <div className="layout__cards">
         <div className="cards__container">
           {!loggedIn ? null : (
@@ -41,4 +44,4 @@ function General({ loggedIn, cards }) {
   );
 }
 
-export default memo(Cards);
+export default memo(General);

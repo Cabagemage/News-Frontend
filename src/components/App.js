@@ -82,7 +82,8 @@ function App() {
     mainApi
       .deleteThisCard(token, id)
       .then(() => {
-        const newCards = savedCards.filter(item => item.id !== id);
+        const newCards = savedCards.filter((item) => item._id !== id);
+        console.log(savedCards, newCards)
         setSavedCards(newCards);
       })
       .catch((err) => console.log(err));
@@ -205,6 +206,7 @@ function App() {
                 <Cards
                   savedCards={savedCards}
                   cards={cards}
+
                   loggedIn={loggedIn}
                 />
               </Suspense>
@@ -233,6 +235,7 @@ function App() {
                   cards={cards}
                   savedCards={savedCards}
                   loggedIn={!loggedIn}
+                  handleDeleteCard={handleDeleteCard}
                 />
               </Suspense>
             ) : null}

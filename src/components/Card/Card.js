@@ -14,6 +14,7 @@ function Card({
   date,
   id,
   owner,
+  handleDeleteCard,
 }) {
   const [isShown, setIsShown] = useState(false);
   const phraseSub = text.substring(0, 20) + "...";
@@ -21,12 +22,12 @@ function Card({
   const options = { day: "numeric", month: "long", year: "numeric" };
   const newsDate = new Date(date);
   const currentUser = useContext(currentUserContext);
-  const handleDelete = (e) => {
-    e.preventDefault();
-    currentUser.handleDeleteCard(id);
+
+  const handleDelete = () => {
+    handleDeleteCard(id);
   };
+
   const handleSubmit = (e) => {
-    e.preventDefault();
     currentUser.handleSaveCard({
       keyword: keyword,
       title: titleCut,

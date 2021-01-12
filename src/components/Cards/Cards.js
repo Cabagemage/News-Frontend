@@ -21,6 +21,7 @@ function Cards({ loggedIn, cards, savedCards, handleDeleteCard }) {
               <div className="cards">
                 {itemsToShow.map((card) => (
                   <Card
+                    handleDeleteCard={handleDeleteCard}
                     keyword={card.title.slice(0, 7)}
                     key={card.title}
                     date={card.publishedAt}
@@ -55,10 +56,11 @@ function Cards({ loggedIn, cards, savedCards, handleDeleteCard }) {
                     owner={card.owner}
                     handleDeleteCard={handleDeleteCard}
                     keyword={card.keyword}
-                    key={card.title}
+                    key={card._id}
                     date={card.date}
                     text={card.text}
                     title={card.title}
+                    card={card}
                     id={card._id}
                     image={card.image}
                     loggedIn={loggedIn}
