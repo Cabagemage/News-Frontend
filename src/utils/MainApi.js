@@ -31,12 +31,17 @@ class MainApi {
 
   // Получение массива карточек с сервера
   async getSavedCards(token) {
-    return await fetch(`${this.baseUrl}/articles`, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    }).then(this.checkStatus);
+    try {
+      const response = await fetch(`${this.baseUrl}/articles`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return response.json();
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   // Метод для создания новой карточки

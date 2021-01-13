@@ -1,4 +1,4 @@
-class Api {
+class newsApi {
   constructor({ baseUrl, headers, key}) {
       this.baseUrl = baseUrl;
       this.headers = headers;
@@ -28,7 +28,7 @@ class Api {
   }
 
 }
-export const apiProfile = new Api({
+export const newsProfile = new newsApi({
   baseUrl: ' https://nomoreparties.co/news/v2',
   key: '2b98028da4304250b046d57668402fac'
 });

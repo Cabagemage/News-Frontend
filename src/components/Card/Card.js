@@ -1,5 +1,7 @@
 import React, { useState, useContext } from "react";
 import testImage from "../../images/test.png";
+import { useLocation } from "react-router-dom";
+
 import "./card/card.css";
 import { currentUserContext } from "../../contexts/currentUserContext";
 
@@ -7,6 +9,7 @@ function Card({
   loggedIn,
   keyword,
   source,
+  savedCard,
   title,
   image,
   text,
@@ -17,17 +20,23 @@ function Card({
   handleDeleteCard,
 }) {
   const [isShown, setIsShown] = useState(false);
+  const [isFavorite, setFavorite] = useState(false);
   const phraseSub = text.substring(0, 20) + "...";
   const titleCut = title.substring(0, 20) + "...";
   const options = { day: "numeric", month: "long", year: "numeric" };
   const newsDate = new Date(date);
   const currentUser = useContext(currentUserContext);
-
-  const handleDelete = () => {
+  const { path } = useLocation();
+  const cardFavoritedClassName = `card__icon ${
+    isFavorite ? "card__icon_status_bookmarked" : "card__icon_function_favorite"
+  }`;
+  
+  function handleDelete() {
+    setFavorite(false);
     handleDeleteCard(id);
-  };
+  }
 
-  const handleSubmit = (e) => {
+  function handleSubmit() {
     currentUser.handleSaveCard({
       keyword: keyword,
       title: titleCut,
@@ -46,7 +55,9 @@ function Card({
       link: link,
       image: image,
     });
-  };
+    setFavorite(true);
+  }
+
   return (
     <div className="card">
       <img className="card__image" src={image} alt={title}></img>
@@ -61,8 +72,8 @@ function Card({
         ></button>
       ) : (
         <button
-          className="card__icon card__icon_function_favorite"
-          onClick={handleSubmit}
+          className={cardFavoritedClassName}
+          onClick={isFavorite ? handleDelete : handleSubmit}
           onMouseEnter={() => setIsShown(true)}
           onMouseLeave={() => setIsShown(false)}
         ></button>

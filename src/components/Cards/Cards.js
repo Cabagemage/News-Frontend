@@ -21,13 +21,11 @@ function Cards({ loggedIn, cards, savedCards, handleDeleteCard }) {
               <div className="cards">
                 {itemsToShow.map((card) => (
                   <Card
-                    handleDeleteCard={handleDeleteCard}
                     keyword={card.title.slice(0, 7)}
-                    key={card.title}
                     date={card.publishedAt}
                     text={card.description}
                     title={card.title}
-                    id={card.source.id}
+                    key={card.source.id}
                     link={card.url}
                     source={card.source.name}
                     image={card.urlToImage}
@@ -51,18 +49,18 @@ function Cards({ loggedIn, cards, savedCards, handleDeleteCard }) {
           <div className="layout__cards">
             <div className="cards__container">
               <div className="cards">
-                {savedCards.map((card) => (
+                {savedCards.map((savedCard) => (
                   <Card
-                    owner={card.owner}
+                    owner={savedCard.owner}
                     handleDeleteCard={handleDeleteCard}
-                    keyword={card.keyword}
-                    key={card._id}
-                    date={card.date}
-                    text={card.text}
-                    title={card.title}
-                    card={card}
-                    id={card._id}
-                    image={card.image}
+                    keyword={savedCard.keyword}
+                    key={savedCard._id}
+                    date={savedCard.date}
+                    text={savedCard.text}
+                    title={savedCard.title}
+                    savedCard={savedCard}
+                    id={savedCard._id}
+                    image={savedCard.image}
                     loggedIn={loggedIn}
                   />
                 ))}

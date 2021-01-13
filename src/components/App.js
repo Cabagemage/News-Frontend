@@ -9,7 +9,7 @@ import SavedNewsHeader from "./SavedNewsHeader/SavedNewsHeader";
 import LoginPopup from "./PopupAuth/LoginPopup";
 import RegistrationPopup from "./PopupAuth/RegistrationPopup";
 import { currentUserContext } from "../contexts/currentUserContext";
-import { apiProfile } from "../utils/Api";
+import { newsProfile } from "../utils/NewsApi";
 import { mainApi } from "../utils/MainApi";
 import { Switch, Route, useHistory, Redirect } from "react-router-dom";
 import * as Auth from "../utils/Auth";
@@ -47,17 +47,25 @@ function App() {
           .catch((err) => {
             console.log(err);
           });
+      })
+      .catch((err) => {
+        console.log(err);
       });
   }, [cards, token]);
 
   // Эта функция выводит список карточек по ключевому слову.
   const handleGetCards = () => {
-    apiProfile.getCards(keyword).then((cards) => {
-      setCards([...cards.articles]);
-      console.log([...cards.articles]);
-      setSearch(true);
-      return;
-    });
+    newsProfile
+      .getCards(keyword)
+      .then((cards) => {
+        setCards([...cards.articles]);
+        console.log([...cards.articles]);
+        setSearch(true);
+        return;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const handleSaveCard = ({
@@ -83,7 +91,6 @@ function App() {
       .deleteThisCard(token, id)
       .then(() => {
         const newCards = savedCards.filter((item) => item._id !== id);
-        console.log(savedCards, newCards)
         setSavedCards(newCards);
       })
       .catch((err) => console.log(err));
@@ -106,8 +113,14 @@ function App() {
     setLoginPopupOpen(false);
   };
 
-  // Authorization
+  const handleOverlayClose = (e) => {
+    if (e.target !== e.currentTarget) {
+      return;
+    }
+    closeAllPopups();
+  };
 
+  // Authorization
   const onRegister = (email, password, name) => {
     Auth.register(email, password, name)
       .then((res) => {
@@ -206,7 +219,6 @@ function App() {
                 <Cards
                   savedCards={savedCards}
                   cards={cards}
-
                   loggedIn={loggedIn}
                 />
               </Suspense>
@@ -247,6 +259,7 @@ function App() {
         {!formToggle ? (
           <LoginPopup
             isOpen={isLoginPopupOpen}
+            closeToOverlay={handleOverlayClose}
             toggled={formToggle}
             handleLogin={handleLogin}
             handleFormToggle={handleFormToggle}
@@ -256,6 +269,7 @@ function App() {
           <RegistrationPopup
             isOpen={isLoginPopupOpen}
             onRegister={onRegister}
+            closeToOverlay={handleOverlayClose}
             toggled={formToggle}
             handleFormToggle={handleFormToggle}
             isClose={closeAllPopups}
