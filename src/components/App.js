@@ -80,13 +80,14 @@ function App() {
       .addNewCard(token, { keyword, title, text, date, source, link, image })
       .then((res) => {
         console.log(token);
-        const newCards = cards.map(card => {
-          if (card.link === res.link) {
-            return res
+        const newCards = cards.map((card) => {
+          if (card.url === res.link) {
+            return {...card, id: res._id}
           }
-          return card
-        })
-        setCards(newCards)
+          return card;
+        });
+        setCards(newCards);
+        console.log(newCards);
         setSavedCards([...savedCards, res]);
       })
       .catch((err) => console.log(err));
@@ -225,6 +226,7 @@ function App() {
                 <Cards
                   savedCards={savedCards}
                   cards={cards}
+                  handleDeleteCard={handleDeleteCard}
                   loggedIn={loggedIn}
                 />
               </Suspense>

@@ -7,6 +7,7 @@ function Cards({ loggedIn, cards, savedCards, handleDeleteCard }) {
   const [toShow, setToShow] = useState(3);
   const itemsToShow = cards.slice(0, toShow);
   console.log(cards)
+  console.log(savedCards)
   return (
     <>
       <Switch>
@@ -22,14 +23,14 @@ function Cards({ loggedIn, cards, savedCards, handleDeleteCard }) {
                   <Card
                     keyword={card.title.slice(0, 7)}
                     date={card.publishedAt}
-                    id={card._id}
+                    handleDeleteCard={handleDeleteCard}
+                    id={card.id}
                     text={card.description}
                     title={card.title}
                     key={i}
                     link={card.url}
                     source={card.source.name}
                     image={card.urlToImage}
-                    about={card.text}
                     loggedIn={loggedIn}
                   />
                 ))}
@@ -58,7 +59,6 @@ function Cards({ loggedIn, cards, savedCards, handleDeleteCard }) {
                     date={savedCard.date}
                     text={savedCard.text}
                     title={savedCard.title}
-                    savedCard={savedCard}
                     id={savedCard._id}
                     image={savedCard.image}
                     loggedIn={loggedIn}

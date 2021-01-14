@@ -21,8 +21,8 @@ function Card({
 }) {
   const [isShown, setIsShown] = useState(false);
   const [isFavorite, setFavorite] = useState(false);
-  const phraseSub = text.substring(0, 20) + "...";
-  const titleCut = title.substring(0, 20) + "...";
+  // const phraseSub = text.substring(0, 20) + "...";
+  // const titleCut = title.substring(0, 20) + "...";
   const options = { day: "numeric", month: "long", year: "numeric" };
   const newsDate = new Date(date);
   const currentUser = useContext(currentUserContext);
@@ -40,8 +40,8 @@ function Card({
   function handleSubmit() {
     currentUser.handleSaveCard({
       keyword: keyword,
-      title: titleCut,
-      text: phraseSub,
+      title: title.substring(0, 20) + "...",
+      text: text.substring(0, 20) + "...",
       date: newsDate,
       source: source,
       link: link,
@@ -50,7 +50,7 @@ function Card({
     console.log({
       keyword: keyword,
       title: title,
-      text: phraseSub,
+      text: text,
       date: newsDate,
       source: link,
       link: link,
@@ -88,8 +88,8 @@ function Card({
       )}
       <div className="card__text">
         <p className="card__date">{newsDate.toLocaleString("ru", options)}</p>
-        <h2 className="card__article">{titleCut}</h2>
-        <p className="card__about"> {phraseSub}</p>
+        <h2 className="card__article">{title}</h2>
+        <p className="card__about"> {text}</p>
 
         <a href={link} className="card__source">
           {source}
