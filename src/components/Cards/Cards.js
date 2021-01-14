@@ -6,8 +6,7 @@ import "./cards/cards.css";
 function Cards({ loggedIn, cards, savedCards, handleDeleteCard }) {
   const [toShow, setToShow] = useState(3);
   const itemsToShow = cards.slice(0, toShow);
-  console.log(savedCards);
-
+  console.log(cards)
   return (
     <>
       <Switch>
@@ -19,13 +18,14 @@ function Cards({ loggedIn, cards, savedCards, handleDeleteCard }) {
               )}
 
               <div className="cards">
-                {itemsToShow.map((card) => (
+                {itemsToShow.map((card, i) => (
                   <Card
                     keyword={card.title.slice(0, 7)}
                     date={card.publishedAt}
+                    id={card._id}
                     text={card.description}
                     title={card.title}
-                    key={card.source.id}
+                    key={i}
                     link={card.url}
                     source={card.source.name}
                     image={card.urlToImage}
@@ -49,12 +49,12 @@ function Cards({ loggedIn, cards, savedCards, handleDeleteCard }) {
           <div className="layout__cards">
             <div className="cards__container">
               <div className="cards">
-                {savedCards.map((savedCard) => (
+                {savedCards.map((savedCard, i) => (
                   <Card
                     owner={savedCard.owner}
                     handleDeleteCard={handleDeleteCard}
                     keyword={savedCard.keyword}
-                    key={savedCard._id}
+                    key={i}
                     date={savedCard.date}
                     text={savedCard.text}
                     title={savedCard.title}

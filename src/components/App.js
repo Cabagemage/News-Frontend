@@ -24,7 +24,7 @@ function App() {
   const [formToggle, setFormToggle] = useState(false);
   const [loggedIn, setLoginIn] = useState(false);
   const [savedCards, setSavedCards] = useState([]);
-  const [cards, setCards] = useState(null);
+  const [cards, setCards] = useState([]);
   const [name, setName] = useState("");
   const [keyword, setKeyword] = useState("");
   const [token, setToken] = useState("");
@@ -42,7 +42,6 @@ function App() {
           .getSavedCards(token)
           .then((res) => {
             setSavedCards(res.date);
-            console.log(res.date);
           })
           .catch((err) => {
             console.log(err);
@@ -81,6 +80,13 @@ function App() {
       .addNewCard(token, { keyword, title, text, date, source, link, image })
       .then((res) => {
         console.log(token);
+        const newCards = cards.map(card => {
+          if (card.link === res.link) {
+            return res
+          }
+          return card
+        })
+        setCards(newCards)
         setSavedCards([...savedCards, res]);
       })
       .catch((err) => console.log(err));

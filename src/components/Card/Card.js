@@ -30,9 +30,10 @@ function Card({
   const cardFavoritedClassName = `card__icon ${
     isFavorite ? "card__icon_status_bookmarked" : "card__icon_function_favorite"
   }`;
-  
+
   function handleDelete() {
     setFavorite(false);
+    console.log(id)
     handleDeleteCard(id);
   }
 
