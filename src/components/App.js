@@ -29,8 +29,8 @@ function App() {
   const [load, setLoader] = useState(null);
   const [formToggle, setFormToggle] = useState(false);
   const [loggedIn, setLoginIn] = useState(false);
-  const [savedCards, setSavedCards] = useState(null);
-  const [cards, setCards] = useState(null);
+  const [savedCards, setSavedCards] = useState(null)
+  const [cards, setCards] = useState([]);
   const [name, setName] = useState("");
   const [keyword, setKeyword] = useState("");
   const [token, setToken] = useState("");
@@ -46,7 +46,8 @@ function App() {
       })
       .then(() => {
         mainApi.getSavedCards(token).then((res) => {
-          setSavedCards(res.date);
+
+            setSavedCards(res.date);
           if (!res.date) {
             setSavedCards([]);
           }
@@ -235,16 +236,16 @@ function App() {
             ) : null}
             <About />
           </Route>
-            <ProtectedRoute
-              path="/saved-news"
-              component={SavedNews}
-              cards={cards}
-              handleDeleteCard={handleDeleteCard}
-              loggedIn={loggedIn}
-              savedCards={savedCards}
-              signOut={signOut}
-              name={name}
-            ></ProtectedRoute>
+          <ProtectedRoute
+            path="/saved-news"
+            component={SavedNews}
+            cards={cards}
+            handleDeleteCard={handleDeleteCard}
+            loggedIn={loggedIn}
+            savedCards={savedCards}
+            signOut={signOut}
+            name={name}
+          ></ProtectedRoute>
         </Switch>
 
         <Footer />
