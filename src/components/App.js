@@ -234,16 +234,7 @@ function App() {
               />
             ) : null}
             <About />
-            {isSearch ? (
-                <Cards
-                  cards={cards}
-                  savedCards={savedCards}
-                  loggedIn={!loggedIn}
-                  handleDeleteCard={handleDeleteCard}
-                />
-            ) : null}
           </Route>
-          <Route path="/saved-news">
             <ProtectedRoute
               path="/saved-news"
               component={SavedNews}
@@ -251,14 +242,9 @@ function App() {
               handleDeleteCard={handleDeleteCard}
               loggedIn={loggedIn}
               savedCards={savedCards}
-            ></ProtectedRoute>
-            <Header
-              loggedIn={handleLoginIn}
               signOut={signOut}
               name={name}
-              handleLoginPopup={handleLoginPopup}
-            />
-          </Route>
+            ></ProtectedRoute>
         </Switch>
 
         <Footer />
