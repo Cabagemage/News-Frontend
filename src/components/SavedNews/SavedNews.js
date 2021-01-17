@@ -10,7 +10,6 @@ function SavedNews({
   savedCards,
   handleDeleteCard,
   signOut,
-  name,
 }) {
   return (
     <>

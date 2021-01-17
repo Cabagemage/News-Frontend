@@ -55,7 +55,7 @@ function App() {
       .getCards(keyword)
       .then((res) => {
         setCards([...res.articles]);
-        setKeyword(keyword)
+        setKeyword(keyword);
         setSearch(true);
         if (keyword === "") {
           setCards([]);
@@ -81,7 +81,7 @@ function App() {
       .then((res) => {
         const newCards = cards.map((card) => {
           if (card.url === res.link) {
-            return { ...card, id: res._id};
+            return { ...card, id: res._id };
           }
           return card;
         });
