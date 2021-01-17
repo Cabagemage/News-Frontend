@@ -29,7 +29,7 @@ function App() {
   const [load, setLoader] = useState(null);
   const [formToggle, setFormToggle] = useState(false);
   const [loggedIn, setLoginIn] = useState(false);
-  const [savedCards, setSavedCards] = useState(null)
+  const [savedCards, setSavedCards] = useState(null);
   const [cards, setCards] = useState([]);
   const [name, setName] = useState("");
   const [keyword, setKeyword] = useState("");
@@ -38,6 +38,7 @@ function App() {
   const [isSearch, setSearch] = useState(false);
   const path = useLocation();
   const savedCardsPath = path.pathname === "/saved-news";
+
   useEffect(() => {
     mainApi
       .getOwnerInfo(token)
@@ -46,8 +47,7 @@ function App() {
       })
       .then(() => {
         mainApi.getSavedCards(token).then((res) => {
-
-            setSavedCards(res.date);
+          setSavedCards(res.date);
           if (!res.date) {
             setSavedCards([]);
           }
@@ -87,7 +87,6 @@ function App() {
     mainApi
       .addNewCard(token, { keyword, title, text, date, source, link, image })
       .then((res) => {
-        console.log(token);
         const newCards = cards.map((card) => {
           if (card.url === res.link) {
             return { ...card, id: res._id };
@@ -112,10 +111,6 @@ function App() {
 
   const handleLoginPopup = () => {
     setLoginPopupOpen(true);
-  };
-
-  const handleLoginIn = () => {
-    setLoginIn(loggedIn);
   };
 
   const handleFormToggle = () => {
@@ -191,6 +186,7 @@ function App() {
 
   const signOut = () => {
     localStorage.removeItem("jwt");
+    setToken("");
     setLoginIn(false);
     history.push("/");
   };
@@ -202,14 +198,9 @@ function App() {
   return (
     <currentUserContext.Provider
       value={{
-        signOut,
         token,
         keyword,
         setKeyword,
-        handleDeleteCard,
-        handleSaveCard,
-        handleLogin,
-        handleGetCards,
         name,
         loggedIn,
       }}
@@ -224,12 +215,13 @@ function App() {
                 name={name}
                 handleLoginPopup={handleLoginPopup}
               />
-              <Main />
+              <Main handleGetCards={handleGetCards} />
             </div>
             {isSearch ? (
               <Cards
                 savedCards={savedCards}
                 cards={cards}
+                handleSaveCard={handleSaveCard}
                 handleDeleteCard={handleDeleteCard}
                 loggedIn={loggedIn}
               />

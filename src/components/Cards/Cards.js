@@ -3,7 +3,7 @@ import Card from "../Card/Card";
 import { useLocation } from "react-router-dom";
 import "./cards/cards.css";
 import "../../App.css";
-function Cards({ loggedIn, cards, savedCards, handleDeleteCard }) {
+function Cards({ loggedIn, cards, savedCards, handleDeleteCard, handleSaveCard }) {
   const [toShow, setToShow] = useState(3);
   const itemsToShow = cards.slice(0, toShow);
   const path = useLocation();
@@ -24,6 +24,7 @@ function Cards({ loggedIn, cards, savedCards, handleDeleteCard }) {
                   <Card
                     keyword={card.title.slice(0, 7)}
                     date={card.publishedAt}
+                    handleSaveCard={handleSaveCard}
                     handleDeleteCard={handleDeleteCard}
                     id={card.id}
                     text={card.description}

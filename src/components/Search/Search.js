@@ -2,13 +2,13 @@ import React, { useContext } from "react";
 import "./search/search.css";
 import { currentUserContext } from "../../contexts/currentUserContext";
 
-function Search() {
+function Search({handleGetCards}) {
   const currentUser = useContext(currentUserContext);
 
   function submitSearch(e) {
     e.preventDefault();
     console.log("test");
-    currentUser.handleGetCards();
+    handleGetCards();
   }
 
   return (

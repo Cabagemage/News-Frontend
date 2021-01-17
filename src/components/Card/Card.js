@@ -1,9 +1,8 @@
-import React, { useState, useContext } from "react";
-import testImage from "../../images/test.png";
+import React, { useState} from "react";
 import { useLocation } from "react-router-dom";
 
 import "./card/card.css";
-import { currentUserContext } from "../../contexts/currentUserContext";
+
 
 function Card({
   loggedIn,
@@ -17,6 +16,7 @@ function Card({
   id,
   owner,
   handleDeleteCard,
+  handleSaveCard
 }) {
   const [isShown, setIsShown] = useState(false);
   const [isFavorite, setFavorite] = useState(false);
@@ -24,12 +24,11 @@ function Card({
   // const titleCut = title.substring(0, 20) + "...";
   const options = { day: "numeric", month: "long", year: "numeric" };
   const newsDate = new Date(date);
-  const currentUser = useContext(currentUserContext);
   const path = useLocation();
   const savedCardsPath = path.pathname === "/saved-news";
 
   const cardFavoritedClassName = `card__icon ${
-    isFavorite && !savedCardsPath
+    isFavorite && loggedIn && !savedCardsPath
       ? "card__icon_status_bookmarked"
       : "card__icon_function_favorite"
   }`;
@@ -41,7 +40,7 @@ function Card({
   }
 
   function handleSubmit() {
-    currentUser.handleSaveCard({
+    handleSaveCard({
       keyword: keyword,
       title: title.substring(0, 20) + "...",
       text: text.substring(0, 20) + "...",
