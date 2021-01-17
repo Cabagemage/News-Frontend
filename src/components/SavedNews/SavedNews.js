@@ -1,13 +1,20 @@
-import React, { useState, memo, useContext } from "react";
+import React, { memo } from "react";
 import Cards from "../Cards/Cards";
-import Header from '../Header/Header'
+import Header from "../Header/Header";
 import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader";
 import "../Cards/cards/cards.css";
 
-function SavedNews({ loggedIn, cards, savedCards, handleDeleteCard, signOut, name }) {
+function SavedNews({
+  loggedIn,
+  cards,
+  savedCards,
+  handleDeleteCard,
+  signOut,
+  name,
+}) {
   return (
     <>
-      <Header signOut={signOut} name={name}/>
+      <Header signOut={signOut}  />
       <SavedNewsHeader />
       <Cards
         loggedIn={loggedIn}

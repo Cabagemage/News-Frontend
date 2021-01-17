@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Suspense, lazy } from "react";
+import React, { useState, useEffect } from "react";
 import "../App.css";
 import Header from "./Header/Header";
 import ProtectedRoute from "./HOC/ProtectedRoute";
@@ -11,13 +11,7 @@ import RegistrationPopup from "./PopupAuth/RegistrationPopup";
 import { currentUserContext } from "../contexts/currentUserContext";
 import { newsProfile } from "../utils/NewsApi";
 import { mainApi } from "../utils/MainApi";
-import {
-  Switch,
-  Route,
-  useHistory,
-  Redirect,
-  useLocation,
-} from "react-router-dom";
+import { Switch, Route, useHistory } from "react-router-dom";
 import * as Auth from "../utils/Auth";
 import Preloader from "./Preloader/Preloader";
 import Cards from "./Cards/Cards";
@@ -26,7 +20,7 @@ function App() {
   const history = useHistory();
   const [currentUser, setCurrentUser] = useState({});
   const [isLoginPopupOpen, setLoginPopupOpen] = useState(false);
-  const [load, setLoader] = useState(null);
+  const [load, setLoader] = useState(false);
   const [formToggle, setFormToggle] = useState(false);
   const [loggedIn, setLoginIn] = useState(false);
   const [savedCards, setSavedCards] = useState(null);
@@ -34,10 +28,7 @@ function App() {
   const [name, setName] = useState("");
   const [keyword, setKeyword] = useState("");
   const [token, setToken] = useState("");
-  const [isSave, setSave] = useState(null);
   const [isSearch, setSearch] = useState(false);
-  const path = useLocation();
-  const savedCardsPath = path.pathname === "/saved-news";
 
   useEffect(() => {
     mainApi
@@ -64,6 +55,7 @@ function App() {
       .getCards(keyword)
       .then((res) => {
         setCards([...res.articles]);
+        setKeyword(keyword)
         setSearch(true);
         if (keyword === "") {
           setCards([]);
@@ -89,7 +81,7 @@ function App() {
       .then((res) => {
         const newCards = cards.map((card) => {
           if (card.url === res.link) {
-            return { ...card, id: res._id };
+            return { ...card, id: res._id};
           }
           return card;
         });
@@ -196,9 +188,7 @@ function App() {
   }, []);
 
   return (
-    <currentUserContext.Provider
-      value={currentUser}
-    >
+    <currentUserContext.Provider value={currentUser}>
       <div className="page">
         <Switch>
           <Route exact path="/">
@@ -206,18 +196,19 @@ function App() {
               <Header
                 loggedIn={loggedIn}
                 signOut={signOut}
-                name={name}
                 handleLoginPopup={handleLoginPopup}
               />
               <Main
-              keyword={keyword}
-              setKeyword={setKeyword}
-              handleGetCards={handleGetCards} />
+                keyword={keyword}
+                setKeyword={setKeyword}
+                handleGetCards={handleGetCards}
+              />
             </div>
             {isSearch ? (
               <Cards
                 savedCards={savedCards}
                 cards={cards}
+                keyword={keyword}
                 handleSaveCard={handleSaveCard}
                 handleDeleteCard={handleDeleteCard}
                 loggedIn={loggedIn}
@@ -228,12 +219,12 @@ function App() {
           <ProtectedRoute
             path="/saved-news"
             component={SavedNews}
+            keyword={keyword}
             cards={cards}
             handleDeleteCard={handleDeleteCard}
             loggedIn={loggedIn}
             savedCards={savedCards}
             signOut={signOut}
-            name={name}
           ></ProtectedRoute>
         </Switch>
 

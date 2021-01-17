@@ -11,8 +11,8 @@ function Main({handleGetCards, keyword, setKeyword}) {
         кабинете
       </h3>
       <Search
-        keyword={keyword}
-        setKeyword={setKeyword}
+      keyword={keyword}
+      setKeyword={setKeyword}
       handleGetCards={handleGetCards}  />
     </div>
   );

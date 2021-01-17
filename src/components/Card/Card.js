@@ -1,8 +1,7 @@
-import React, { useState} from "react";
+import React, { useState, useContext } from "react";
 import { useLocation } from "react-router-dom";
-
+import { currentUserContext } from "../../contexts/currentUserContext";
 import "./card/card.css";
-
 
 function Card({
   loggedIn,
@@ -16,8 +15,9 @@ function Card({
   id,
   owner,
   handleDeleteCard,
-  handleSaveCard
+  handleSaveCard,
 }) {
+  const currentUser = useContext(currentUserContext);
   const [isShown, setIsShown] = useState(false);
   const [isFavorite, setFavorite] = useState(false);
   // const phraseSub = text.substring(0, 20) + "...";
@@ -85,11 +85,9 @@ function Card({
         <p className="card__hover">
           {savedCardsPath
             ? "Убрать из сохранённых"
-            : "Войдите, чтобы сохранять статьи"
-            && loggedIn
+            : "Войдите, чтобы сохранять статьи" && loggedIn
             ? "Сохранить статью"
-            : "Войдите, чтобы сохранять статьи"
-           }
+            : "Войдите, чтобы сохранять статьи"}
         </p>
       ) : null}
 

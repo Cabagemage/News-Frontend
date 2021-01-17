@@ -1,9 +1,17 @@
 import React, { useState, memo, useMemo } from "react";
 import Card from "../Card/Card";
 import { useLocation } from "react-router-dom";
+
 import "./cards/cards.css";
 import "../../App.css";
-function Cards({ loggedIn, cards, savedCards, handleDeleteCard, handleSaveCard }) {
+function Cards({
+  loggedIn,
+  cards,
+  savedCards,
+  handleDeleteCard,
+  handleSaveCard,
+  keyword,
+}) {
   const [toShow, setToShow] = useState(3);
   const itemsToShow = cards.slice(0, toShow);
   const path = useLocation();
@@ -22,7 +30,7 @@ function Cards({ loggedIn, cards, savedCards, handleDeleteCard, handleSaveCard }
               <div className="cards">
                 {itemsToShow.map((card, i) => (
                   <Card
-                    keyword={card.title.slice(0, 7)}
+                    keyword={keyword}
                     date={card.publishedAt}
                     handleSaveCard={handleSaveCard}
                     handleDeleteCard={handleDeleteCard}
