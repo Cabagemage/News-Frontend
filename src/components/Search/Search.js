@@ -1,10 +1,7 @@
-import React, { useContext } from "react";
+import React from "react";
 import "./search/search.css";
-import { currentUserContext } from "../../contexts/currentUserContext";
 
-function Search({handleGetCards}) {
-  const currentUser = useContext(currentUserContext);
-
+function Search({ handleGetCards, keyword, setKeyword }) {
   function submitSearch(e) {
     e.preventDefault();
     console.log("test");
@@ -18,8 +15,8 @@ function Search({handleGetCards}) {
         className="search__input"
         placeholder="Найти"
         type="text"
-        value={currentUser.keyword}
-        onChange={(e) => currentUser.setKeyword(e.target.value)}
+        value={keyword}
+        onChange={(e) => setKeyword(e.target.value)}
       ></input>
       <button onClick={submitSearch} className="button button_place_search">
         Искать

@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink, Route } from "react-router-dom";
 import "./header/header.css";
 import "../../App.css";
+
 function HeaderHamburgerSignedOut({handleLoginPopup, loggedIn, name, signOut}) {
   return (
     <div className="header__container_version_mobile">

@@ -5,6 +5,7 @@ import { NavLink, Route, Switch } from "react-router-dom";
 import HeaderHamburgerSignedOut from "./HeaderHamburgerSignedOut";
 import HeaderHamburgerSignedIn from "./HeaderHamburgerSignedIn";
 import leaveIcon  from "../../images/leave-button.svg";
+import { currentUserContext } from "../../contexts/currentUserContext";
 
 function Header({ loggedIn, handleLoginPopup, signOut, name }) {
   const [streamingsIsOpen, setStreamingsIsOpen] = useState(true);
@@ -13,6 +14,7 @@ function Header({ loggedIn, handleLoginPopup, signOut, name }) {
     setStreamingsIsOpen(!streamingsIsOpen);
     setStreamingsBtnIsClicked(!streamingsBtnIsClicked);
   };
+  const currentUser = useContext(currentUserContext)
   return (
     <>
     <Switch>
@@ -61,7 +63,7 @@ function Header({ loggedIn, handleLoginPopup, signOut, name }) {
                >
                  Авторизоваться
                </button> :  <button className="button button_place_loggedout" onClick={signOut}>
-              {name} <img className="icon icon_place_header" src={leaveIcon} alt="войти"></img>
+              {currentUser.name} <img className="icon icon_place_header" src={leaveIcon} alt="войти"></img>
             </button>}
           </div>
         </header>
@@ -73,7 +75,7 @@ function Header({ loggedIn, handleLoginPopup, signOut, name }) {
       {loggedIn && streamingsBtnIsClicked ? (
         <HeaderHamburgerSignedIn
         loggedIn={loggedIn}
-        name={name}
+        name={currentUser.name}
         signOut={signOut}
         handleLoginPopup={handleLoginPopup} />
       ) : (
@@ -119,7 +121,7 @@ function Header({ loggedIn, handleLoginPopup, signOut, name }) {
               </Route>
             </nav>
             <button className="button button_place_loggedin button_theme_black" onClick={signOut}>
-              {name} <img className="icon icon_place_header" src={leaveIcon} alt="войти"></img>
+              {currentUser.name} <img className="icon icon_place_header" src={leaveIcon} alt="войти"></img>
             </button>
           </div>
           {/* {!loggedIn && streamingsBtnIsClicked ? (

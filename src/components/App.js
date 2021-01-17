@@ -43,7 +43,7 @@ function App() {
     mainApi
       .getOwnerInfo(token)
       .then((res) => {
-        setName(res.name);
+        setCurrentUser(res);
       })
       .then(() => {
         mainApi.getSavedCards(token).then((res) => {
@@ -197,13 +197,7 @@ function App() {
 
   return (
     <currentUserContext.Provider
-      value={{
-        token,
-        keyword,
-        setKeyword,
-        name,
-        loggedIn,
-      }}
+      value={currentUser}
     >
       <div className="page">
         <Switch>
@@ -215,7 +209,10 @@ function App() {
                 name={name}
                 handleLoginPopup={handleLoginPopup}
               />
-              <Main handleGetCards={handleGetCards} />
+              <Main
+              keyword={keyword}
+              setKeyword={setKeyword}
+              handleGetCards={handleGetCards} />
             </div>
             {isSearch ? (
               <Cards
