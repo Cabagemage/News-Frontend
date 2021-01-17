@@ -5,16 +5,22 @@ import ProtectedRoute from "./HOC/ProtectedRoute";
 import Main from "./Main/Main";
 import About from "./About/About";
 import Footer from "./Footer/Footer";
-import SavedNewsHeader from "./SavedNewsHeader/SavedNewsHeader";
+import SavedNews from "./SavedNews/SavedNews";
 import LoginPopup from "./PopupAuth/LoginPopup";
 import RegistrationPopup from "./PopupAuth/RegistrationPopup";
 import { currentUserContext } from "../contexts/currentUserContext";
 import { newsProfile } from "../utils/NewsApi";
 import { mainApi } from "../utils/MainApi";
-import { Switch, Route, useHistory, Redirect } from "react-router-dom";
+import {
+  Switch,
+  Route,
+  useHistory,
+  Redirect,
+  useLocation,
+} from "react-router-dom";
 import * as Auth from "../utils/Auth";
 import Preloader from "./Preloader/Preloader";
-const Cards = lazy(() => import("./Cards/Cards"));
+import Cards from "./Cards/Cards";
 
 function App() {
   const history = useHistory();
@@ -30,7 +36,8 @@ function App() {
   const [token, setToken] = useState("");
   const [isSave, setSave] = useState(null);
   const [isSearch, setSearch] = useState(false);
-
+  const path = useLocation();
+  const savedCardsPath = path.pathname === "/saved-news";
   useEffect(() => {
     mainApi
       .getOwnerInfo(token)
@@ -87,7 +94,6 @@ function App() {
           return card;
         });
         setCards(newCards);
-        console.log(newCards);
         setSavedCards([...savedCards, res]);
       })
       .catch((err) => console.log(err));
@@ -113,7 +119,6 @@ function App() {
 
   const handleFormToggle = () => {
     setFormToggle(!formToggle);
-    console.log("one two three");
   };
 
   const closeAllPopups = () => {
@@ -197,7 +202,6 @@ function App() {
     <currentUserContext.Provider
       value={{
         signOut,
-        savedCards,
         token,
         keyword,
         setKeyword,
@@ -222,41 +226,38 @@ function App() {
               <Main />
             </div>
             {isSearch ? (
-              <Suspense fallback={<Preloader />}>
-                <Cards
-                  savedCards={savedCards}
-                  cards={cards}
-                  handleDeleteCard={handleDeleteCard}
-                  loggedIn={loggedIn}
-                />
-              </Suspense>
+              <Cards
+                savedCards={savedCards}
+                cards={cards}
+                handleDeleteCard={handleDeleteCard}
+                loggedIn={loggedIn}
+              />
             ) : null}
             <About />
-            {/* <ProtectedRoute
-              path="/saved-news"
-              loggedIn={loggedIn}
-              component={SavedNewsHeader}
-              cards={savedCards}
-            ></ProtectedRoute> */}
-          </Route>
-          <Route path="/saved-news">
-            <Header
-              loggedIn={handleLoginIn}
-              signOut={signOut}
-              name={name}
-              handleLoginPopup={handleLoginPopup}
-            />
-            <SavedNewsHeader />
             {isSearch ? (
-              <Suspense fallback={<Preloader />}>
                 <Cards
                   cards={cards}
                   savedCards={savedCards}
                   loggedIn={!loggedIn}
                   handleDeleteCard={handleDeleteCard}
                 />
-              </Suspense>
             ) : null}
+          </Route>
+          <Route path="/saved-news">
+            <ProtectedRoute
+              path="/saved-news"
+              component={SavedNews}
+              cards={cards}
+              handleDeleteCard={handleDeleteCard}
+              loggedIn={loggedIn}
+              savedCards={savedCards}
+            ></ProtectedRoute>
+            <Header
+              loggedIn={handleLoginIn}
+              signOut={signOut}
+              name={name}
+              handleLoginPopup={handleLoginPopup}
+            />
           </Route>
         </Switch>
 

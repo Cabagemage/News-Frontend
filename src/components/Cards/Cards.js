@@ -2,22 +2,20 @@ import React, { useState, memo, useMemo } from "react";
 import Card from "../Card/Card";
 import { Route, Switch } from "react-router-dom";
 import "./cards/cards.css";
-
+import "../../App.css"
 function Cards({ loggedIn, cards, savedCards, handleDeleteCard }) {
   const [toShow, setToShow] = useState(3);
   const itemsToShow = cards.slice(0, toShow);
 
-  console.log(cards);
-  console.log(savedCards);
   return (
     <>
       <Switch>
         <Route exact path="/">
           <div className="layout__cards">
             <div className="cards__container">
-              {!loggedIn ? null : (
+              {cards ?  (
                 <h2 className="cards__results">Результаты поиска</h2>
-              )}
+              ) : null}
               {cards.length ? (
                 <div className="cards">
                   {itemsToShow.map((card, i) => (
