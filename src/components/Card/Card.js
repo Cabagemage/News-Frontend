@@ -9,7 +9,6 @@ function Card({
   loggedIn,
   keyword,
   source,
-  savedCard,
   title,
   image,
   text,
@@ -26,14 +25,18 @@ function Card({
   const options = { day: "numeric", month: "long", year: "numeric" };
   const newsDate = new Date(date);
   const currentUser = useContext(currentUserContext);
-  const { path } = useLocation();
+  const path = useLocation();
+  const savedCardsPath = path.pathname === "/saved-news";
+
   const cardFavoritedClassName = `card__icon ${
-    isFavorite ? "card__icon_status_bookmarked" : "card__icon_function_favorite"
+    isFavorite && !savedCardsPath
+      ? "card__icon_status_bookmarked"
+      : "card__icon_function_favorite"
   }`;
 
   function handleDelete() {
     setFavorite(false);
-    console.log(id)
+    console.log(id);
     handleDeleteCard(id);
   }
 
@@ -62,9 +65,9 @@ function Card({
   return (
     <div className="card">
       <img className="card__image" src={image} alt={title}></img>
-      {!loggedIn ? <span className="card__keyword">{keyword}</span> : null}
+      {savedCardsPath ? <span className="card__keyword">{keyword}</span> : null}
 
-      {!loggedIn ? (
+      {savedCardsPath ? (
         <button
           className="card__icon card__icon_function_remove"
           onClick={handleDelete}
@@ -79,13 +82,18 @@ function Card({
           onMouseLeave={() => setIsShown(false)}
         ></button>
       )}
-      {isShown && !loggedIn ? (
-        <p className="card__hover">Войдите, чтобы сохранять статьи</p>
+      {isShown ? (
+        <p className="card__hover">
+          {savedCardsPath
+            ? "Убрать из сохранённых"
+            : "Войдите, чтобы сохранять статьи"
+            && loggedIn
+            ? "Сохранить статью"
+            : "Войдите, чтобы сохранять статьи"
+           }
+        </p>
       ) : null}
 
-      {isShown && !loggedIn && (
-        <p className="card__hover">Убрать из сохранённых</p>
-      )}
       <div className="card__text">
         <p className="card__date">{newsDate.toLocaleString("ru", options)}</p>
         <h2 className="card__article">{title}</h2>

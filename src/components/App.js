@@ -23,8 +23,8 @@ function App() {
   const [load, setLoader] = useState(null);
   const [formToggle, setFormToggle] = useState(false);
   const [loggedIn, setLoginIn] = useState(false);
-  const [savedCards, setSavedCards] = useState([]);
-  const [cards, setCards] = useState([]);
+  const [savedCards, setSavedCards] = useState(null);
+  const [cards, setCards] = useState(null);
   const [name, setName] = useState("");
   const [keyword, setKeyword] = useState("");
   const [token, setToken] = useState("");
@@ -38,28 +38,28 @@ function App() {
         setName(res.name);
       })
       .then(() => {
-        mainApi
-          .getSavedCards(token)
-          .then((res) => {
-            setSavedCards(res.date);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+        mainApi.getSavedCards(token).then((res) => {
+          setSavedCards(res.date);
+          if (!res.date) {
+            setSavedCards([]);
+          }
+        });
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [cards, token]);
+  }, [token]);
 
   // Эта функция выводит список карточек по ключевому слову.
   const handleGetCards = () => {
     newsProfile
       .getCards(keyword)
-      .then((cards) => {
-        setCards([...cards.articles]);
-        console.log([...cards.articles]);
+      .then((res) => {
+        setCards([...res.articles]);
         setSearch(true);
+        if (keyword === "") {
+          setCards([]);
+        }
         return;
       })
       .catch((err) => {
@@ -82,7 +82,7 @@ function App() {
         console.log(token);
         const newCards = cards.map((card) => {
           if (card.url === res.link) {
-            return {...card, id: res._id}
+            return { ...card, id: res._id };
           }
           return card;
         });
@@ -233,14 +233,12 @@ function App() {
             ) : null}
             <About />
             {/* <ProtectedRoute
-          path="/saved-news"
-          login={loggedIn}
-          component={SavedNewsHeader}
-          cards={cards}
-
-          ></ProtectedRoute> */}
+              path="/saved-news"
+              loggedIn={loggedIn}
+              component={SavedNewsHeader}
+              cards={savedCards}
+            ></ProtectedRoute> */}
           </Route>
-
           <Route path="/saved-news">
             <Header
               loggedIn={handleLoginIn}

@@ -6,8 +6,9 @@ import "./cards/cards.css";
 function Cards({ loggedIn, cards, savedCards, handleDeleteCard }) {
   const [toShow, setToShow] = useState(3);
   const itemsToShow = cards.slice(0, toShow);
-  console.log(cards)
-  console.log(savedCards)
+
+  console.log(cards);
+  console.log(savedCards);
   return (
     <>
       <Switch>
@@ -17,31 +18,34 @@ function Cards({ loggedIn, cards, savedCards, handleDeleteCard }) {
               {!loggedIn ? null : (
                 <h2 className="cards__results">Результаты поиска</h2>
               )}
+              {cards.length ? (
+                <div className="cards">
+                  {itemsToShow.map((card, i) => (
+                    <Card
+                      keyword={card.title.slice(0, 7)}
+                      date={card.publishedAt}
+                      handleDeleteCard={handleDeleteCard}
+                      id={card.id}
+                      text={card.description}
+                      title={card.title}
+                      key={i}
+                      link={card.url}
+                      source={card.source.name}
+                      image={card.urlToImage}
+                      loggedIn={loggedIn}
+                    />
+                  ))}
+                </div>
+              ) : (
+                <h2 className="cards__results">Новости не найдены</h2>
+              )}
 
-              <div className="cards">
-                {itemsToShow.map((card, i) => (
-                  <Card
-                    keyword={card.title.slice(0, 7)}
-                    date={card.publishedAt}
-                    handleDeleteCard={handleDeleteCard}
-                    id={card.id}
-                    text={card.description}
-                    title={card.title}
-                    key={i}
-                    link={card.url}
-                    source={card.source.name}
-                    image={card.urlToImage}
-                    loggedIn={loggedIn}
-                  />
-                ))}
-              </div>
-
-              <button
-                className="button button_theme_white button_place_show"
-                onClick={(_) => setToShow(toShow + 3)}
-              >
-                Показать еще
-              </button>
+                <button
+                  className="button button_theme_white button_place_show"
+                  onClick={(_) => setToShow(toShow + 3)}
+                >
+                  Показать еще
+                </button>
             </div>
           </div>
         </Route>
@@ -49,23 +53,28 @@ function Cards({ loggedIn, cards, savedCards, handleDeleteCard }) {
         <Route path="/saved-news">
           <div className="layout__cards">
             <div className="cards__container">
-              <div className="cards">
-                {savedCards.map((savedCard, i) => (
-                  <Card
-                    owner={savedCard.owner}
-                    handleDeleteCard={handleDeleteCard}
-                    keyword={savedCard.keyword}
-                    key={i}
-                    date={savedCard.date}
-                    text={savedCard.text}
-                    title={savedCard.title}
-                    id={savedCard._id}
-                    image={savedCard.image}
-                    loggedIn={loggedIn}
-                  />
-                ))}
-              </div>
-
+              {savedCards.length ? (
+                <div className="cards">
+                  {savedCards.map((savedCard, i) => (
+                    <Card
+                      owner={savedCard.owner}
+                      handleDeleteCard={handleDeleteCard}
+                      keyword={savedCard.keyword}
+                      key={i}
+                      date={savedCard.date}
+                      text={savedCard.text}
+                      title={savedCard.title}
+                      id={savedCard._id}
+                      image={savedCard.image}
+                      loggedIn={loggedIn}
+                    />
+                  ))}
+                </div>
+              ) : (
+                <h2 className="cards__results">
+                  Не найдены сохраненные новости
+                </h2>
+              )}
               {/* <button
                 className="button button_theme_white button_place_show"
                 onClick={(_) => setToShow(toShow + 3)}
@@ -73,6 +82,7 @@ function Cards({ loggedIn, cards, savedCards, handleDeleteCard }) {
                 Показать еще
               </button> */}
             </div>
+            ) )
           </div>
         </Route>
       </Switch>
