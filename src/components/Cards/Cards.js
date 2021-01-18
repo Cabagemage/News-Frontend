@@ -1,4 +1,4 @@
-import React, { useState, memo, useMemo } from "react";
+import React, { useState, memo } from "react";
 import Card from "../Card/Card";
 import { useLocation } from "react-router-dom";
 

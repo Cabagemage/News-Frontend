@@ -10,11 +10,13 @@ function SavedNews({
   savedCards,
   handleDeleteCard,
   signOut,
-}) {
+  getKeywords,
+})
+{
   return (
     <>
-      <Header signOut={signOut}  />
-      <SavedNewsHeader />
+      <Header signOut={signOut} />
+      <SavedNewsHeader getKeywords={getKeywords} savedCards={savedCards} />
       <Cards
         loggedIn={loggedIn}
         cards={cards}

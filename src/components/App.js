@@ -21,9 +21,11 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [isLoginPopupOpen, setLoginPopupOpen] = useState(false);
   const [load, setLoader] = useState(false);
+  const [getKeywords, setKeywords] = useState([]);
+  const [savedCardsLength, setSavedCardsLength] = useState(null);
   const [formToggle, setFormToggle] = useState(false);
   const [loggedIn, setLoginIn] = useState(false);
-  const [savedCards, setSavedCards] = useState(null);
+  const [savedCards, setSavedCards] = useState([]);
   const [cards, setCards] = useState([]);
   const [name, setName] = useState("");
   const [keyword, setKeyword] = useState("");
@@ -56,6 +58,7 @@ function App() {
       .then((res) => {
         setCards([...res.articles]);
         setKeyword(keyword);
+        console.log(keyword);
         setSearch(true);
         if (keyword === "") {
           setCards([]);
@@ -86,8 +89,14 @@ function App() {
           return card;
         });
         setCards(newCards);
+        const keywords = savedCards.sort((a, b) =>
+          a.keyword < b.keyword ? 1 : -1
+        );
+        setKeywords([keywords]);
+        console.log(getKeywords);
         setSavedCards([...savedCards, res]);
       })
+      .finally(setLoader(false))
       .catch((err) => console.log(err));
   };
 
@@ -214,11 +223,13 @@ function App() {
                 loggedIn={loggedIn}
               />
             ) : null}
+
             <About />
           </Route>
           <ProtectedRoute
             path="/saved-news"
             component={SavedNews}
+            getKeywords={getKeywords}
             keyword={keyword}
             cards={cards}
             handleDeleteCard={handleDeleteCard}

@@ -1,5 +1,6 @@
 .search__input {
   max-width: 608px;
+  caret-color: blue;
   width: 100%;
   height: 64px;
   padding-left: 24px;
