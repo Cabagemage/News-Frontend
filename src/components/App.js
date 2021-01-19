@@ -21,8 +21,8 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [isLoginPopupOpen, setLoginPopupOpen] = useState(false);
   const [load, setLoader] = useState(false);
+  const [favorited, setFavorited] = useState(true);
   const [getKeywords, setKeywords] = useState([]);
-  const [savedCardsLength, setSavedCardsLength] = useState(null);
   const [formToggle, setFormToggle] = useState(false);
   const [loggedIn, setLoginIn] = useState(false);
   const [savedCards, setSavedCards] = useState([]);
@@ -57,6 +57,7 @@ function App() {
       .getCards(keyword)
       .then((res) => {
         setCards([...res.articles]);
+        setFavorited(false);
         setKeyword(keyword);
         console.log(keyword);
         setSearch(true);
@@ -89,11 +90,6 @@ function App() {
           return card;
         });
         setCards(newCards);
-        const keywords = savedCards.sort((a, b) =>
-          a.keyword < b.keyword ? 1 : -1
-        );
-        setKeywords([keywords]);
-        console.log(getKeywords);
         setSavedCards([...savedCards, res]);
       })
       .finally(setLoader(false))
