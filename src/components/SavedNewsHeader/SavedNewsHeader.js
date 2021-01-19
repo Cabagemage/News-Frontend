@@ -1,13 +1,10 @@
 import React, { useContext } from "react";
 import "./savednews/savednews.css";
 import { currentUserContext } from "../../contexts/currentUserContext";
-function SavedNewsHeader({ savedCards, getKeywords }) {
+function SavedNewsHeader({ savedCards }) {
   const currentUser = useContext(currentUserContext);
-  console.log(getKeywords);
   const arrayCopy = [...savedCards];
   arrayCopy.sort((a, b) => (a.keyword > b.keyword ? -1 : 1)); // сортируем копию
-
-  const result = [...new Set(arrayCopy.map((item) => item.keyword))]; // оставляем только уникальные keyword в виде массива
 
   const keywords = arrayCopy.reduce((sum, item) => {
     sum[item.keyword] = (sum[item.keyword] || 0) + 1;

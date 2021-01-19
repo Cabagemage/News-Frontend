@@ -11,7 +11,7 @@ import RegistrationPopup from "./PopupAuth/RegistrationPopup";
 import { currentUserContext } from "../contexts/currentUserContext";
 import { newsProfile } from "../utils/NewsApi";
 import { mainApi } from "../utils/MainApi";
-import { Switch, Route, useHistory } from "react-router-dom";
+import { Switch, Route, useHistory, useLocation } from "react-router-dom";
 import * as Auth from "../utils/Auth";
 import Preloader from "./Preloader/Preloader";
 import Cards from "./Cards/Cards";
@@ -21,17 +21,14 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [isLoginPopupOpen, setLoginPopupOpen] = useState(false);
   const [load, setLoader] = useState(false);
-  const [favorited, setFavorited] = useState(true);
-  const [getKeywords, setKeywords] = useState([]);
   const [formToggle, setFormToggle] = useState(false);
   const [loggedIn, setLoginIn] = useState(false);
   const [savedCards, setSavedCards] = useState([]);
   const [cards, setCards] = useState([]);
-  const [name, setName] = useState("");
   const [keyword, setKeyword] = useState("");
   const [token, setToken] = useState("");
   const [isSearch, setSearch] = useState(false);
-
+  const path = useLocation();
   useEffect(() => {
     mainApi
       .getOwnerInfo(token)
@@ -57,7 +54,6 @@ function App() {
       .getCards(keyword)
       .then((res) => {
         setCards([...res.articles]);
-        setFavorited(false);
         setKeyword(keyword);
         console.log(keyword);
         setSearch(true);
@@ -80,6 +76,9 @@ function App() {
     link,
     image,
   }) => {
+    if (!loggedIn) {
+      handleLoginPopup();
+    }
     mainApi
       .addNewCard(token, { keyword, title, text, date, source, link, image })
       .then((res) => {
@@ -92,11 +91,13 @@ function App() {
         setCards(newCards);
         setSavedCards([...savedCards, res]);
       })
-      .finally(setLoader(false))
       .catch((err) => console.log(err));
   };
 
   const handleDeleteCard = (id) => {
+    if (!loggedIn) {
+      handleLoginPopup();
+    }
     mainApi
       .deleteThisCard(token, id)
       .then(() => {
@@ -148,7 +149,6 @@ function App() {
           localStorage.setItem("jwt", res.token);
           setLoginIn(true);
           setToken(res.token);
-          setName(res.name);
           history.push("/");
           closeAllPopups();
         }
@@ -180,6 +180,13 @@ function App() {
         });
     }
   }
+  function redirectToPopup() {
+    const savedPath = path.pathname === "/saved-news";
+    if (savedPath && !loggedIn) {
+      history.push("/");
+      handleLoginPopup();
+    }
+  }
 
   const signOut = () => {
     localStorage.removeItem("jwt");
@@ -190,6 +197,7 @@ function App() {
 
   React.useEffect(() => {
     handleTokenCheck();
+    redirectToPopup();
   }, []);
 
   return (
@@ -225,7 +233,6 @@ function App() {
           <ProtectedRoute
             path="/saved-news"
             component={SavedNews}
-            getKeywords={getKeywords}
             keyword={keyword}
             cards={cards}
             handleDeleteCard={handleDeleteCard}

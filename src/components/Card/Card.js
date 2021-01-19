@@ -1,4 +1,4 @@
-import React, { useState , useContext} from "react";
+import React, { useState, useContext } from "react";
 import { useLocation } from "react-router-dom";
 import { currentUserContext } from "../../contexts/currentUserContext";
 import "./card/card.css";
@@ -17,7 +17,6 @@ function Card({
   handleDeleteCard,
   handleSaveCard,
 }) {
-  const currentUser = useContext(currentUserContext);
   const [isShown, setIsShown] = useState(false);
   const [isFavorite, setFavorite] = useState(false);
   // const phraseSub = text.substring(0, 20) + "...";
@@ -46,15 +45,6 @@ function Card({
       text: text.substring(0, 20) + "...",
       date: newsDate,
       source: source,
-      link: link,
-      image: image,
-    });
-    console.log({
-      keyword: keyword,
-      title: title,
-      text: text,
-      date: newsDate,
-      source: link,
       link: link,
       image: image,
     });
