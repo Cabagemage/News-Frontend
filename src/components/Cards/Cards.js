@@ -31,12 +31,13 @@ function Cards({
                 {itemsToShow.map((card, i) => (
                   <Card
                     keyword={keyword}
+                    owner={card.owner}
                     date={card.publishedAt}
                     handleSaveCard={handleSaveCard}
                     handleDeleteCard={handleDeleteCard}
                     id={card.id}
-                    text={card.description}
-                    title={card.title}
+                    text={card.description.substring(0, 87)}
+                    title={card.title.substring(0, 60)}
                     key={i}
                     link={card.url}
                     source={card.source.name}
@@ -66,7 +67,6 @@ function Cards({
               <div className="cards">
                 {savedCards.map((savedCard, i) => (
                   <Card
-                    owner={savedCard.owner}
                     handleDeleteCard={handleDeleteCard}
                     keyword={savedCard.keyword}
                     key={i}

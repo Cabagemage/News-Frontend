@@ -2,28 +2,34 @@ import React from "react";
 import { NavLink, Route } from "react-router-dom";
 import "./header/header.css";
 import "../../App.css";
-
-function HeaderHamburgerSignedOut({handleLoginPopup, loggedIn, name, signOut}) {
+function HeaderHamburgerSignedOut({
+  handleLoginPopup,
+  loggedIn,
+  name,
+  signOut,
+}) {
   return (
     <div className="header__container_version_mobile">
       <nav className="header__navigation">
-        <Route>
+        {loggedIn ? (
+          <>
+            <NavLink className="link link_theme_white" exact to="/">
+              Главная
+            </NavLink>
+            <NavLink
+              className="link link_theme_white"
+              activeClassName="header__link_active"
+              exact
+              to="/saved-news"
+            >
+              Сохраненные статьи
+            </NavLink>
+          </>
+        ) : (
           <NavLink className="link link_theme_white" exact to="/">
             Главная
           </NavLink>
-        </Route>
-        <Route>
-          {loggedIn ?
-                <NavLink
-                  className="link link_theme_white"
-                  activeClassName="header__link_active"
-                  exact
-                  to="/saved-news"
-                >
-                  Сохраненные статьи
-                </NavLink>
-                 : null}
-              </Route>
+        )}
       </nav>
       <button
         onClick={handleLoginPopup}

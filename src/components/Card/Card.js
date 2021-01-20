@@ -19,8 +19,8 @@ function Card({
 }) {
   const [isShown, setIsShown] = useState(false);
   const [isFavorite, setFavorite] = useState(false);
-  // const phraseSub = text.substring(0, 20) + "...";
-  // const titleCut = title.substring(0, 20) + "...";
+  const phraseSub = text.substring(0, 80) + "...";
+  const titleCut = title.substring(0, 20) + "...";
   const options = { day: "numeric", month: "long", year: "numeric" };
   const newsDate = new Date(date);
   const path = useLocation();
@@ -41,12 +41,13 @@ function Card({
   function handleSubmit() {
     handleSaveCard({
       keyword: keyword,
-      title: title.substring(0, 20) + "...",
-      text: text.substring(0, 20) + "...",
+      title: title.substring(0, 80) + "...",
+      text: text.substring(0, 72) + "...",
       date: newsDate,
       source: source,
       link: link,
       image: image,
+      owner: owner,
     });
     setFavorite(true);
   }

@@ -75,20 +75,22 @@ function App() {
     source,
     link,
     image,
+    owner
   }) => {
     if (!loggedIn) {
       handleLoginPopup();
     }
     mainApi
-      .addNewCard(token, { keyword, title, text, date, source, link, image })
+      .addNewCard(token, { keyword, title, text, date, source, link, image, owner })
       .then((res) => {
         const newCards = cards.map((card) => {
           if (card.url === res.link) {
-            return { ...card, id: res._id };
+            return { ...card, id: res._id, owner: res.owner };
           }
           return card;
         });
         setCards(newCards);
+        console.log(newCards)
         setSavedCards([...savedCards, res]);
       })
       .catch((err) => console.log(err));

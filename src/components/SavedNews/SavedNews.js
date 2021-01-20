@@ -15,7 +15,7 @@ function SavedNews({
 {
   return (
     <>
-      <Header signOut={signOut} />
+      <Header loggedIn={loggedIn} signOut={signOut} />
       <SavedNewsHeader getKeywords={getKeywords} savedCards={savedCards} />
       <Cards
         loggedIn={loggedIn}
