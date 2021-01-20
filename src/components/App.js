@@ -13,14 +13,15 @@ import { newsProfile } from "../utils/NewsApi";
 import { mainApi } from "../utils/MainApi";
 import { Switch, Route, useHistory, useLocation } from "react-router-dom";
 import * as Auth from "../utils/Auth";
-import Preloader from "./Preloader/Preloader";
+import UsePreloader from "./Preloader/UsePreloader.js";
 import Cards from "./Cards/Cards";
 
 function App() {
+  const [Loader, showLoader, hideLoader] = UsePreloader();
   const history = useHistory();
   const [currentUser, setCurrentUser] = useState({});
   const [isLoginPopupOpen, setLoginPopupOpen] = useState(false);
-  const [load, setLoader] = useState(false);
+
   const [formToggle, setFormToggle] = useState(false);
   const [loggedIn, setLoginIn] = useState(false);
   const [savedCards, setSavedCards] = useState([]);
@@ -29,6 +30,7 @@ function App() {
   const [token, setToken] = useState("");
   const [isSearch, setSearch] = useState(false);
   const path = useLocation();
+
   useEffect(() => {
     mainApi
       .getOwnerInfo(token)
@@ -49,22 +51,24 @@ function App() {
   }, [token]);
 
   // Эта функция выводит список карточек по ключевому слову.
-  const handleGetCards = () => {
-    newsProfile
-      .getCards(keyword)
-      .then((res) => {
+  const handleGetCards = async () => {
+    localStorage.removeItem("articles");
+    localStorage.removeItem("keyword");
+    try {
+      newsProfile.getCards(keyword).then((res) => {
+        localStorage.setItem("articles", JSON.stringify([res.articles]));
         setCards([...res.articles]);
-        setKeyword(keyword);
-        console.log(keyword);
         setSearch(true);
-        if (keyword === "") {
-          setCards([]);
-        }
-        return;
-      })
-      .catch((err) => {
-        console.log(err);
+        showLoader();
+        setTimeout(() => hideLoader(), 2000);
+        setKeyword(keyword);
+        localStorage.setItem("keyword", keyword);
       });
+    } catch (e) {
+      console.log(e);
+    } finally {
+      hideLoader();
+    }
   };
 
   const handleSaveCard = ({
@@ -75,13 +79,22 @@ function App() {
     source,
     link,
     image,
-    owner
+    owner,
   }) => {
     if (!loggedIn) {
       handleLoginPopup();
     }
     mainApi
-      .addNewCard(token, { keyword, title, text, date, source, link, image, owner })
+      .addNewCard(token, {
+        keyword,
+        title,
+        text,
+        date,
+        source,
+        link,
+        image,
+        owner,
+      })
       .then((res) => {
         const newCards = cards.map((card) => {
           if (card.url === res.link) {
@@ -90,7 +103,7 @@ function App() {
           return card;
         });
         setCards(newCards);
-        console.log(newCards)
+        console.log(newCards);
         setSavedCards([...savedCards, res]);
       })
       .catch((err) => console.log(err));
@@ -170,6 +183,7 @@ function App() {
     const jwt = localStorage.getItem("jwt");
     if (jwt) {
       setToken(jwt);
+      setKeyword(keyword);
       Auth.checkToken(jwt)
         .then((res) => {
           if (res) {
@@ -182,6 +196,20 @@ function App() {
         });
     }
   }
+  useEffect(() => {
+    setKeyword(localStorage.getItem("keyword"));
+    const jwt = localStorage.getItem("jwt");
+    const articles = localStorage.getItem("articles")
+      ? JSON.parse(localStorage.getItem("articles"))
+      : [];
+    if (jwt) {
+      setSearch(true);
+      setCards(articles[0]);
+    } else {
+      setSearch(false);
+    }
+  }, []);
+
   function redirectToPopup() {
     const savedPath = path.pathname === "/saved-news";
     if (savedPath && !loggedIn) {
@@ -191,8 +219,8 @@ function App() {
   }
 
   const signOut = () => {
-    localStorage.removeItem("jwt");
     setToken("");
+    localStorage.clear();
     setLoginIn(false);
     history.push("/");
   };
@@ -219,6 +247,7 @@ function App() {
                 handleGetCards={handleGetCards}
               />
             </div>
+            {Loader}
             {isSearch ? (
               <Cards
                 savedCards={savedCards}
