@@ -67,6 +67,7 @@ function Cards({
               <div className="cards">
                 {savedCards.map((savedCard, i) => (
                   <Card
+                    owner={savedCard.owner}
                     handleDeleteCard={handleDeleteCard}
                     keyword={savedCard.keyword}
                     key={i}
@@ -82,12 +83,6 @@ function Cards({
             ) : (
               <h2 className="cards__results">Не найдены сохраненные новости</h2>
             )}
-            {/* <button
-                className="button button_theme_white button_place_show"
-                onClick={(_) => setToShow(toShow + 3)}
-              >
-                Показать еще
-              </button> */}
           </div>
           ) )
         </div>

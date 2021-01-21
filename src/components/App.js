@@ -21,7 +21,6 @@ function App() {
   const history = useHistory();
   const [currentUser, setCurrentUser] = useState({});
   const [isLoginPopupOpen, setLoginPopupOpen] = useState(false);
-
   const [formToggle, setFormToggle] = useState(false);
   const [loggedIn, setLoginIn] = useState(false);
   const [savedCards, setSavedCards] = useState([]);
@@ -58,7 +57,7 @@ function App() {
       let cards = await response.articles;
       setCards([...cards]);
       localStorage.setItem("keyword", keyword);
-      localStorage.setItem("articles", JSON.stringify([...cards]));
+      // setKeyword(word)
       setSearch(true);
     } catch (e) {
       console.log(e);
@@ -99,8 +98,9 @@ function App() {
           return card;
         });
         setCards(newCards);
-        console.log(newCards);
-        setSavedCards([...savedCards.reverse(), res]);
+        console.log(res)
+        localStorage.setItem("articles", JSON.stringify([...newCards]));
+        setSavedCards([...savedCards, res]);
       })
       .catch((err) => console.log(err));
   };
@@ -165,8 +165,6 @@ function App() {
         }
       })
       .catch((error) => {
-        // setInfoPopup(false)
-        // onInfoPopup()
         if (error === 401) {
           console.log("Пользователь с email не найден");
         } else if (error === 400) {
@@ -174,21 +172,6 @@ function App() {
         }
       });
   };
-  // async function handleGetCards() {
-  //   try {
-  //     showLoader();
-  //     let response = await newsProfile.getCards(keyword);
-  //     let cards = await response.articles;
-  //     setCards([...cards]);
-  //     localStorage.setItem("keyword", keyword);
-  //     localStorage.setItem("articles", JSON.stringify([...cards]));
-  //     setSearch(true);
-  //   } catch (e) {
-  //     console.log(e);
-  //   } finally {
-  //     hideLoader();
-  //   }
-  // }
   async function handleTokenCheck() {
     const jwt = localStorage.getItem("jwt");
     try {
@@ -202,7 +185,8 @@ function App() {
     } catch (e) {
       console.log(e);
     } finally {
-      hideLoader()
+      setLoginPopupOpen(false);
+      hideLoader();
     }
   }
 
@@ -226,21 +210,6 @@ function App() {
     }
   }
 
-  // function findMyNews(article, keyword, myArticle) {
-  //   const myNews = savedCards.find((c) => {
-  //     if (myArticle) {
-  //       return c.title === myArticle.title && c.text === myArticle.text;
-  //     }
-  //     if (article) {
-  //       return c.title === article.title && c.text === article.description;
-  //     }
-  //     if (myNews) {
-  //       handleDeleteCard(myArticle._id);
-  //     } else {
-  //       handleSaveCard(article, keyword);
-  //     }
-  //   });
-  // }
   const signOut = () => {
     setToken("");
     localStorage.clear();

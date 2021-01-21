@@ -1,6 +1,5 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
-import { currentUserContext } from "../../contexts/currentUserContext";
 import "./card/card.css";
 
 function Card({
@@ -19,13 +18,11 @@ function Card({
 }) {
   const [isShown, setIsShown] = useState(false);
   const [isFavorite, setFavorite] = useState(false);
-  const phraseSub = text.substring(0, 80) + "...";
-  const titleCut = title.substring(0, 20) + "...";
+
   const options = { day: "numeric", month: "long", year: "numeric" };
   const newsDate = new Date(date);
   const path = useLocation();
   const savedCardsPath = path.pathname === "/saved-news";
-
   const cardFavoritedClassName = `card__icon ${
     isFavorite && loggedIn && !savedCardsPath
       ? "card__icon_status_bookmarked"

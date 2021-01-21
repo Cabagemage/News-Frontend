@@ -5,9 +5,9 @@ class MainApi {
     this.key = key;
   }
 
-  async checkStatus(res) {
+   checkStatus(res) {
     if (res.ok) {
-      return await res.json();
+      return  res.json();
     } else {
       return Promise.reject(`Ошибка: ${res.status}`);
     }
