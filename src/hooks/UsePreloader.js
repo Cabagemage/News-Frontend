@@ -1,6 +1,6 @@
 import React, {useState} from "react";
-import  "./preloader/preloader.css";
-import Preloader from "./Preloader"
+import  "../components/Preloader/preloader/preloader.css";
+import Preloader from "../components/Preloader/Preloader"
 
 const UsePreloader = () =>{
   const [isLoad, setLoader] = useState(false)

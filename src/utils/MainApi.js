@@ -38,7 +38,7 @@ class MainApi {
           Authorization: `Bearer ${token}`,
         },
       });
-      return response.json();
+      return await response.json();
     } catch (error) {
       console.log(error);
     }

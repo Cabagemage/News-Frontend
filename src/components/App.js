@@ -13,7 +13,7 @@ import { newsProfile } from "../utils/NewsApi";
 import { mainApi } from "../utils/MainApi";
 import { Switch, Route, useHistory, useLocation } from "react-router-dom";
 import * as Auth from "../utils/Auth";
-import UsePreloader from "./Preloader/UsePreloader.js";
+import UsePreloader from "../hooks/UsePreloader.js";
 import Cards from "./Cards/Cards";
 
 function App() {
@@ -51,25 +51,21 @@ function App() {
   }, [token]);
 
   // Эта функция выводит список карточек по ключевому слову.
-  const handleGetCards = async () => {
-    localStorage.removeItem("articles");
-    localStorage.removeItem("keyword");
+  async function handleGetCards() {
     try {
-      newsProfile.getCards(keyword).then((res) => {
-        localStorage.setItem("articles", JSON.stringify([res.articles]));
-        setCards([...res.articles]);
-        setSearch(true);
-        showLoader();
-        setTimeout(() => hideLoader(), 2000);
-        setKeyword(keyword);
-        localStorage.setItem("keyword", keyword);
-      });
+      showLoader();
+      let response = await newsProfile.getCards(keyword);
+      let cards = await response.articles;
+      setCards([...cards]);
+      localStorage.setItem("keyword", keyword);
+      localStorage.setItem("articles", JSON.stringify([...cards]));
+      setSearch(true);
     } catch (e) {
       console.log(e);
     } finally {
       hideLoader();
     }
-  };
+  }
 
   const handleSaveCard = ({
     keyword,
@@ -104,7 +100,7 @@ function App() {
         });
         setCards(newCards);
         console.log(newCards);
-        setSavedCards([...savedCards, res]);
+        setSavedCards([...savedCards.reverse(), res]);
       })
       .catch((err) => console.log(err));
   };
@@ -178,37 +174,49 @@ function App() {
         }
       });
   };
-
-  function handleTokenCheck() {
+  // async function handleGetCards() {
+  //   try {
+  //     showLoader();
+  //     let response = await newsProfile.getCards(keyword);
+  //     let cards = await response.articles;
+  //     setCards([...cards]);
+  //     localStorage.setItem("keyword", keyword);
+  //     localStorage.setItem("articles", JSON.stringify([...cards]));
+  //     setSearch(true);
+  //   } catch (e) {
+  //     console.log(e);
+  //   } finally {
+  //     hideLoader();
+  //   }
+  // }
+  async function handleTokenCheck() {
     const jwt = localStorage.getItem("jwt");
-    if (jwt) {
-      setToken(jwt);
-      setKeyword(keyword);
-      Auth.checkToken(jwt)
-        .then((res) => {
-          if (res) {
-            setLoginIn(true);
-            history.push("/");
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+    try {
+      showLoader();
+      let response = await Auth.checkToken(jwt);
+      if (response) {
+        setToken(jwt);
+        setLoginIn(true);
+        history.push("/");
+      }
+    } catch (e) {
+      console.log(e);
+    } finally {
+      hideLoader()
     }
   }
+
   useEffect(() => {
-    setKeyword(localStorage.getItem("keyword"));
-    const jwt = localStorage.getItem("jwt");
+    const word = localStorage.getItem("keyword");
     const articles = localStorage.getItem("articles")
       ? JSON.parse(localStorage.getItem("articles"))
       : [];
-    if (jwt) {
+    if (word && token) {
+      setCards(articles);
+      setKeyword(word);
       setSearch(true);
-      setCards(articles[0]);
-    } else {
-      setSearch(false);
     }
-  }, []);
+  }, [savedCards, setCards, token]);
 
   function redirectToPopup() {
     const savedPath = path.pathname === "/saved-news";
@@ -218,6 +226,21 @@ function App() {
     }
   }
 
+  // function findMyNews(article, keyword, myArticle) {
+  //   const myNews = savedCards.find((c) => {
+  //     if (myArticle) {
+  //       return c.title === myArticle.title && c.text === myArticle.text;
+  //     }
+  //     if (article) {
+  //       return c.title === article.title && c.text === article.description;
+  //     }
+  //     if (myNews) {
+  //       handleDeleteCard(myArticle._id);
+  //     } else {
+  //       handleSaveCard(article, keyword);
+  //     }
+  //   });
+  // }
   const signOut = () => {
     setToken("");
     localStorage.clear();
@@ -248,7 +271,7 @@ function App() {
               />
             </div>
             {Loader}
-            {isSearch ? (
+            {isSearch && !Loader ? (
               <Cards
                 savedCards={savedCards}
                 cards={cards}
