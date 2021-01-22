@@ -74,7 +74,7 @@ function App() {
       setSearch(true);
       setCards(articles);
     }
-  }, []);
+  }, [setKeyword]);
   const handleSaveCard = ({
     keyword,
     title,

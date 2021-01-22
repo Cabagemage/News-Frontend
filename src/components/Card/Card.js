@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLocation} from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import "./card/card.css";
 
 function Card({
@@ -28,7 +28,6 @@ function Card({
       ? "card__icon_status_bookmarked"
       : "card__icon_function_favorite"
   }`;
-
   function handleDelete() {
     setFavorite(false);
     console.log(id);
@@ -76,14 +75,14 @@ function Card({
             ? "Убрать из сохранённых"
             : "Войдите, чтобы сохранять статьи" && loggedIn
             ? "Сохранить статью"
-            : "Войдите, чтобы сохранять статьи" }
+            : "Войдите, чтобы сохранять статьи"}
         </p>
       ) : null}
 
       <div className="card__text">
         <p className="card__date">{newsDate.toLocaleString("ru", options)}</p>
-        <a href={link} target="_blank"  className="card__link" >
-        <h2 className="card__article">{title}</h2>
+        <a href={link} target="_blank" className="card__link">
+          <h2 className="card__article">{title}</h2>
         </a>
         <p className="card__about"> {text}</p>
 
