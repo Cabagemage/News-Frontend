@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation} from "react-router-dom";
 import "./card/card.css";
 
 function Card({
@@ -18,11 +18,11 @@ function Card({
 }) {
   const [isShown, setIsShown] = useState(false);
   const [isFavorite, setFavorite] = useState(false);
-
   const options = { day: "numeric", month: "long", year: "numeric" };
   const newsDate = new Date(date);
   const path = useLocation();
   const savedCardsPath = path.pathname === "/saved-news";
+
   const cardFavoritedClassName = `card__icon ${
     isFavorite && loggedIn && !savedCardsPath
       ? "card__icon_status_bookmarked"
@@ -46,6 +46,7 @@ function Card({
       image: image,
       owner: owner,
     });
+    console.log(source, link);
     setFavorite(true);
   }
 
@@ -75,16 +76,18 @@ function Card({
             ? "Убрать из сохранённых"
             : "Войдите, чтобы сохранять статьи" && loggedIn
             ? "Сохранить статью"
-            : "Войдите, чтобы сохранять статьи"}
+            : "Войдите, чтобы сохранять статьи" }
         </p>
       ) : null}
 
       <div className="card__text">
         <p className="card__date">{newsDate.toLocaleString("ru", options)}</p>
+        <a href={link} target="_blank"  className="card__link" >
         <h2 className="card__article">{title}</h2>
+        </a>
         <p className="card__about"> {text}</p>
 
-        <a href={link} className="card__source">
+        <a href={link} target="_blank" className="card__source">
           {source}
         </a>
       </div>

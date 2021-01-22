@@ -10,3 +10,26 @@
   align-self: center;
   grid-area: search-button;
 }
+
+@media screen and (max-width: 768px) {
+  .button_place_search_disabled {
+    width: 160px;
+    height: 56px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .button_place_search_disabled {
+    width: 160px;
+  }
+}
+
+@media screen and (max-width: 555px) {
+  .button_place_search_disabled {
+    width: 415px;
+  }
+}
+@media screen and (max-width: 474px) {
+  .button_place_search_disabled{
+    width: 288px;
+  }
+}

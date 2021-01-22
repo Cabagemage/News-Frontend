@@ -16,9 +16,7 @@ function PopupWithForm({
   closeToOverlay,
   handleFormToggle,
 }) {
-  function changeInfoPopup(e) {
-    e.preventDefault();
-  }
+
 
   return (
     <div

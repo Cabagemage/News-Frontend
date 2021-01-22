@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./search/search.css";
 import { Form, Field, Submit } from "../../hooks/Validator";
 
-function Search({ handleGetCards, keyword, setKeyword }) {
+function Search({ handleGetCards, setKeyword }) {
   const [error, setError] = useState(false);
   const validators = {
     search: {
@@ -22,21 +22,12 @@ function Search({ handleGetCards, keyword, setKeyword }) {
       },
     },
   };
-  // const settingErrors = (err) => {
-  //   if (err === undefined) {
-  //     return setError({});
-  //   }
-  //   if (err.required) {
-  //     return setError("Пошел нахуй");
-  //   }
-  // };
 
   const formMarkup = (
     <Form
       className="search"
       onSubmit={(values) => {
-        setKeyword(values.keyword);
-        handleGetCards(values.keyword);
+        handleGetCards(values.search);
       }}
       validators={validators}
       onChange={(values) => {
@@ -82,21 +73,6 @@ function Search({ handleGetCards, keyword, setKeyword }) {
     </Form>
   );
   return formMarkup;
-  // return (
-  //   <form className="search">
-  //     <input
-  //       required
-  //       className="search__input"
-  //       placeholder="Найти"
-  //       type="text"
-  //       value={keyword}
-  //       onChange={(e) => setKeyword(e.target.value)}
-  //     ></input>
-  //     <button onClick={submitSearch} className="button button_place_search">
-  //       Искать
-  //     </button>
-  //   </form>
-  // );
 }
 
 export default Search;

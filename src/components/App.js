@@ -53,19 +53,28 @@ function App() {
   async function handleGetCards() {
     try {
       showLoader();
-      setKeyword(keyword)
       let response = await newsProfile.getCards(keyword);
-      let cards = await response.articles;
-      setCards([...cards]);
-      localStorage.setItem("keyword", keyword);
+      let getCards = await response.articles;
+      setCards([...getCards]);
       setSearch(true);
+      localStorage.setItem("keyword", keyword);
+      localStorage.setItem("articles", JSON.stringify(getCards));
     } catch (e) {
       console.log(e);
     } finally {
       hideLoader();
     }
   }
-
+  useEffect(() => {
+    setKeyword(localStorage.getItem("keyword"));
+    const articles = localStorage.getItem("articles")
+      ? JSON.parse(localStorage.getItem("articles"))
+      : [];
+    if (localStorage.getItem("keyword")) {
+      setSearch(true);
+      setCards(articles);
+    }
+  }, []);
   const handleSaveCard = ({
     keyword,
     title,
@@ -98,9 +107,9 @@ function App() {
           return card;
         });
         setCards(newCards);
-        console.log(res)
-        localStorage.setItem("articles", JSON.stringify([...newCards]));
+        //  localStorage.setItem("articles", [...newCards]);
         setSavedCards([...savedCards, res]);
+        console.log([...savedCards]);
       })
       .catch((err) => console.log(err));
   };
@@ -156,7 +165,6 @@ function App() {
     Auth.signIn(email, password)
       .then((res) => {
         if (res && res.token) {
-          //  Поменял ('jwt', token) на текущий вариант
           localStorage.setItem("jwt", res.token);
           setLoginIn(true);
           setToken(res.token);
@@ -189,19 +197,6 @@ function App() {
       hideLoader();
     }
   }
-
-  useEffect(() => {
-    const word = localStorage.getItem("keyword");
-    const articles = localStorage.getItem("articles")
-      ? JSON.parse(localStorage.getItem("articles"))
-      : [];
-    if (word && token) {
-      setCards(articles);
-      setKeyword(word);
-      setSearch(true);
-    }
-  }, [savedCards, setCards, token]);
-
   function redirectToPopup() {
     const savedPath = path.pathname === "/saved-news";
     if (savedPath && !loggedIn) {
@@ -217,7 +212,7 @@ function App() {
     history.push("/");
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     handleTokenCheck();
     redirectToPopup();
   }, []);

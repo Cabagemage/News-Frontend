@@ -51,7 +51,6 @@ export const Form = ({
         {}
       );
     setFormErrors(allErrors);
-
   }, [formValues, setFormErrors]);
   //  in - massive
   // of - not index
@@ -65,7 +64,7 @@ export const Form = ({
       }
     }
     setIsInvalid(false);
-    return
+    return;
   }, [formErrors, setIsInvalid]);
   function handleSubmit(e) {
     e.preventDefault();
@@ -81,7 +80,7 @@ export const Form = ({
   );
 };
 
-export const Field = ({ children, name, className}) => {
+export const Field = ({ children, name, className }) => {
   const [value, setValue] = useState("");
   const { onChangeInput, formErrors } = React.useContext(formContext);
 
@@ -91,7 +90,14 @@ export const Field = ({ children, name, className}) => {
 
   return (
     <div>
-      {children({ className, type: "text", name, value, onChange: setValue, errors: formErrors[name] })}{" "}
+      {children({
+        className,
+        type: "text",
+        name,
+        value,
+        onChange: setValue,
+        errors: formErrors[name],
+      })}
     </div>
   );
 };
