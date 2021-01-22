@@ -1,0 +1,7 @@
+.search__error{
+  position: absolute;
+  color: red;
+  font-size: 9px;
+  left: 15px;
+  top: 40px;
+}

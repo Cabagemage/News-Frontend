@@ -1,3 +1,5 @@
+@import url(../_disabled/button_place_search_disabled.css);
+
 .button_place_search {
   background-color: #2f71e5;
   width: 168px;

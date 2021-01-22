@@ -53,11 +53,11 @@ function App() {
   async function handleGetCards() {
     try {
       showLoader();
+      setKeyword(keyword)
       let response = await newsProfile.getCards(keyword);
       let cards = await response.articles;
       setCards([...cards]);
       localStorage.setItem("keyword", keyword);
-      // setKeyword(word)
       setSearch(true);
     } catch (e) {
       console.log(e);

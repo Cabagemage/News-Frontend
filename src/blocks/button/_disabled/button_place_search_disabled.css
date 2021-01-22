@@ -1,0 +1,12 @@
+.button_place_search_disabled{
+  width: 168px;
+  height: 68px;
+  color: #D1D2D6;
+  justify-self: flex-end;
+  cursor: pointer;
+  border-color: transparent;
+  position: absolute;
+  right: 0;
+  align-self: center;
+  grid-area: search-button;
+}
