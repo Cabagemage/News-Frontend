@@ -24,7 +24,7 @@ const LoginPopup = ({
         if (!values.password) {
           errors.password = "Required";
         } else if (values.password.length < 3) {
-          errors.password = "Маленький пароль блядь";
+          errors.password = "Маленький пароль";
         }
 
         return errors;
