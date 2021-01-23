@@ -30,7 +30,6 @@ function App() {
   const [token, setToken] = useState("");
   const [isSearch, setSearch] = useState(false);
   const [isInfoPopupOpen, setInfoPopupOpen] = useState(false); // Открытие и закрытие попапа
-  const [infoPopup, setInfoPopup] = useState(false); // Этот стейт указывает тру или фоллс для отображения нужного элемента
   const [message, setMessage] = useState(false);
   const path = useLocation();
 

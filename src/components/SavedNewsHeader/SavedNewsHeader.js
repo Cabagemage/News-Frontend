@@ -41,9 +41,6 @@ function SavedNewsHeader({ savedCards }) {
             : " По ключевому слову:"}{" "}
           <span className="savednews__keyword">
             {handlerMainText(keysSorted)}
-            {/* {result.length >= 3
-              ? result.splice(0, 3) + "..."
-              : result.slice(",")} */}
           </span>
         </p>
       </div>

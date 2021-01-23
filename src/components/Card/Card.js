@@ -30,7 +30,6 @@ function Card({
   }`;
   function handleDelete() {
     setFavorite(false);
-    console.log(id);
     handleDeleteCard(id);
   }
 
