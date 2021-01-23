@@ -1,82 +1,125 @@
 import React from "react";
 import PopupWithForm from "./PopupWithForm";
+import { Formik } from "formik";
 
-class  RegistrationPopup extends React.Component{
-  constructor(props){
-    super(props)
-    this.state = {
-      email: '',
-      password: '',
-      name: ''
-    }
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-  handleChange(e) {
-    const {name, value} = e.target;
-    this.setState({
-      [name]: value
-    });
-  }
-  handleSubmit(e){
-        e.preventDefault()
-        const {email, password, name} = this.state;
-        this.props.onRegister(email, password, name)
-  }
-
-render() {
+function RegistrationPopup({
+  isOpen,
+  isClose,
+  handleFormToggle,
+  closeToOverlay,
+  onRegister,
+}) {
   return (
-    <PopupWithForm
-      name="registration"
-      form="registration"
-      title="Регистрация"
-      buttonText="Зарегистрироваться"
-      link="Войти"
-      btnClassName="login"
-      onSubmit={this.handleSubmit}
-      handleFormToggle={this.props.handleFormToggle}
-      popupCloseName="login"
-      isOpen={this.props.isOpen}
-      isClose={this.props.isClose}
-      closeToOverlay={this.props.closeToOverlay}
-      children={
-        <>
-          <div className="popup__inputs">
-            <label className="popup__label">Почта</label>
-            <input
-              type="email"
-              name="email"
-              onChange={this.handleChange}
-              value={this.state.email}
-              required
-              className="popup__input popup__input_type_link"
-              placeholder="Введите почту"
-            />
-            <span id="avatar-error" className="popup__input_type_error"></span>
-            <label className="popup__label">Пароль</label>
-            <input
-              type="password"
-              name="password"
-              onChange={this.handleChange}
-              value={this.state.password}
-              required
-              className="popup__input popup__input_type_link"
-              placeholder="Введите пароль"
-            />
-            <label className="popup__label">Имя</label>
-            <input
-              name="name"
-              onChange={this.handleChange}
-              value={this.state.name}
-              required
-              className="popup__input popup__input_type_link"
-              placeholder="Введите имя"
-            />
-          </div>
-        </>
-      }
-    />
+    <Formik
+      initialValues={{ email: "", password: "", name: "" }}
+      validate={(values) => {
+        const errors = {};
+
+        if (!values.email) {
+          errors.email = "Введите емейл";
+        } else if (
+          !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+        ) {
+          errors.email = "Неправильный емейл";
+        }
+        if (!values.password) {
+          errors.password = "Обязательное поле";
+        } else if (values.password.length < 3) {
+          errors.password = "Маленький пароль блядь";
+        }
+        if (!values.name) {
+          errors.name = "Обязательное поле";
+        } else if (values.name.length < 2) {
+          errors.name = "Минимум два символа";
+        }
+        return errors;
+      }}
+      onSubmit={(values, { setSubmitting }) => {
+        setSubmitting(false);
+        onRegister(values.email, values.password);
+      }}
+    >
+      {({
+        errors,
+        values,
+        touched,
+        handleChange,
+        handleBlur,
+        handleSubmit,
+        handleReset,
+        isSubmitting,
+        dirty,
+        isValid
+      }) => (
+        <PopupWithForm
+          name="registration"
+          handleReset={handleReset}
+          form="registration"
+          title="Регистрация"
+          buttonText="Зарегистрироваться"
+          link="Войти"
+          dirty={dirty}
+          isValid={isValid}
+          btnClassName="login"
+          onSubmit={handleSubmit}
+          isSubmitting={isSubmitting}
+          handleFormToggle={handleFormToggle}
+          popupCloseName="login"
+          isOpen={isOpen}
+          isClose={isClose}
+          closeToOverlay={closeToOverlay}
+          children={
+            <>
+              <div className="popup__inputs">
+                <label className="popup__label">Почта</label>
+                <input
+                  type="email"
+                  name="email"
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  value={values.email}
+                  required
+                  className="popup__input popup__input_type_link"
+                  placeholder="Введите почту"
+                />
+                <span className="popup__error_visible">
+                  {errors.email && touched.email && errors.email}
+                </span>
+                <label className="popup__label">Пароль</label>
+                <input
+                  type="password"
+                  name="password"
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  value={values.password}
+                  required
+                  className="popup__input popup__input_type_link"
+                  placeholder="Введите пароль"
+                />
+                <span className="popup__error_visible">
+                  {errors.password && touched.password && errors.password}
+                </span>
+                <label className="popup__label">Имя</label>
+                <input
+                  name="name"
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  value={values.name}
+                  required
+                  className="popup__input popup__input_type_link"
+                  placeholder="Введите имя"
+                />
+                <span className="popup__error_visible">
+                {errors.name && touched.name && errors.name}
+                </span>
+              </div>
+
+            </>
+          }
+        />
+      )}
+    </Formik>
   );
 }
-}
+
 export default RegistrationPopup;

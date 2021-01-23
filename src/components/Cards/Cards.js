@@ -36,8 +36,8 @@ function Cards({
                     handleSaveCard={handleSaveCard}
                     handleDeleteCard={handleDeleteCard}
                     id={card.id}
-                    text={card.description.substring(0, 87) + '...'}
-                    title={card.title.substring(0, 60) + '...'}
+                    text={card.description.substring(0, 87) + "..."}
+                    title={card.title.substring(0, 60) + "..."}
                     key={i}
                     link={card.url}
                     source={card.source.name}
@@ -49,13 +49,14 @@ function Cards({
             ) : (
               <h2 className="cards__results">Новости не найдены</h2>
             )}
-
+            {cards.length > 3 ?
             <button
               className="button button_theme_white button_place_show"
               onClick={(_) => setToShow(toShow + 3)}
             >
               Показать еще
             </button>
+: null}
           </div>
         </div>
       ) : null}

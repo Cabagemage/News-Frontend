@@ -5,7 +5,6 @@ function PopupWithForm({
   isOpen,
   isClose,
   onSubmit,
-  btnClassName,
   name,
   link,
   form,
@@ -15,6 +14,10 @@ function PopupWithForm({
   children,
   closeToOverlay,
   handleFormToggle,
+  isSubmitting,
+  dirty,
+  handleReset,
+  isValid
 }) {
 
 
@@ -23,7 +26,7 @@ function PopupWithForm({
       className={`popup ${isOpen && "popup_opened"}   popup_function_${name}  `}
       onClick={closeToOverlay}
     >
-      <form className={`popup__form popup__form_function_${form}`}>
+      <form novalidate name={name} onSubmit={onSubmit}  className={`popup__form popup__form_function_${form}`}>
         <div id="form" className="popup__container">
           <button
             type="button"
@@ -34,8 +37,9 @@ function PopupWithForm({
           {children}
           <button
             type="submit"
-            onClick={onSubmit}
-            className={`popup__save popup__save_function_${btnClassName}`}
+            onSubmit={onSubmit && handleReset}
+            disabled={isSubmitting && !dirty && !isValid}
+            className={dirty && isValid ? 'popup__save popup__save_function_login' : 'popup__save popup__save_disabled'}
           >
             {buttonText}
           </button>

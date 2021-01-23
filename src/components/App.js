@@ -107,9 +107,7 @@ function App() {
           return card;
         });
         setCards(newCards);
-        //  localStorage.setItem("articles", [...newCards]);
         setSavedCards([...savedCards, res]);
-        console.log([...savedCards]);
       })
       .catch((err) => console.log(err));
   };
