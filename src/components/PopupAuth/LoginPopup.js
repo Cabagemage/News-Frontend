@@ -15,16 +15,16 @@ const LoginPopup = ({
         const errors = {};
 
         if (!values.email) {
-          errors.email = "Введите емейл";
+          errors.email = "Введите корректный email";
         } else if (
           !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
         ) {
-          errors.email = "Неправильный емейл";
+          errors.email = "Некорректно введён email";
         }
         if (!values.password) {
-          errors.password = "Required";
+          errors.password = "Обязательное поле";
         } else if (values.password.length < 3) {
-          errors.password = "Маленький пароль";
+          errors.password = "Минимум 3 символа";
         }
 
         return errors;
