@@ -45,7 +45,6 @@ function Card({
       image: image,
       owner: owner,
     });
-    console.log(source, link);
     setFavorite(true);
   }
 

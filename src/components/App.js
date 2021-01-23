@@ -15,6 +15,7 @@ import { Switch, Route, useHistory, useLocation } from "react-router-dom";
 import * as Auth from "../utils/Auth";
 import UsePreloader from "../hooks/UsePreloader.js";
 import Cards from "./Cards/Cards";
+import InfoToolTip from "./InfoToolTip/InfoToolTip";
 
 function App() {
   const [Loader, showLoader, hideLoader] = UsePreloader();
@@ -28,6 +29,9 @@ function App() {
   const [keyword, setKeyword] = useState("");
   const [token, setToken] = useState("");
   const [isSearch, setSearch] = useState(false);
+  const [isInfoPopupOpen, setInfoPopupOpen] = useState(false); // Открытие и закрытие попапа
+  const [infoPopup, setInfoPopup] = useState(false); // Этот стейт указывает тру или фоллс для отображения нужного элемента
+  const [message, setMessage] = useState(false);
   const path = useLocation();
 
   useEffect(() => {
@@ -35,6 +39,9 @@ function App() {
       .getOwnerInfo(token)
       .then((res) => {
         setCurrentUser(res);
+        if(!res){
+        setCurrentUser(null)
+        }
       })
       .then(() => {
         mainApi.getSavedCards(token).then((res) => {
@@ -135,6 +142,7 @@ function App() {
 
   const closeAllPopups = () => {
     setLoginPopupOpen(false);
+    setInfoPopupOpen(false);
   };
 
   const handleOverlayClose = (e) => {
@@ -144,20 +152,23 @@ function App() {
     closeAllPopups();
   };
 
-  // Authorization
-  const onRegister = (email, password, name) => {
-    Auth.register(email, password, name)
-      .then((res) => {
-        if (res) {
-          history.push("/"); // Прокинуть юзера на страницу логина
-        }
-      })
-      .catch((err) => {
-        if (err === 400) {
-          console.log("Некорректно заполнено одно из полей ");
-        }
-      });
-  };
+  async function onRegister(email, password, name) {
+    try {
+      let register = await Auth.register(email, password, name);
+      if (register) {
+        setLoginPopupOpen(false);
+        setMessage(true);
+        setInfoPopupOpen(true);
+        history.push("/");
+      }
+    } catch (err) {
+      if (err === 409) {
+        console.log("Такой пользователь уже существует");
+      }
+    } finally {
+    }
+  }
+
   // Регистрация работает
   const handleLogin = (email, password) => {
     Auth.signIn(email, password)
@@ -170,11 +181,11 @@ function App() {
           closeAllPopups();
         }
       })
-      .catch((error) => {
-        if (error === 401) {
-          console.log("Пользователь с email не найден");
-        } else if (error === 400) {
-          console.log("Не передано одно из полей ");
+      .catch(error => {
+        if (error === 409) {
+          console.log("Неправильная почта или пароль");
+        } else if (error === 404) {
+          console.log("Пользователь не найден");
         }
       });
   };
@@ -257,8 +268,15 @@ function App() {
             signOut={signOut}
           ></ProtectedRoute>
         </Switch>
-
         <Footer />
+
+        <InfoToolTip
+          isOpen={isInfoPopupOpen}
+          setMessage={message}
+          handleLoginPopup={handleLoginPopup}
+          isClose={closeAllPopups}
+          closeToOverlay={handleOverlayClose}
+        />
 
         {!formToggle ? (
           <LoginPopup

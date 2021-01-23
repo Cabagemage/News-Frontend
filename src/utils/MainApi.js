@@ -5,9 +5,9 @@ class MainApi {
     this.key = key;
   }
 
-   checkStatus(res) {
+  checkStatus(res) {
     if (res.ok) {
-      return  res.json();
+      return res.json();
     } else {
       return Promise.reject(`Ошибка: ${res.status}`);
     }
@@ -76,8 +76,9 @@ class MainApi {
       },
     }).then(this.checkStatus);
   }
+
   // Метод для получения инфы профиля
 }
 export const mainApi = new MainApi({
-  baseUrl: "http://localhost:3000",
+  baseUrl: "https://news-finder.students.nomoreparties.xyz",
 });

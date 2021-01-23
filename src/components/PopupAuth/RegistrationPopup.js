@@ -36,7 +36,7 @@ function RegistrationPopup({
       }}
       onSubmit={(values, { setSubmitting }) => {
         setSubmitting(false);
-        onRegister(values.email, values.password);
+        onRegister(values.email, values.password, values.name);
       }}
     >
       {({
@@ -92,7 +92,6 @@ function RegistrationPopup({
                   onBlur={handleBlur}
                   onChange={handleChange}
                   value={values.password}
-                  required
                   className="popup__input popup__input_type_link"
                   placeholder="Введите пароль"
                 />
@@ -105,7 +104,6 @@ function RegistrationPopup({
                   onBlur={handleBlur}
                   onChange={handleChange}
                   value={values.name}
-                  required
                   className="popup__input popup__input_type_link"
                   placeholder="Введите имя"
                 />
