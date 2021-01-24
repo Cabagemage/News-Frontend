@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import "./card/card.css";
-
+import { options } from "../../utils/utils";
 function Card({
   loggedIn,
   keyword,
@@ -16,18 +16,19 @@ function Card({
   handleDeleteCard,
   handleSaveCard,
 }) {
-  const [isShown, setIsShown] = useState(false);
-  const [isFavorite, setFavorite] = useState(false);
-  const options = { day: "numeric", month: "long", year: "numeric" };
-  const newsDate = new Date(date);
+  const [isShown, setIsShown] = useState(false); // Сокрытие и показ всплывающего сообщения
+  const [isFavorite, setFavorite] = useState(false); // likes
+  const newsDate = new Date(date); // Время
   const path = useLocation();
   const savedCardsPath = path.pathname === "/saved-news";
 
+  // Выставление класса иконки лайка в зависимости от условий.
   const cardFavoritedClassName = `card__icon ${
     isFavorite && loggedIn && !savedCardsPath
       ? "card__icon_status_bookmarked"
       : "card__icon_function_favorite"
   }`;
+  // Убираем флажок, после чего удаляем карточка по айдишнику
   function handleDelete() {
     setFavorite(false);
     handleDeleteCard(id);
@@ -35,15 +36,16 @@ function Card({
 
   function handleSubmit() {
     handleSaveCard({
-      keyword: keyword,
-      title: title.substring(0, 80) + "...",
-      text: text.substring(0, 72) + "...",
-      date: newsDate,
-      source: source,
-      link: link,
-      image: image,
-      owner: owner,
+      keyword: keyword ? keyword : "Разное", // "Разное" будет добавляться в качестве ключевого слова, в случае пустого поискового запроса
+      title: title.substring(0, 80) + "...", // Сокращаем размер строки до 80 символов + добавляем троеточие
+      text: text.substring(0, 72) + "...", // Тоже самое
+      date: newsDate, // Дата
+      source: source, // Источник
+      link: link, // Ссылка
+      image: image, // Изображение
+      owner: owner, // Владелец.
     });
+
     setFavorite(true);
   }
 
