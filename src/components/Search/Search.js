@@ -6,12 +6,13 @@ function Search({ handleGetCards, keyword, setKeyword }) {
 
   function submitSearch(e){
     e.preventDefault();
-    handleGetCards(keyword)
+    if(keyword){
+      handleGetCards(keyword)
+    }
   }
   return (
     <form className="search">
       <input
-        required
         className="search__input"
         placeholder="Найти"
         type="text"

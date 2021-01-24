@@ -38,8 +38,8 @@ function App() {
       .getOwnerInfo(token)
       .then((res) => {
         setCurrentUser(res);
-        if(!res){
-        setCurrentUser(null)
+        if (!res) {
+          setCurrentUser(null);
         }
       })
       .then(() => {
@@ -59,8 +59,8 @@ function App() {
   async function handleGetCards() {
     try {
       showLoader();
-      let response = await newsProfile.getCards(keyword);
-      let getCards = await response.articles;
+      const response = await newsProfile.getCards(keyword);
+      const getCards = await response.articles;
       setCards([...getCards]);
       setSearch(true);
       localStorage.setItem("keyword", keyword);
@@ -153,7 +153,7 @@ function App() {
 
   async function onRegister(email, password, name) {
     try {
-      let register = await Auth.register(email, password, name);
+      const register = await Auth.register(email, password, name);
       if (register) {
         setLoginPopupOpen(false);
         setMessage(true);
@@ -180,7 +180,7 @@ function App() {
           closeAllPopups();
         }
       })
-      .catch(error => {
+      .catch((error) => {
         if (error === 409) {
           console.log("Неправильная почта или пароль");
         } else if (error === 404) {
@@ -201,7 +201,6 @@ function App() {
     } catch (e) {
       console.log(e);
     } finally {
-      setLoginPopupOpen(false);
       hideLoader();
     }
   }
@@ -209,7 +208,7 @@ function App() {
     const savedPath = path.pathname === "/saved-news";
     if (savedPath && !loggedIn) {
       history.push("/");
-      handleLoginPopup();
+      setLoginPopupOpen(true);
     }
   }
 
@@ -222,6 +221,7 @@ function App() {
 
   useEffect(() => {
     handleTokenCheck();
+
     redirectToPopup();
   }, []);
 

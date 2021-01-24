@@ -28,6 +28,7 @@ function Card({
       ? "card__icon_status_bookmarked"
       : "card__icon_function_favorite"
   }`;
+
   // Убираем флажок, после чего удаляем карточка по айдишнику
   function handleDelete() {
     setFavorite(false);

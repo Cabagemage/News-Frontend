@@ -17,7 +17,7 @@ function SavedNewsHeader({ savedCards }) {
 
   function handlerMainText(arr) {
     if (arr.length >= 3) {
-      return arr.splice(0, 3) + "...";
+      return arr.splice(0, 2) + " ";
     } else if (arr.length < 3) {
       return arr.join(", ").split("");
     }
@@ -41,6 +41,7 @@ function SavedNewsHeader({ savedCards }) {
             : " По ключевому слову:"}{" "}
           <span className="savednews__keyword">
             {handlerMainText(keysSorted)}
+            и {savedCards.length - 2}-другим
           </span>
         </p>
       </div>
