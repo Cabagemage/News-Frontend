@@ -4,17 +4,13 @@ class newsApi {
     this.headers = headers;
     this.key = key;
   }
-
+//  Проверка на статус ответа с сервера
   checkStatus(res) {
     if (res.ok) {
       return res.json();
     } else {
       return Promise.reject(`Ошибка: ${res.status}`);
     }
-  }
-
-  getAppinfo() {
-    return Promise.all([this.getInitialCards(), this.getUserInformation()]);
   }
 
   // Получение массива карточек с сервера
