@@ -16,7 +16,7 @@ import * as Auth from "../utils/API/Auth";
 import UsePreloader from "../hooks/UsePreloader.js";
 import Cards from "./Cards/Cards";
 import InfoToolTip from "./InfoToolTip/InfoToolTip";
-import { connect } from "react-redux";
+
 function App() {
   const [Loader, showLoader, hideLoader] = UsePreloader();
   const history = useHistory();
