@@ -18,7 +18,7 @@ export const footerSocialIcons = [
   {
     name: "Facebook",
     link: "http://facebook.com",
-    src: facebook ,
+    src: facebook,
     alt: "facebook",
   },
   {

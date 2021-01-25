@@ -49,14 +49,14 @@ function Cards({
             ) : (
               <h2 className="cards__results">Новости не найдены</h2>
             )}
-            {cards.length > 3 ?
-            <button
-              className="button button_theme_white button_place_show"
-              onClick={(_) => setToShow(toShow + 3)}
-            >
-              Показать еще
-            </button>
-: null}
+            {cards.length > 3 ? (
+              <button
+                className="button button_theme_white button_place_show"
+                onClick={(_) => setToShow(toShow + 3)}
+              >
+                Показать еще
+              </button>
+            ) : null}
           </div>
         </div>
       ) : null}
@@ -94,4 +94,4 @@ function Cards({
   );
 }
 
-export default memo(Cards);
+export default Cards;
