@@ -10,7 +10,7 @@ function SavedNewsHeader({ savedCards }) {
     sum[item.keyword] = (sum[item.keyword] || 0) + 1;
     return sum;
   }, {});
-
+  console.log(Object.values(keywords));
   const keysSorted = Object.keys(keywords).sort(function (a, b) {
     return keywords[a] > keywords[b] ? -1 : 1;
   });
@@ -19,10 +19,15 @@ function SavedNewsHeader({ savedCards }) {
     if (arr.length >= 3) {
       return arr.splice(0, 2) + " ";
     } else if (arr.length < 3) {
-      return arr.join(", ").split("");
+      return arr.join(",").split("");
     }
   }
-
+  function handlerValuesKeywords(arr) {
+    if (arr.length > 3) {
+      return Object.values(arr).length + "И еще";
+    }
+    console.log("hello");
+  }
   return (
     <div className="savednews">
       <div className="savednews__content">
@@ -40,8 +45,8 @@ function SavedNewsHeader({ savedCards }) {
             ? " По ключевым словам:"
             : " По ключевому слову:"}{" "}
           <span className="savednews__keyword">
-            {handlerMainText(keysSorted)}
-            и {savedCards.length - 2}-другим
+            {handlerMainText(keysSorted)}{" "}
+            {Object.values(keywords).length > 2 ? "и другие" : null}
           </span>
         </p>
       </div>

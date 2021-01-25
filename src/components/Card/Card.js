@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import "./card/card.css";
 import { options } from "../../utils/utils";
+
+
 function Card({
   loggedIn,
   keyword,
@@ -34,7 +36,6 @@ function Card({
     setFavorite(false);
     handleDeleteCard(id);
   }
-
   function handleSubmit() {
     handleSaveCard({
       keyword: keyword ? keyword : "Разное", // "Разное" будет добавляться в качестве ключевого слова, в случае пустого поискового запроса
@@ -46,7 +47,6 @@ function Card({
       image: image, // Изображение
       owner: owner, // Владелец.
     });
-
     setFavorite(true);
   }
 

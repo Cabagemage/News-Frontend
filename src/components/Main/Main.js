@@ -1,8 +1,8 @@
-import React  from "react";
+import React from "react";
 import Search from "../Search/Search";
 import "./main/main.css";
 
-function Main({handleGetCards, keyword, setKeyword}) {
+function Main({ handleGetCards, keyword, setKeyword }) {
   return (
     <div className="main">
       <h1 className="main__title">Что творится в мире?</h1>
@@ -11,9 +11,10 @@ function Main({handleGetCards, keyword, setKeyword}) {
         кабинете
       </h3>
       <Search
-      keyword={keyword}
-      setKeyword={setKeyword}
-      handleGetCards={handleGetCards}  />
+        keyword={keyword}
+        setKeyword={setKeyword}
+        handleGetCards={handleGetCards}
+      />
     </div>
   );
 }
