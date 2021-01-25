@@ -17,7 +17,7 @@ export const footerLinks = [
 export const footerSocialIcons = [
   {
     name: "Facebook",
-    link: "http://facebook.com",
+    link: "https://www.facebook.com/cabagemage",
     src: facebook,
     alt: "facebook",
   },
