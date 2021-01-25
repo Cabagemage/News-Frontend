@@ -87,7 +87,6 @@ function Cards({
               <h2 className="cards__results">Не найдены сохраненные новости</h2>
             )}
           </div>
-          ) )
         </div>
       ) : null}
     </>
