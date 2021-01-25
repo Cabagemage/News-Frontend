@@ -1,8 +1,8 @@
 import React from "react";
-import facebook from "../../images/facebook.svg";
-import github from "../../images/github.svg";
 import "./footer/footer.css";
 import "../../App.css";
+import { footerLinks, footerSocialIcons } from "../../utils/utils";
+
 function Footer() {
   return (
     <footer className="footer">
@@ -10,29 +10,31 @@ function Footer() {
       <div className="footer__menu">
         <nav className="footer__nav">
           <ul className="footer__links">
-            <li className="footer__list-item">
-              <a className="link link_theme_black footer__link" href="/">
-                Главная
-              </a>
-            </li>
-            <li className="footer__list-item">
-              <a
-                className="link link_theme_black footer__link"
-                target="_blank"
-                href="https://praktikum.yandex.ru"
-              >
-                Яндекс.Практикум
-              </a>
-            </li>
+            {footerLinks.map(({ name, link }) => {
+              return (
+                <>
+                  <li className="footer__list-item">
+                    <a
+                      className="link link_theme_black footer__link"
+                      href={link}
+                    >
+                      {name}
+                    </a>
+                  </li>
+                </>
+              );
+            })}
           </ul>
         </nav>
+
         <div className="footer__icons">
-          <a target="_blank" href="https://facebook.com">
-            <img className="footer__social" src={facebook} alt="facebook" />
-          </a>
-          <a target="_blank" href="https://github.com/Cabagemage">
-            <img className="footer__social" src={github} alt="github" />
-          </a>
+          {footerSocialIcons.map(({ name, link, src }) => {
+            return (
+              <a target="_blank" href={link}>
+                <img className="footer__social" src={src} alt={name} />
+              </a>
+            );
+          })}
         </div>
       </div>
     </footer>

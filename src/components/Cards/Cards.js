@@ -1,27 +1,97 @@
-import React from "react";
+import React, { useState, memo } from "react";
 import Card from "../Card/Card";
-import "./cards/cards.css";
+import { useLocation } from "react-router-dom";
 
-function Cards({ loggedIn }) {
+import "./cards/cards.css";
+import "../../App.css";
+function Cards({
+  loggedIn,
+  cards,
+  savedCards,
+  handleDeleteCard,
+  handleSaveCard,
+  keyword,
+}) {
+  const [toShow, setToShow] = useState(3);
+  const itemsToShow = cards.slice(0, toShow);
+  const path = useLocation();
+  const savedCardsPath = path.pathname === "/saved-news";
+  const findCards = path.pathname === "/";
+
   return (
     <>
-      <div className="layout__cards">
-        <div className="cards__container">
-          {loggedIn ? null : (
-            <h2 className="cards__results">Результаты поиска</h2>
-          )}
-          <div className="cards">
-            <Card loggedIn={loggedIn} />
-            <Card loggedIn={loggedIn} />
-            <Card loggedIn={loggedIn} />
+      {findCards ? (
+        <div className="layout__cards">
+          <div className="cards__container">
+            {cards ? (
+              <h2 className="cards__results">Результаты поиска</h2>
+            ) : null}
+            {cards.length ? (
+              <div className="cards">
+                {itemsToShow.map((card, i) => (
+                  <Card
+                    keyword={keyword}
+                    owner={card.owner}
+                    date={card.publishedAt}
+                    handleSaveCard={handleSaveCard}
+                    handleDeleteCard={handleDeleteCard}
+                    id={card.id}
+                    text={card.description.substring(0, 87) + "..."}
+                    title={card.title.substring(0, 60) + "..."}
+                    key={i}
+                    link={card.url}
+                    source={card.source.name}
+                    image={card.urlToImage}
+                    loggedIn={loggedIn}
+                  />
+                ))}
+              </div>
+            ) : (
+              <h2 className="cards__results">Новости не найдены</h2>
+            )}
+            {cards.length > 3 ?
+            <button
+              className="button button_theme_white button_place_show"
+              onClick={(_) => setToShow(toShow + 3)}
+            >
+              Показать еще
+            </button>
+: null}
           </div>
-          <button className="button button_theme_white button_place_show">
-            Показать еще
-          </button>
         </div>
-      </div>
+      ) : null}
+
+      {savedCardsPath ? (
+        <div className="layout__cards">
+          <div className="cards__container">
+            {savedCards.length ? (
+              <div className="cards">
+                {savedCards.map((savedCard, i) => (
+                  <Card
+                    owner={savedCard.owner}
+                    handleDeleteCard={handleDeleteCard}
+                    keyword={savedCard.keyword}
+                    key={i}
+                    date={savedCard.date}
+                    text={savedCard.text}
+                    title={savedCard.title}
+                    id={savedCard._id}
+                    source={savedCard.source}
+                    link={savedCard.link}
+                    image={savedCard.image}
+                    loggedIn={loggedIn}
+                  />
+                ))}
+              </div>
+            ) : (
+              <h2 className="cards__results">Не найдены сохраненные новости</h2>
+            )}
+          </div>
+          ) )
+        </div>
+      ) : null}
     </>
   );
 }
 
-export default Cards;
+export default memo(Cards);

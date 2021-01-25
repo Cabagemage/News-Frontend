@@ -1,5 +1,6 @@
 @import url(./_function/card__icon_function_remove.css);
 @import url(./_function/card__icon_function_favorite.css);
+@import url(./_status/card__icon_status_bookmarked.css);
 
 .card__icon {
   width: 40px;

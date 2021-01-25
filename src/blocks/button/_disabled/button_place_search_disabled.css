@@ -1,10 +1,7 @@
-@import url(../_disabled/button_place_search_disabled.css);
-
-.button_place_search {
-  background-color: #2f71e5;
+.button_place_search_disabled{
   width: 168px;
   height: 68px;
-  color: white;
+  color: #D1D2D6;
   justify-self: flex-end;
   cursor: pointer;
   border-color: transparent;
@@ -14,30 +11,25 @@
   grid-area: search-button;
 }
 
-.button_place_search:hover {
-  transition: 0.2s ease-in;
-  background-color: #347eff;
-}
-
 @media screen and (max-width: 768px) {
-  .button_place_search {
+  .button_place_search_disabled {
     width: 160px;
     height: 56px;
   }
 }
 @media screen and (max-width: 600px) {
-  .button_place_search {
+  .button_place_search_disabled {
     width: 160px;
   }
 }
 
 @media screen and (max-width: 555px) {
-  .button_place_search {
+  .button_place_search_disabled {
     width: 415px;
   }
 }
 @media screen and (max-width: 474px) {
-  .button_place_search {
+  .button_place_search_disabled{
     width: 288px;
   }
 }
