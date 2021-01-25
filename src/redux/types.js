@@ -1,2 +1,0 @@
-export const SAVE_NEWS_CARD = 'NEWS/SAVE_NEWS_CARD';
-

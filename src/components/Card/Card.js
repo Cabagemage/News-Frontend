@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import "./card/card.css";
 import { options } from "../../utils/utils";
-import { createSaveNews } from "../../redux/actions";
+
 
 function Card({
   loggedIn,
@@ -47,7 +47,6 @@ function Card({
       image: image, // Изображение
       owner: owner, // Владелец.
     });
-    createSaveNews(handleSaveCard)
     setFavorite(true);
   }
 
