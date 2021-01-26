@@ -18,9 +18,9 @@
   }
 }
 
-@media screen and (max-width: 620px) {
+@media screen and (max-width: 680px) {
   .card__about {
     max-width: 256px;
-    padding-bottom: 8px;
+    padding-bottom: 4px;
   }
 }

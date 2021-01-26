@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 import { useLocation } from "react-router-dom";
 import "./card/card.css";
 import { options } from "../../utils/utils";
-
 
 function Card({
   loggedIn,
