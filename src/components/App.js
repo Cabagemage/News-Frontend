@@ -114,6 +114,7 @@ function App() {
         });
         setCards(newCards);
         setSavedCards([...savedCards, res]);
+
       })
       .catch((err) => console.log(err));
   };

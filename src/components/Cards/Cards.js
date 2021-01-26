@@ -36,8 +36,8 @@ function Cards({
                     handleSaveCard={handleSaveCard}
                     handleDeleteCard={handleDeleteCard}
                     id={card.id}
-                    text={card.description.substring(0, 87) + "..."}
-                    title={card.title.substring(0, 60) + "..."}
+                    text={card.description.substring(0, 75) + "..."}
+                    title={card.title.substring(0, 40) + "..."}
                     key={i}
                     link={card.url}
                     source={card.source.name}
