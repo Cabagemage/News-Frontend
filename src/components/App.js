@@ -9,16 +9,13 @@ import SavedNews from "./SavedNews/SavedNews";
 import LoginPopup from "./PopupAuth/LoginPopup";
 import RegistrationPopup from "./PopupAuth/RegistrationPopup";
 import { currentUserContext } from "../contexts/currentUserContext";
-import { newsProfile } from "../utils/API/NewsApi";
 import { mainApi } from "../utils/API/MainApi";
 import { Switch, Route, useHistory, useLocation } from "react-router-dom";
 import * as Auth from "../utils/API/Auth";
-import UsePreloader from "../hooks/UsePreloader.js";
 import Cards from "./Cards/Cards";
 import InfoToolTip from "./InfoToolTip/InfoToolTip";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 function App() {
-  const [Loader, showLoader, hideLoader] = UsePreloader();
   const history = useHistory();
   const [currentUser, setCurrentUser] = useState({});
   const [isLoginPopupOpen, setLoginPopupOpen] = useState(false);
@@ -28,14 +25,18 @@ function App() {
   const [cards, setCards] = useState([]);
   const [keyword, setKeyword] = useState("");
   const [token, setToken] = useState("");
-  const [isSearch, setSearch] = useState(false);
   const [isInfoPopupOpen, setInfoPopupOpen] = useState(false); // Открытие и закрытие попапа
   const [message, setMessage] = useState(false);
   const path = useLocation();
-
+  const news = useSelector((state) => state.news.fetchedNews);
+  const loading = useSelector((state) => state.app.loading);
+  const search = useSelector((state) => state.app.search);
+  const login = useSelector((state) => state.app.loggedIn);
+  const isToken = useSelector((state) => state.app.token);
+  console.log(isToken)
   useEffect(() => {
     mainApi
-      .getOwnerInfo(token)
+      .getOwnerInfo(isToken)
       .then((res) => {
         setCurrentUser(res);
         if (!res) {
@@ -43,7 +44,7 @@ function App() {
         }
       })
       .then(() => {
-        mainApi.getSavedCards(token).then((res) => {
+        mainApi.getSavedCards(isToken).then((res) => {
           setSavedCards(res.date);
           if (!res.date) {
             setSavedCards([]);
@@ -53,31 +54,15 @@ function App() {
       .catch((err) => {
         console.log(err);
       });
-  }, [token]);
+  }, [isToken]);
 
-  // Эта функция выводит список карточек по ключевому слову.
-  async function handleGetCards() {
-    try {
-      showLoader();
-      const response = await newsProfile.getCards(keyword);
-      const getCards = await response.articles;
-      setCards([...getCards]);
-      setSearch(true);
-      localStorage.setItem("keyword", keyword);
-      localStorage.setItem("articles", JSON.stringify(getCards));
-    } catch (e) {
-      console.log(e);
-    } finally {
-      hideLoader();
-    }
-  }
   useEffect(() => {
     setKeyword(localStorage.getItem("keyword"));
     const articles = localStorage.getItem("articles")
       ? JSON.parse(localStorage.getItem("articles"))
       : [];
     if (localStorage.getItem("keyword")) {
-      setSearch(true);
+      // setSearch(true);
       setCards(articles);
     }
   }, [setKeyword]);
@@ -91,11 +76,11 @@ function App() {
     image,
     owner,
   }) => {
-    if (!loggedIn) {
+    if (!login) {
       handleLoginPopup();
     }
     mainApi
-      .addNewCard(token, {
+      .addNewCard(isToken, {
         keyword,
         title,
         text,
@@ -106,7 +91,7 @@ function App() {
         owner,
       })
       .then((res) => {
-        const newCards = cards.map((card) => {
+        const newCards = news.map((card) => {
           if (card.url === res.link) {
             return { ...card, id: res._id, owner: res.owner };
           }
@@ -119,11 +104,11 @@ function App() {
   };
 
   const handleDeleteCard = (id) => {
-    if (!loggedIn) {
+    if (!login) {
       handleLoginPopup();
     }
     mainApi
-      .deleteThisCard(token, id)
+      .deleteThisCard(isToken, id)
       .then(() => {
         const newCards = savedCards.filter((item) => item._id !== id);
         setSavedCards(newCards);
@@ -167,31 +152,29 @@ function App() {
     } finally {
     }
   }
-
-  // Регистрация работает
-  const handleLogin = (email, password) => {
-    Auth.signIn(email, password)
-      .then((res) => {
-        if (res && res.token) {
-          localStorage.setItem("jwt", res.token);
-          setLoginIn(true);
-          setToken(res.token);
-          history.push("/");
-          closeAllPopups();
-        }
-      })
-      .catch((error) => {
-        if (error === 409) {
-          console.log("Неправильная почта или пароль");
-        } else if (error === 404) {
-          console.log("Пользователь не найден");
-        }
-      });
-  };
+  // const handleLogin = (email, password) => {
+  //   Auth.signIn(email, password)
+  //     .then((res) => {
+  //       if (res && res.token) {
+  //         localStorage.setItem("jwt", res.token);
+  //         setLoginIn(true);
+  //         setToken(res.token);
+  //         history.push("/");
+  //         closeAllPopups();
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       if (error === 409) {
+  //         console.log("Неправильная почта или пароль");
+  //       } else if (error === 404) {
+  //         console.log("Пользователь не найден");
+  //       }
+  //     });
+  // };
   async function handleTokenCheck() {
-    const jwt = localStorage.getItem("jwt");
+    const jwt = login;
     try {
-      showLoader();
+      // showLoader();
       let response = await Auth.checkToken(jwt);
       if (response) {
         setToken(jwt);
@@ -201,7 +184,7 @@ function App() {
     } catch (e) {
       console.log(e);
     } finally {
-      hideLoader();
+      // hideLoader();
     }
   }
   function redirectToPopup() {
@@ -232,28 +215,19 @@ function App() {
           <Route exact path="/">
             <div class="layout">
               <Header
-                loggedIn={loggedIn}
+                loggedIn={login}
                 signOut={signOut}
                 handleLoginPopup={handleLoginPopup}
               />
-              <Main
-                keyword={keyword}
-                setKeyword={setKeyword}
-                handleGetCards={handleGetCards}
-              />
+              <Main keyword={keyword} setKeyword={setKeyword} />
             </div>
-            {Loader}
-            {isSearch && !Loader ? (
-              <Cards
-                savedCards={savedCards}
-                cards={cards}
-                keyword={keyword}
-                handleSaveCard={handleSaveCard}
-                handleDeleteCard={handleDeleteCard}
-                loggedIn={loggedIn}
-              />
-            ) : null}
-
+            <Cards
+              savedCards={savedCards}
+              keyword={keyword}
+              handleSaveCard={handleSaveCard}
+              handleDeleteCard={handleDeleteCard}
+              loggedIn={login}
+            />
             <About />
           </Route>
           <ProtectedRoute
@@ -262,7 +236,7 @@ function App() {
             keyword={keyword}
             cards={cards}
             handleDeleteCard={handleDeleteCard}
-            loggedIn={loggedIn}
+            loggedIn={login}
             savedCards={savedCards}
             signOut={signOut}
           ></ProtectedRoute>
@@ -282,7 +256,6 @@ function App() {
             isOpen={isLoginPopupOpen}
             closeToOverlay={handleOverlayClose}
             toggled={formToggle}
-            handleLogin={handleLogin}
             handleFormToggle={handleFormToggle}
             isClose={closeAllPopups}
           ></LoginPopup>
@@ -300,7 +273,5 @@ function App() {
     </currentUserContext.Provider>
   );
 }
-
-
 
 export default App;

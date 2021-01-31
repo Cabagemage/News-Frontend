@@ -1,2 +1,9 @@
-export const SAVE_NEWS_CARD = 'NEWS/SAVE_NEWS_CARD';
-
+export const SAVE_NEWS_CARD = "SAVED-NEWS/SAVE_NEWS_CARD";
+export const FETCH_NEWS_CARDS = "NEWS/FETCH_NEWS_CARDS";
+export const START_SEARCH = "APP/START_SEARCH";
+export const SHOW_LOADER = "APP/SHOW_LOADER";
+export const HIDE_LOADER = "APP/HIDE_LOADER";
+export const SET_TOKEN = "APP/SET_TOKEN";
+export const LOGIN_TRUE = "APP/LOGIN_TRUE";
+export const LOGIN_FALSE = "APP/LOGIN_FALSE";
+export const REMOVE_TOKEN = "APP/REMOVE_TOKEN";

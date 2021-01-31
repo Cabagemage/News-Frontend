@@ -1,13 +1,14 @@
 import React from "react";
 import "./search/search.css";
+import {useDispatch} from 'react-redux'
+import {fetchCards} from '../../redux/actions'
+function Search({keyword, setKeyword }) {
 
-
-function Search({ handleGetCards, keyword, setKeyword }) {
-
+  const dispatch = useDispatch()
   function submitSearch(e){
     e.preventDefault();
     if(keyword){
-      handleGetCards(keyword)
+      dispatch(fetchCards(keyword))
     }
   }
   return (
