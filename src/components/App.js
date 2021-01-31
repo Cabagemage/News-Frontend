@@ -2,7 +2,11 @@ import React, { useState, useEffect } from "react";
 import { currentUserContext } from "../contexts/currentUserContext";
 import { Switch, Route, useHistory, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { handleTokenCheck } from "../redux/actions";
+import {
+  handleTokenCheck,
+  removeLoggedIn,
+  removeToken,
+} from "../redux/actions";
 
 import { mainApi } from "../utils/API/MainApi";
 import "../App.css";
@@ -22,22 +26,17 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [isLoginPopupOpen, setLoginPopupOpen] = useState(false);
   const [formToggle, setFormToggle] = useState(false);
-  const [loggedIn, setLoginIn] = useState(false);
   const [savedCards, setSavedCards] = useState([]);
   const [cards, setCards] = useState([]);
   const [keyword, setKeyword] = useState("");
-  const [token, setToken] = useState("");
   const [isInfoPopupOpen, setInfoPopupOpen] = useState(false); // Открытие и закрытие попапа
   const [message, setMessage] = useState(false);
   const path = useLocation();
   const news = useSelector((state) => state.news.fetchedNews);
-  const loading = useSelector((state) => state.app.loading);
-  const search = useSelector((state) => state.app.search);
   const login = useSelector((state) => state.app.loggedIn);
   const isToken = useSelector((state) => state.app.token);
   const dispatch = useDispatch();
   console.log(isToken);
-
 
   useEffect(() => {
     mainApi
@@ -141,7 +140,6 @@ function App() {
     closeAllPopups();
   };
 
-  
   function redirectToPopup() {
     const savedPath = path.pathname === "/saved-news";
     if (savedPath && !login) {
@@ -151,9 +149,9 @@ function App() {
   }
 
   const signOut = () => {
-    setToken("");
+    dispatch(removeToken());
     localStorage.clear();
-    setLoginIn(false);
+    dispatch(removeLoggedIn());
     history.push("/");
   };
 

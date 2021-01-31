@@ -32,7 +32,7 @@ export const appReducer = (state = initialState, action) => {
     case SET_TOKEN:
       return { ...state, token: action.payload };
     case REMOVE_TOKEN:
-      return { ...state, token: false };
+      return { ...state, token: '' };
     case LOGIN_TRUE:
       return { ...state, loggedIn: true };
     case LOGIN_FALSE:

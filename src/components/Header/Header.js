@@ -1,13 +1,14 @@
 import React, { useState, useContext } from "react";
-import "../../App.css";
-import "./header/header.css";
+import { currentUserContext } from "../../contexts/currentUserContext";
+import { useSelector } from "react-redux";
 import { NavLink, Route, Switch } from "react-router-dom";
 import HeaderHamburgerSignedOut from "./HeaderHamburgerSignedOut";
 import HeaderHamburgerSignedIn from "./HeaderHamburgerSignedIn";
 import leaveIcon from "../../images/leave-button.svg";
-import { currentUserContext } from "../../contexts/currentUserContext";
-
-function Header({ loggedIn, handleLoginPopup, signOut }) {
+import "../../App.css";
+import "./header/header.css";
+function Header({ handleLoginPopup, signOut }) {
+  const login = useSelector((state) => state.app.loggedIn);
   const [streamingsIsOpen, setStreamingsIsOpen] = useState(true);
   const [streamingsBtnIsClicked, setStreamingsBtnIsClicked] = useState(false);
   const handleBtnClick = () => {
@@ -48,7 +49,7 @@ function Header({ loggedIn, handleLoginPopup, signOut }) {
                   >
                     Главная
                   </NavLink>
-                  {loggedIn ? (
+                  {login ? (
                     <NavLink
                       className="link link_theme_white"
                       activeClassName="header__link_active"
@@ -60,7 +61,7 @@ function Header({ loggedIn, handleLoginPopup, signOut }) {
                   ) : null}
                 </Route>
               </nav>
-              {!loggedIn ? (
+              {!login ? (
                 <button
                   type="button"
                   className="button button_place_loggedout"
@@ -83,14 +84,14 @@ function Header({ loggedIn, handleLoginPopup, signOut }) {
               )}
             </div>
           </header>
-          {!loggedIn && streamingsBtnIsClicked ? (
+          {!login && streamingsBtnIsClicked ? (
             <HeaderHamburgerSignedOut handleLoginPopup={handleLoginPopup} />
           ) : (
             ""
           )}
-          {loggedIn && streamingsBtnIsClicked ? (
+          {login && streamingsBtnIsClicked ? (
             <HeaderHamburgerSignedIn
-              loggedIn={loggedIn}
+              loggedIn={login}
               name={currentUser.name}
               signOut={signOut}
               handleLoginPopup={handleLoginPopup}
@@ -160,14 +161,14 @@ function Header({ loggedIn, handleLoginPopup, signOut }) {
               </button>
             </div>
           </header>
-          {!loggedIn && streamingsBtnIsClicked ? (
+          {!login && streamingsBtnIsClicked ? (
             <HeaderHamburgerSignedOut handleLoginPopup={handleLoginPopup} />
           ) : (
             ""
           )}
-          {loggedIn && streamingsBtnIsClicked ? (
+          {login && streamingsBtnIsClicked ? (
             <HeaderHamburgerSignedIn
-              loggedIn={loggedIn}
+              loggedIn={login}
               name={currentUser.name}
               signOut={signOut}
               handleLoginPopup={handleLoginPopup}
