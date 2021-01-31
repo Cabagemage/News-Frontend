@@ -12,6 +12,7 @@ import {
   SET_POPUP_CLOSE,
   SET_MESSAGE_TRUE,
   SET_MESSAGE_FALSE,
+  SET_KEYWORD,
 } from "./types.js";
 import { newsProfile } from "../utils/API/NewsApi";
 import { mainApi } from "../utils/API/MainApi";
@@ -77,6 +78,12 @@ export function setMessageFalse() {
     type: SET_MESSAGE_FALSE,
   };
 }
+export function setKeyword(keyword) {
+  return {
+    type: SET_KEYWORD,
+    payload: keyword,
+  };
+}
 export function fetchCards(keyword) {
   return async (dispatch) => {
     try {
@@ -85,6 +92,7 @@ export function fetchCards(keyword) {
       const response = await newsProfile.getCards(keyword);
       const getCards = await response.articles;
       dispatch({ type: FETCH_NEWS_CARDS, payload: getCards });
+      dispatch(setKeyword(keyword));
     } catch (e) {
       console.log(e);
     } finally {
@@ -102,7 +110,7 @@ export function handleLogin(email, password) {
     } catch (e) {
       console.log(e);
     } finally {
-      dispatch(setPopupLoginClose())
+      dispatch(setPopupLoginClose());
       console.log("hello");
     }
   };
@@ -143,53 +151,53 @@ export function onRegister(email, password, name) {
 }
 
 // async function onRegister(email, password, name) {
-  //   try {
-  //     const register = await Auth.register(email, password, name);
-  //     if (register) {
-  //       setLoginPopupOpen(false);
-  //       setMessage(true);
-  //       setInfoPopupOpen(true);
-  //       history.push("/");
-  //     }
-  //   } catch (err) {
-  //     if (err === 409) {
-  //       console.log("Такой пользователь уже существует");
-  //     }
-  //   } finally {
-  //   }
-  // }
-  // const handleLogin = (email, password) => {
-  //   Auth.signIn(email, password)
-  //     .then((res) => {
-  //       if (res && res.token) {
-  //         localStorage.setItem("jwt", res.token);
-  //         setLoginIn(true);
-  //         setToken(res.token);
-  //         history.push("/");
-  //         closeAllPopups();
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       if (error === 409) {
-  //         console.log("Неправильная почта или пароль");
-  //       } else if (error === 404) {
-  //         console.log("Пользователь не найден");
-  //       }
-  //     });
-  // };
-  // async function handleTokenCheck() {
-  //   const jwt = localStorage.getItem("jwt");
-  //   try {
-  //     // showLoader();
-  //     let response = await Auth.checkToken(jwt);
-  //     if (response) {
-  //       setToken(jwt);
-  //       setLoginIn(true);
-  //       history.push("/");
-  //     }
-  //   } catch (e) {
-  //     console.log(e);
-  //   } finally {
-  //     // hideLoader();
-  //   }
-  // }
+//   try {
+//     const register = await Auth.register(email, password, name);
+//     if (register) {
+//       setLoginPopupOpen(false);
+//       setMessage(true);
+//       setInfoPopupOpen(true);
+//       history.push("/");
+//     }
+//   } catch (err) {
+//     if (err === 409) {
+//       console.log("Такой пользователь уже существует");
+//     }
+//   } finally {
+//   }
+// }
+// const handleLogin = (email, password) => {
+//   Auth.signIn(email, password)
+//     .then((res) => {
+//       if (res && res.token) {
+//         localStorage.setItem("jwt", res.token);
+//         setLoginIn(true);
+//         setToken(res.token);
+//         history.push("/");
+//         closeAllPopups();
+//       }
+//     })
+//     .catch((error) => {
+//       if (error === 409) {
+//         console.log("Неправильная почта или пароль");
+//       } else if (error === 404) {
+//         console.log("Пользователь не найден");
+//       }
+//     });
+// };
+// async function handleTokenCheck() {
+//   const jwt = localStorage.getItem("jwt");
+//   try {
+//     // showLoader();
+//     let response = await Auth.checkToken(jwt);
+//     if (response) {
+//       setToken(jwt);
+//       setLoginIn(true);
+//       history.push("/");
+//     }
+//   } catch (e) {
+//     console.log(e);
+//   } finally {
+//     // hideLoader();
+//   }
+// }

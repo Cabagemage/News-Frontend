@@ -1,8 +1,8 @@
 export const SAVE_NEWS_CARD = "SAVED-NEWS/SAVE_NEWS_CARD";
 export const FETCH_NEWS_CARDS = "NEWS/FETCH_NEWS_CARDS";
 
+export const SET_KEYWORD = "NEWS/SET_KEYWORD";
 export const START_SEARCH = "APP/START_SEARCH";
-
 export const SHOW_LOADER = "APP/SHOW_LOADER";
 export const HIDE_LOADER = "APP/HIDE_LOADER";
 

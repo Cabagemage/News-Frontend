@@ -1,9 +1,9 @@
-import { SAVE_NEWS_CARD } from "./types";
-import { FETCH_NEWS_CARDS } from "./types";
+import { SAVE_NEWS_CARD, FETCH_NEWS_CARDS, SET_KEYWORD } from "./types";
 
 const initialState = {
   fetchedNews: [],
   savedCards: [],
+  keyword: "",
 };
 export const newsReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -17,6 +17,7 @@ export const newsReducer = (state = initialState, action) => {
         ...state,
         fetchedNews: action.payload,
       };
+      case SET_KEYWORD: return {...state, keyword: action.payload}
     default:
       return state;
   }

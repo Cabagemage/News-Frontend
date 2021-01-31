@@ -37,8 +37,8 @@ function App() {
   const login = useSelector((state) => state.app.loggedIn);
   const isToken = useSelector((state) => state.app.token);
   const LoginPopupOpen = useSelector((state) => state.app.isLoginPopupOpen);
+  const newKeyword = useSelector((state) => state.news.keyword);
   const dispatch = useDispatch();
-  console.log(isToken);
 
   useEffect(() => {
     mainApi
@@ -73,55 +73,55 @@ function App() {
     }
   }, [setKeyword]);
 
-  const handleSaveCard = ({
-    keyword,
-    title,
-    text,
-    date,
-    source,
-    link,
-    image,
-    owner,
-  }) => {
-    if (!login) {
-      dispatch(setPopupLoginOpen());
-    }
-    mainApi
-      .addNewCard(isToken, {
-        keyword,
-        title,
-        text,
-        date,
-        source,
-        link,
-        image,
-        owner,
-      })
-      .then((res) => {
-        const newCards = news.map((card) => {
-          if (card.url === res.link) {
-            return { ...card, id: res._id, owner: res.owner };
-          }
-          return card;
-        });
-        setCards(newCards);
-        setSavedCards([...savedCards, res]);
-      })
-      .catch((err) => console.log(err));
-  };
+  // const handleSaveCard = ({
+  //   keyword,
+  //   title,
+  //   text,
+  //   date,
+  //   source,
+  //   link,
+  //   image,
+  //   owner,
+  // }) => {
+  //   if (!login) {
+  //     dispatch(setPopupLoginOpen());
+  //   }
+  //   mainApi
+  //     .addNewCard(isToken, {
+  //       keyword,
+  //       title,
+  //       text,
+  //       date,
+  //       source,
+  //       link,
+  //       image,
+  //       owner,
+  //     })
+  //     .then((res) => {
+  //       const newCards = news.map((card) => {
+  //         if (card.url === res.link) {
+  //           return { ...card, id: res._id, owner: res.owner };
+  //         }
+  //         return card;
+  //       });
+  //       setCards(newCards);
+  //       setSavedCards([...savedCards, res]);
+  //     })
+  //     .catch((err) => console.log(err));
+  // };
 
-  const handleDeleteCard = (id) => {
-    if (!login) {
-      handleLoginPopup();
-    }
-    mainApi
-      .deleteThisCard(isToken, id)
-      .then(() => {
-        const newCards = savedCards.filter((item) => item._id !== id);
-        setSavedCards(newCards);
-      })
-      .catch((err) => console.log(err));
-  };
+  // const handleDeleteCard = (id) => {
+  //   if (!login) {
+  //     handleLoginPopup();
+  //   }
+  //   mainApi
+  //     .deleteThisCard(isToken, id)
+  //     .then(() => {
+  //       const newCards = savedCards.filter((item) => item._id !== id);
+  //       setSavedCards(newCards);
+  //     })
+  //     .catch((err) => console.log(err));
+  // };
 
   const handleLoginPopup = () => {
     dispatch(setPopupLoginOpen());
@@ -175,17 +175,16 @@ function App() {
             <Cards
               savedCards={savedCards}
               keyword={keyword}
-              handleSaveCard={handleSaveCard}
-              handleDeleteCard={handleDeleteCard}
+              // handleSaveCard={handleSaveCard}
+              // handleDeleteCard={handleDeleteCard}
             />
             <About />
           </Route>
-
           <ProtectedRoute
             path="/saved-news"
             component={SavedNews}
             keyword={keyword}
-            handleDeleteCard={handleDeleteCard}
+            // handleDeleteCard={handleDeleteCard}
             loggedIn={login}
             savedCards={savedCards}
             signOut={signOut}
