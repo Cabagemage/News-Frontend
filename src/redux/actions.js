@@ -13,6 +13,7 @@ import {
   SET_MESSAGE_TRUE,
   SET_MESSAGE_FALSE,
   SET_KEYWORD,
+  REMOVE_NEWS_CARD,
 } from "./types.js";
 import { newsProfile } from "../utils/API/NewsApi";
 import { mainApi } from "../utils/API/MainApi";
@@ -149,55 +150,60 @@ export function onRegister(email, password, name) {
     }
   };
 }
+export function handleSaveCard({
+  keyword,
+  title,
+  text,
+  date,
+  source,
+  link,
+  image,
+  owner,
+  token,
+}) {
+  return async (dispatch) => {
+    try {
+      const handleSaveCard = await mainApi.addNewCard(token, {
+        keyword,
+        title,
+        text,
+        date,
+        source,
+        link,
+        image,
+        owner,
+      });
+      const response = await newsProfile.getCards(keyword);
+      const getCards = await response.articles;
+      const newCards = getCards.map((card) => {
+        if (card.url === handleSaveCard.link) {
+          return {
+            ...card,
+            id: handleSaveCard._id,
+            owner: handleSaveCard.owner,
+          };
+        }
+        return card;
+      });
 
-// async function onRegister(email, password, name) {
-//   try {
-//     const register = await Auth.register(email, password, name);
-//     if (register) {
-//       setLoginPopupOpen(false);
-//       setMessage(true);
-//       setInfoPopupOpen(true);
-//       history.push("/");
-//     }
-//   } catch (err) {
-//     if (err === 409) {
-//       console.log("Такой пользователь уже существует");
-//     }
-//   } finally {
-//   }
-// }
-// const handleLogin = (email, password) => {
-//   Auth.signIn(email, password)
-//     .then((res) => {
-//       if (res && res.token) {
-//         localStorage.setItem("jwt", res.token);
-//         setLoginIn(true);
-//         setToken(res.token);
-//         history.push("/");
-//         closeAllPopups();
-//       }
-//     })
-//     .catch((error) => {
-//       if (error === 409) {
-//         console.log("Неправильная почта или пароль");
-//       } else if (error === 404) {
-//         console.log("Пользователь не найден");
-//       }
-//     });
-// };
-// async function handleTokenCheck() {
-//   const jwt = localStorage.getItem("jwt");
-//   try {
-//     // showLoader();
-//     let response = await Auth.checkToken(jwt);
-//     if (response) {
-//       setToken(jwt);
-//       setLoginIn(true);
-//       history.push("/");
-//     }
-//   } catch (e) {
-//     console.log(e);
-//   } finally {
-//     // hideLoader();
-//   }
-// }
+      dispatch({ type: FETCH_NEWS_CARDS, payload: newCards });
+      dispatch({ type: SAVE_NEWS_CARD, payload: handleSaveCard });
+    } catch (err) {
+      console.log(err);
+    } finally {
+    }
+  };
+}
+export function handleDeleteCard(token, id) {
+  return async (dispatch) => {
+    try {
+      await mainApi.deleteThisCard(token, id);
+      dispatch({ type: REMOVE_NEWS_CARD, payload: id });
+    } catch (err) {
+      if (err === 409) {
+        console.log(err);
+      }
+    } finally {
+    }
+  };
+}

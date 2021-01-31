@@ -73,43 +73,43 @@ function App() {
     }
   }, [setKeyword]);
 
-  // const handleSaveCard = ({
-  //   keyword,
-  //   title,
-  //   text,
-  //   date,
-  //   source,
-  //   link,
-  //   image,
-  //   owner,
-  // }) => {
-  //   if (!login) {
-  //     dispatch(setPopupLoginOpen());
-  //   }
-  //   mainApi
-  //     .addNewCard(isToken, {
-  //       keyword,
-  //       title,
-  //       text,
-  //       date,
-  //       source,
-  //       link,
-  //       image,
-  //       owner,
-  //     })
-  //     .then((res) => {
-  //       const newCards = news.map((card) => {
-  //         if (card.url === res.link) {
-  //           return { ...card, id: res._id, owner: res.owner };
-  //         }
-  //         return card;
-  //       });
-  //       setCards(newCards);
-  //       setSavedCards([...savedCards, res]);
-  //     })
-  //     .catch((err) => console.log(err));
-  // };
-
+  const handleSaveCard = ({
+    keyword,
+    title,
+    text,
+    date,
+    source,
+    link,
+    image,
+    owner,
+  }) => {
+    if (!login) {
+      dispatch(setPopupLoginOpen());
+    }
+    mainApi
+      .addNewCard(isToken, {
+        keyword,
+        title,
+        text,
+        date,
+        source,
+        link,
+        image,
+        owner,
+      })
+      .then((res) => {
+        const newCards = news.map((card) => {
+          if (card.url === res.link) {
+            return { ...card, id: res._id, owner: res.owner };
+          }
+          return card;
+        });
+        setCards(newCards);
+        setSavedCards([...savedCards, res]);
+      })
+      .catch((err) => console.log(err));
+  };
+  
   // const handleDeleteCard = (id) => {
   //   if (!login) {
   //     handleLoginPopup();

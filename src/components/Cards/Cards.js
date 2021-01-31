@@ -1,20 +1,21 @@
 import React, { useState, memo } from "react";
 import Card from "../Card/Card";
 import { useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import "./cards/cards.css";
 import "../../App.css";
 import Loader from "../Preloader/Preloader";
-function Cards({ savedCards, handleDeleteCard, handleSaveCard, keyword }) {
+function Cards({ handleDeleteCard, handleSaveCard, keyword, removeFromSavedNews }) {
   const loading = useSelector((state) => state.app.loading);
   const search = useSelector((state) => state.app.search);
   const news = useSelector((state) => state.news.fetchedNews);
+  const savedCards = useSelector((state) => state.news.savedCards);
   const [toShow, setToShow] = useState(3);
   const itemsToShow = news.slice(0, toShow);
   const path = useLocation();
   const savedCardsPath = path.pathname === "/saved-news";
   const findCards = path.pathname === "/";
-
+  const dispatch = useDispatch();
   if (loading) {
     return <Loader />;
   }

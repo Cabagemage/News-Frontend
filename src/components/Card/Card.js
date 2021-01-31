@@ -2,28 +2,23 @@ import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import "./card/card.css";
 import { options } from "../../utils/utils";
-import { createSaveNews } from "../../redux/actions";
-import { useSelector } from "react-redux";
-function Card({
-  keyword,
-  source,
-  title,
-  image,
-  text,
-  link,
-  date,
-  id,
-  owner,
-  handleDeleteCard,
+import {
+  createSaveNews,
   handleSaveCard,
-}) {
+  handleDeleteCard,
+} from "../../redux/actions";
+import { useSelector, useDispatch } from "react-redux";
+function Card({ keyword, source, title, image, text, link, date, id, owner }) {
   const login = useSelector((state) => state.app.loggedIn);
+  const token = useSelector((state) => state.app.token);
+  const savedCards = useSelector((state) => state.news.savedCards);
+  console.log(savedCards);
   const [isShown, setIsShown] = useState(false); // Сокрытие и показ всплывающего сообщения
   const [isFavorite, setFavorite] = useState(false); // likes
   const newsDate = new Date(date); // Время
   const path = useLocation();
   const savedCardsPath = path.pathname === "/saved-news";
-
+  const dispatch = useDispatch();
   // Выставление класса иконки лайка в зависимости от условий.
   const cardFavoritedClassName = `card__icon ${
     isFavorite && login && !savedCardsPath
@@ -34,20 +29,22 @@ function Card({
   // Убираем флажок, после чего удаляем карточка по айдишнику
   function handleDelete() {
     setFavorite(false);
-    handleDeleteCard(id);
+    dispatch(handleDeleteCard(token, id));
   }
   function handleSubmit() {
-    handleSaveCard({
-      keyword: keyword ? keyword : "Разное", // "Разное" будет добавляться в качестве ключевого слова, в случае пустого поискового запроса
-      title: title.substring(0, 80) + "...", // Сокращаем размер строки до 80 символов + добавляем троеточие
-      text: text.substring(0, 72) + "...", // Тоже самое
-      date: newsDate, // Дата
-      source: source, // Источник
-      link: link, // Ссылка
-      image: image, // Изображение
-      owner: owner, // Владелец.
-    });
-    createSaveNews(handleSaveCard)
+    dispatch(
+      handleSaveCard({
+        keyword: keyword ? keyword : "Разное", // "Разное" будет добавляться в качестве ключевого слова, в случае пустого поискового запроса
+        title: title.substring(0, 80) + "...", // Сокращаем размер строки до 80 символов + добавляем троеточие
+        text: text.substring(0, 72) + "...", // Тоже самое
+        date: newsDate, // Дата
+        source: source, // Источник
+        link: link, // Ссылка
+        image: image, // Изображение
+        owner: owner, // Владелец.
+        token: token,
+      })
+    );
     setFavorite(true);
   }
 
