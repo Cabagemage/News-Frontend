@@ -6,6 +6,8 @@ import {
   handleTokenCheck,
   removeLoggedIn,
   removeToken,
+  setPopupLoginOpen,
+  setPopupLoginClose,
 } from "../redux/actions";
 
 import { mainApi } from "../utils/API/MainApi";
@@ -24,17 +26,17 @@ import RegistrationPopup from "./PopupAuth/RegistrationPopup";
 function App() {
   const history = useHistory();
   const [currentUser, setCurrentUser] = useState({});
-  const [isLoginPopupOpen, setLoginPopupOpen] = useState(false);
   const [formToggle, setFormToggle] = useState(false);
   const [savedCards, setSavedCards] = useState([]);
   const [cards, setCards] = useState([]);
   const [keyword, setKeyword] = useState("");
   const [isInfoPopupOpen, setInfoPopupOpen] = useState(false); // Открытие и закрытие попапа
-  const [message, setMessage] = useState(false);
   const path = useLocation();
   const news = useSelector((state) => state.news.fetchedNews);
+  const savedNews = useSelector((state) => state.news.savedNews);
   const login = useSelector((state) => state.app.loggedIn);
   const isToken = useSelector((state) => state.app.token);
+  const LoginPopupOpen = useSelector((state) => state.app.isLoginPopupOpen);
   const dispatch = useDispatch();
   console.log(isToken);
 
@@ -70,6 +72,7 @@ function App() {
       setCards(articles);
     }
   }, [setKeyword]);
+
   const handleSaveCard = ({
     keyword,
     title,
@@ -81,7 +84,7 @@ function App() {
     owner,
   }) => {
     if (!login) {
-      dispatch(handleLoginPopup());
+      dispatch(setPopupLoginOpen());
     }
     mainApi
       .addNewCard(isToken, {
@@ -121,7 +124,7 @@ function App() {
   };
 
   const handleLoginPopup = () => {
-    setLoginPopupOpen(true);
+    dispatch(setPopupLoginOpen());
   };
 
   const handleFormToggle = () => {
@@ -129,7 +132,7 @@ function App() {
   };
 
   const closeAllPopups = () => {
-    setLoginPopupOpen(false);
+    dispatch(setPopupLoginClose());
     setInfoPopupOpen(false);
   };
 
@@ -144,14 +147,14 @@ function App() {
     const savedPath = path.pathname === "/saved-news";
     if (savedPath && !login) {
       history.push("/");
-      setLoginPopupOpen(true);
+      dispatch(setPopupLoginOpen());
     }
   }
 
   const signOut = () => {
     dispatch(removeToken());
-    localStorage.clear();
     dispatch(removeLoggedIn());
+    localStorage.clear();
     history.push("/");
   };
 
@@ -166,11 +169,7 @@ function App() {
         <Switch>
           <Route exact path="/">
             <div class="layout">
-              <Header
-                loggedIn={login}
-                signOut={signOut}
-                handleLoginPopup={handleLoginPopup}
-              />
+              <Header signOut={signOut} handleLoginPopup={handleLoginPopup} />
               <Main keyword={keyword} setKeyword={setKeyword} />
             </div>
             <Cards
@@ -178,15 +177,14 @@ function App() {
               keyword={keyword}
               handleSaveCard={handleSaveCard}
               handleDeleteCard={handleDeleteCard}
-              loggedIn={login}
             />
             <About />
           </Route>
+
           <ProtectedRoute
             path="/saved-news"
             component={SavedNews}
             keyword={keyword}
-            cards={cards}
             handleDeleteCard={handleDeleteCard}
             loggedIn={login}
             savedCards={savedCards}
@@ -194,18 +192,15 @@ function App() {
           ></ProtectedRoute>
         </Switch>
         <Footer />
-
         <InfoToolTip
           isOpen={isInfoPopupOpen}
-          setMessage={message}
           handleLoginPopup={handleLoginPopup}
           isClose={closeAllPopups}
           closeToOverlay={handleOverlayClose}
         />
-
         {!formToggle ? (
           <LoginPopup
-            isOpen={isLoginPopupOpen}
+            isOpen={LoginPopupOpen}
             closeToOverlay={handleOverlayClose}
             toggled={formToggle}
             handleFormToggle={handleFormToggle}
@@ -213,7 +208,7 @@ function App() {
           ></LoginPopup>
         ) : (
           <RegistrationPopup
-            isOpen={isLoginPopupOpen}
+            isOpen={LoginPopupOpen}
             closeToOverlay={handleOverlayClose}
             toggled={formToggle}
             handleFormToggle={handleFormToggle}

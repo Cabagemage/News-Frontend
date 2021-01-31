@@ -57,12 +57,12 @@ export function removeLoggedIn() {
     type: LOGIN_FALSE,
   };
 }
-export function setPopupLoginClose() {
+export function setPopupLoginOpen() {
   return {
     type: SET_POPUP_OPEN,
   };
 }
-export function setPopupLoginOpen() {
+export function setPopupLoginClose() {
   return {
     type: SET_POPUP_CLOSE,
   };
@@ -102,6 +102,7 @@ export function handleLogin(email, password) {
     } catch (e) {
       console.log(e);
     } finally {
+      dispatch(setPopupLoginClose())
       console.log("hello");
     }
   };

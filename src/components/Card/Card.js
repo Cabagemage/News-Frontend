@@ -3,9 +3,8 @@ import { useLocation } from "react-router-dom";
 import "./card/card.css";
 import { options } from "../../utils/utils";
 import { createSaveNews } from "../../redux/actions";
-
+import { useSelector } from "react-redux";
 function Card({
-  loggedIn,
   keyword,
   source,
   title,
@@ -18,6 +17,7 @@ function Card({
   handleDeleteCard,
   handleSaveCard,
 }) {
+  const login = useSelector((state) => state.app.loggedIn);
   const [isShown, setIsShown] = useState(false); // Сокрытие и показ всплывающего сообщения
   const [isFavorite, setFavorite] = useState(false); // likes
   const newsDate = new Date(date); // Время
@@ -26,7 +26,7 @@ function Card({
 
   // Выставление класса иконки лайка в зависимости от условий.
   const cardFavoritedClassName = `card__icon ${
-    isFavorite && loggedIn && !savedCardsPath
+    isFavorite && login && !savedCardsPath
       ? "card__icon_status_bookmarked"
       : "card__icon_function_favorite"
   }`;
@@ -75,7 +75,7 @@ function Card({
         <p className="card__hover">
           {savedCardsPath
             ? "Убрать из сохранённых"
-            : "Войдите, чтобы сохранять статьи" && loggedIn
+            : "Войдите, чтобы сохранять статьи" && login
             ? "Сохранить статью"
             : "Войдите, чтобы сохранять статьи"}
         </p>

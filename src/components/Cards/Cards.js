@@ -1,17 +1,11 @@
 import React, { useState, memo } from "react";
 import Card from "../Card/Card";
 import { useLocation } from "react-router-dom";
-import { connect, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import "./cards/cards.css";
 import "../../App.css";
 import Loader from "../Preloader/Preloader";
-function Cards({
-  loggedIn,
-  savedCards,
-  handleDeleteCard,
-  handleSaveCard,
-  keyword,
-}) {
+function Cards({ savedCards, handleDeleteCard, handleSaveCard, keyword }) {
   const loading = useSelector((state) => state.app.loading);
   const search = useSelector((state) => state.app.search);
   const news = useSelector((state) => state.news.fetchedNews);
@@ -49,7 +43,6 @@ function Cards({
                     link={card.url}
                     source={card.source.name}
                     image={card.urlToImage}
-                    loggedIn={loggedIn}
                   />
                 ))}
               </div>
@@ -86,7 +79,6 @@ function Cards({
                     source={savedCard.source}
                     link={savedCard.link}
                     image={savedCard.image}
-                    loggedIn={loggedIn}
                   />
                 ))}
               </div>
@@ -101,4 +93,4 @@ function Cards({
   );
 }
 
-export default Cards;
+export default memo(Cards);
