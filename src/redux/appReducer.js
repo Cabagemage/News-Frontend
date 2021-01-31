@@ -6,15 +6,20 @@ import {
   REMOVE_TOKEN,
   LOGIN_TRUE,
   LOGIN_FALSE,
+  SET_POPUP_OPEN,
+  SET_POPUP_CLOSE,
+  SET_MESSAGE_TRUE,
+  SET_MESSAGE_FALSE,
 } from "./types";
 
 const initialState = {
   loading: false,
   search: false,
-  token: '',
+  token: "",
   loggedIn: false,
+  isLoginPopupOpen: false,
+  message: false,
 };
-const token = localStorage.getItem("token");
 
 export const appReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -32,6 +37,12 @@ export const appReducer = (state = initialState, action) => {
       return { ...state, loggedIn: true };
     case LOGIN_FALSE:
       return { ...state, loggedIn: false };
+    case SET_POPUP_OPEN:
+      return { ...state, isLoginPopupOpen: true };
+    case SET_POPUP_CLOSE:
+      return { ...state, isLoginPopupOpen: false };
+      case SET_MESSAGE_TRUE: return {...state, message: true}
+      case SET_MESSAGE_FALSE: return {...state, message: false}
     default:
       return state;
   }

@@ -1,4 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { currentUserContext } from "../contexts/currentUserContext";
+import { Switch, Route, useHistory, useLocation } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { handleTokenCheck } from "../redux/actions";
+
+import { mainApi } from "../utils/API/MainApi";
 import "../App.css";
 import Header from "./Header/Header";
 import ProtectedRoute from "./HOC/ProtectedRoute";
@@ -7,14 +13,10 @@ import About from "./About/About";
 import Footer from "./Footer/Footer";
 import SavedNews from "./SavedNews/SavedNews";
 import LoginPopup from "./PopupAuth/LoginPopup";
-import RegistrationPopup from "./PopupAuth/RegistrationPopup";
-import { currentUserContext } from "../contexts/currentUserContext";
-import { mainApi } from "../utils/API/MainApi";
-import { Switch, Route, useHistory, useLocation } from "react-router-dom";
-import * as Auth from "../utils/API/Auth";
 import Cards from "./Cards/Cards";
 import InfoToolTip from "./InfoToolTip/InfoToolTip";
-import { useSelector } from "react-redux";
+import RegistrationPopup from "./PopupAuth/RegistrationPopup";
+
 function App() {
   const history = useHistory();
   const [currentUser, setCurrentUser] = useState({});
@@ -33,7 +35,10 @@ function App() {
   const search = useSelector((state) => state.app.search);
   const login = useSelector((state) => state.app.loggedIn);
   const isToken = useSelector((state) => state.app.token);
-  console.log(isToken)
+  const dispatch = useDispatch();
+  console.log(isToken);
+
+
   useEffect(() => {
     mainApi
       .getOwnerInfo(isToken)
@@ -77,7 +82,7 @@ function App() {
     owner,
   }) => {
     if (!login) {
-      handleLoginPopup();
+      dispatch(handleLoginPopup());
     }
     mainApi
       .addNewCard(isToken, {
@@ -136,60 +141,10 @@ function App() {
     closeAllPopups();
   };
 
-  async function onRegister(email, password, name) {
-    try {
-      const register = await Auth.register(email, password, name);
-      if (register) {
-        setLoginPopupOpen(false);
-        setMessage(true);
-        setInfoPopupOpen(true);
-        history.push("/");
-      }
-    } catch (err) {
-      if (err === 409) {
-        console.log("Такой пользователь уже существует");
-      }
-    } finally {
-    }
-  }
-  // const handleLogin = (email, password) => {
-  //   Auth.signIn(email, password)
-  //     .then((res) => {
-  //       if (res && res.token) {
-  //         localStorage.setItem("jwt", res.token);
-  //         setLoginIn(true);
-  //         setToken(res.token);
-  //         history.push("/");
-  //         closeAllPopups();
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       if (error === 409) {
-  //         console.log("Неправильная почта или пароль");
-  //       } else if (error === 404) {
-  //         console.log("Пользователь не найден");
-  //       }
-  //     });
-  // };
-  async function handleTokenCheck() {
-    const jwt = login;
-    try {
-      // showLoader();
-      let response = await Auth.checkToken(jwt);
-      if (response) {
-        setToken(jwt);
-        setLoginIn(true);
-        history.push("/");
-      }
-    } catch (e) {
-      console.log(e);
-    } finally {
-      // hideLoader();
-    }
-  }
+  
   function redirectToPopup() {
     const savedPath = path.pathname === "/saved-news";
-    if (savedPath && !loggedIn) {
+    if (savedPath && !login) {
       history.push("/");
       setLoginPopupOpen(true);
     }
@@ -203,8 +158,7 @@ function App() {
   };
 
   useEffect(() => {
-    handleTokenCheck();
-
+    dispatch(handleTokenCheck());
     redirectToPopup();
   }, []);
 
@@ -262,7 +216,6 @@ function App() {
         ) : (
           <RegistrationPopup
             isOpen={isLoginPopupOpen}
-            onRegister={onRegister}
             closeToOverlay={handleOverlayClose}
             toggled={formToggle}
             handleFormToggle={handleFormToggle}
