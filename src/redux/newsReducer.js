@@ -19,7 +19,7 @@ export const newsReducer = (state = initialState, action) => {
         savedCards: [...state.savedCards, action.payload],
       };
     case GET_SAVED_CARDS:
-      return { ...state, savedCards: [...state.savedCards, action.payload] };
+      return { ...state, savedCards: action.payload };
     case REMOVE_NEWS_CARD:
       const id = action.payload;
       return {

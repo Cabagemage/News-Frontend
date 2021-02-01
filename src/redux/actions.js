@@ -99,9 +99,11 @@ export function getSavedCards(token) {
     try {
       const savedNews = await mainApi.getSavedCards(token);
       const res = savedNews;
-      console.log(res, res.date)
+      console.log(res, res.date);
       dispatch({ type: GET_SAVED_CARDS, payload: res.date });
-
+      if (!res.date) {
+        dispatch({ type: GET_SAVED_CARDS, payload: [] });
+      }
     } catch (e) {
       console.log(e);
     } finally {
