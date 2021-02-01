@@ -1,15 +1,16 @@
 import React from "react";
-import { NavLink} from "react-router-dom";
+import { useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
 import "./header/header.css";
 import "../../App.css";
-function HeaderHamburgerSignedOut({
-  handleLoginPopup,
-  loggedIn,
-}) {
+
+function HeaderHamburgerSignedOut({ handleLoginPopup }) {
+  const login = useSelector((state) => state.app.loggedIn);
+
   return (
     <div className="header__container_version_mobile">
       <nav className="header__navigation">
-        {loggedIn ? (
+        {login ? (
           <>
             <NavLink className="link link_theme_white" exact to="/">
               Главная

@@ -1,17 +1,10 @@
 import React from "react";
 import PopupWithForm from "./PopupWithForm";
 import { useDispatch } from "react-redux";
-import {handleLogin} from "../../redux/actions"
+import { handleLogin } from "../../redux/actions";
 import { Formik } from "formik";
-const LoginPopup = ({
-  handleFormToggle,
-
-  isOpen,
-  isClose,
-  closeToOverlay,
-}) => {
+const LoginPopup = ({ handleFormToggle, isOpen, isClose, closeToOverlay }) => {
   const dispatch = useDispatch();
-
   return (
     <Formik
       initialValues={{ email: "", password: "" }}

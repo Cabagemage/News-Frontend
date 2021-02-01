@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { currentUserContext } from "../contexts/currentUserContext";
 import { Switch, Route, useHistory, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -10,7 +9,7 @@ import {
   setPopupLoginClose,
   getKeyword,
   setUserInfo,
-  getSavedCards
+  getSavedCards,
 } from "../redux/actions";
 
 import { mainApi } from "../utils/API/MainApi";
@@ -29,36 +28,23 @@ import RegistrationPopup from "./PopupAuth/RegistrationPopup";
 function App() {
   const history = useHistory();
   const [formToggle, setFormToggle] = useState(false);
-  const [savedCards, setSavedCards] = useState([]);
   const [cards, setCards] = useState([]);
-  const [keyword, setKeyword] = useState("");
   const [isInfoPopupOpen, setInfoPopupOpen] = useState(false); // Открытие и закрытие попапа
   const path = useLocation();
   const login = useSelector((state) => state.app.loggedIn);
-  const curUser = useSelector((state) => state.currentUser.userInfo);
+  const keyword = useSelector((state) => state.news.keyword);
   const isToken = useSelector((state) => state.app.token);
   const LoginPopupOpen = useSelector((state) => state.app.isLoginPopupOpen);
-  console.log(curUser);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(setUserInfo(isToken))
-    dispatch(getSavedCards(isToken))
-      .then(() => {
-        mainApi.getSavedCards(isToken).then((res) => {
-          setSavedCards(res.date);
-          if (!res.date) {
-            setSavedCards([]);
-          }
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    dispatch(setUserInfo(isToken));
+    dispatch(getSavedCards(isToken));
   }, [isToken]);
 
   useEffect(() => {
-    dispatch(getKeyword(localStorage.getItem("keyword")));
+   dispatch(getKeyword(localStorage.getItem("keyword")));
     const articles = localStorage.getItem("articles")
       ? JSON.parse(localStorage.getItem("articles"))
       : [];
@@ -66,7 +52,7 @@ function App() {
       // setSearch(true);
       setCards(articles);
     }
-  }, [setKeyword]);
+  }, []);
 
   const handleLoginPopup = () => {
     dispatch(setPopupLoginOpen());

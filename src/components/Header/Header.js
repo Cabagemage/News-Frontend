@@ -1,5 +1,4 @@
-import React, { useState, useContext } from "react";
-import { currentUserContext } from "../../contexts/currentUserContext";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { NavLink, Route, Switch } from "react-router-dom";
 import HeaderHamburgerSignedOut from "./HeaderHamburgerSignedOut";
@@ -16,7 +15,7 @@ function Header({ handleLoginPopup, signOut }) {
     setStreamingsIsOpen(!streamingsIsOpen);
     setStreamingsBtnIsClicked(!streamingsBtnIsClicked);
   };
-  const currentUser = useContext(currentUserContext);
+
   return (
     <>
       <Switch>

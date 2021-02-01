@@ -1,9 +1,12 @@
 import React from "react";
 import { NavLink, Route } from "react-router-dom";
+import { useSelector } from "react-redux";
 import "./header/header.css";
 import "../../App.css";
 import leaveIcon from "../../images/leave-button.svg";
-function HeaderHamburgerSignedIn({ loggedIn, name, signOut }) {
+function HeaderHamburgerSignedIn({signOut }) {
+  const login = useSelector((state) => state.app.loggedIn);
+  const curUser = useSelector((state) => state.currentUser.userInfo);
   return (
     <div className="header__container_version_mobile">
       <nav className="header__navigation">
@@ -12,18 +15,18 @@ function HeaderHamburgerSignedIn({ loggedIn, name, signOut }) {
             Главная
           </NavLink>
         </Route>
-        {loggedIn ? (
+        {login ? (
           <NavLink className="link link_theme_white" to="/saved-news">
             Сохраненные cтатьи
           </NavLink>
         ) : null}
       </nav>
-      {loggedIn ? (
+      {login ? (
         <button
           className="button button_place_loggedin button_theme_white"
           onClick={signOut}
         >
-          {name}{" "}
+          {curUser.name}{" "}
           <img
             className="icon icon_place_header"
             src={leaveIcon}
