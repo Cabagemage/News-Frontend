@@ -87,6 +87,9 @@ export function setUserInfo(token) {
       const getOwnerInfo = await mainApi.getOwnerInfo(token);
       const res = getOwnerInfo;
       dispatch({ type: SET_USER_INFORMATION, payload: res });
+      if (!res) {
+        dispatch({ type: SET_USER_INFORMATION, payload: null });
+      }
     } catch (e) {
       console.log(e);
     } finally {
@@ -118,7 +121,8 @@ export function fetchCards(keyword) {
       const response = await newsProfile.getCards(keyword);
       const getCards = await response.articles;
       dispatch({ type: FETCH_NEWS_CARDS, payload: getCards });
-
+      localStorage.setItem("keyword", keyword);
+      localStorage.setItem("articles", JSON.stringify(getCards));
       dispatch(setKeyword(keyword));
     } catch (e) {
       console.log(e);

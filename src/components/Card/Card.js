@@ -28,8 +28,8 @@ function Card({source, title, image, text, link, date, id, owner }) {
 
   // Убираем флажок, после чего удаляем карточка по айдишнику
   function handleDelete() {
-    setFavorite(false);
     dispatch(handleDeleteCard(token, id));
+    setFavorite(false);
   }
   function handleSubmit() {
     dispatch(

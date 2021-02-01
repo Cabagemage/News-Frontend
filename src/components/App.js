@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Switch, Route, useHistory, useLocation } from "react-router-dom";
+import { FETCH_NEWS_CARDS } from "../redux/types";
 import { useSelector, useDispatch } from "react-redux";
 import {
   handleTokenCheck,
@@ -10,9 +11,9 @@ import {
   getKeyword,
   setUserInfo,
   getSavedCards,
+  startSearch,
 } from "../redux/actions";
 
-import { mainApi } from "../utils/API/MainApi";
 import "../App.css";
 import Header from "./Header/Header";
 import ProtectedRoute from "./HOC/ProtectedRoute";
@@ -28,11 +29,9 @@ import RegistrationPopup from "./PopupAuth/RegistrationPopup";
 function App() {
   const history = useHistory();
   const [formToggle, setFormToggle] = useState(false);
-  const [cards, setCards] = useState([]);
   const [isInfoPopupOpen, setInfoPopupOpen] = useState(false); // Открытие и закрытие попапа
   const path = useLocation();
   const login = useSelector((state) => state.app.loggedIn);
-  const keyword = useSelector((state) => state.news.keyword);
   const isToken = useSelector((state) => state.app.token);
   const LoginPopupOpen = useSelector((state) => state.app.isLoginPopupOpen);
 
@@ -44,15 +43,16 @@ function App() {
   }, [isToken]);
 
   useEffect(() => {
-   dispatch(getKeyword(localStorage.getItem("keyword")));
+    // dispatch(getKeyword(localStorage.getItem("keyword")));
     const articles = localStorage.getItem("articles")
       ? JSON.parse(localStorage.getItem("articles"))
       : [];
+
     if (localStorage.getItem("keyword")) {
-      // setSearch(true);
-      setCards(articles);
+      dispatch(startSearch());
+      dispatch({ type: FETCH_NEWS_CARDS, payload: articles });
     }
-  }, []);
+  }, [dispatch]);
 
   const handleLoginPopup = () => {
     dispatch(setPopupLoginOpen());
