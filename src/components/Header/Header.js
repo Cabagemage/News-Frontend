@@ -9,6 +9,7 @@ import "../../App.css";
 import "./header/header.css";
 function Header({ handleLoginPopup, signOut }) {
   const login = useSelector((state) => state.app.loggedIn);
+  const curUser = useSelector((state) => state.currentUser.userInfo);
   const [streamingsIsOpen, setStreamingsIsOpen] = useState(true);
   const [streamingsBtnIsClicked, setStreamingsBtnIsClicked] = useState(false);
   const handleBtnClick = () => {
@@ -74,7 +75,7 @@ function Header({ handleLoginPopup, signOut }) {
                   className="button button_place_loggedout"
                   onClick={signOut}
                 >
-                  {currentUser.name}{" "}
+                  {curUser.name}{" "}
                   <img
                     className="icon icon_place_header"
                     src={leaveIcon}
@@ -92,7 +93,7 @@ function Header({ handleLoginPopup, signOut }) {
           {login && streamingsBtnIsClicked ? (
             <HeaderHamburgerSignedIn
               loggedIn={login}
-              name={currentUser.name}
+              name={curUser.name}
               signOut={signOut}
               handleLoginPopup={handleLoginPopup}
             />
@@ -152,7 +153,7 @@ function Header({ handleLoginPopup, signOut }) {
                 className="button button_place_loggedin button_theme_black"
                 onClick={signOut}
               >
-                {currentUser.name}{" "}
+                {curUser.name}{" "}
                 <img
                   className="icon icon_place_header"
                   src={leaveIcon}
@@ -169,7 +170,7 @@ function Header({ handleLoginPopup, signOut }) {
           {login && streamingsBtnIsClicked ? (
             <HeaderHamburgerSignedIn
               loggedIn={login}
-              name={currentUser.name}
+              name={curUser.name}
               signOut={signOut}
               handleLoginPopup={handleLoginPopup}
             />

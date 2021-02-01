@@ -3,14 +3,14 @@ import { useLocation } from "react-router-dom";
 import "./card/card.css";
 import { options } from "../../utils/utils";
 import {
-  createSaveNews,
   handleSaveCard,
   handleDeleteCard,
 } from "../../redux/actions";
 import { useSelector, useDispatch } from "react-redux";
-function Card({ keyword, source, title, image, text, link, date, id, owner }) {
+function Card({source, title, image, text, link, date, id, owner }) {
   const login = useSelector((state) => state.app.loggedIn);
   const token = useSelector((state) => state.app.token);
+  const keyword = useSelector((state) => state.news.keyword);
   const savedCards = useSelector((state) => state.news.savedCards);
   console.log(savedCards);
   const [isShown, setIsShown] = useState(false); // Сокрытие и показ всплывающего сообщения
@@ -34,7 +34,7 @@ function Card({ keyword, source, title, image, text, link, date, id, owner }) {
   function handleSubmit() {
     dispatch(
       handleSaveCard({
-        keyword: keyword ? keyword : "Разное", // "Разное" будет добавляться в качестве ключевого слова, в случае пустого поискового запроса
+        keyword: keyword,
         title: title.substring(0, 80) + "...", // Сокращаем размер строки до 80 символов + добавляем троеточие
         text: text.substring(0, 72) + "...", // Тоже самое
         date: newsDate, // Дата

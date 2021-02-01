@@ -8,6 +8,9 @@ import {
   removeToken,
   setPopupLoginOpen,
   setPopupLoginClose,
+  getKeyword,
+  setUserInfo,
+  getSavedCards
 } from "../redux/actions";
 
 import { mainApi } from "../utils/API/MainApi";
@@ -25,30 +28,22 @@ import RegistrationPopup from "./PopupAuth/RegistrationPopup";
 
 function App() {
   const history = useHistory();
-  const [currentUser, setCurrentUser] = useState({});
   const [formToggle, setFormToggle] = useState(false);
   const [savedCards, setSavedCards] = useState([]);
   const [cards, setCards] = useState([]);
   const [keyword, setKeyword] = useState("");
   const [isInfoPopupOpen, setInfoPopupOpen] = useState(false); // Открытие и закрытие попапа
   const path = useLocation();
-  const news = useSelector((state) => state.news.fetchedNews);
-  const savedNews = useSelector((state) => state.news.savedNews);
   const login = useSelector((state) => state.app.loggedIn);
+  const curUser = useSelector((state) => state.currentUser.userInfo);
   const isToken = useSelector((state) => state.app.token);
   const LoginPopupOpen = useSelector((state) => state.app.isLoginPopupOpen);
-  const newKeyword = useSelector((state) => state.news.keyword);
+  console.log(curUser);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    mainApi
-      .getOwnerInfo(isToken)
-      .then((res) => {
-        setCurrentUser(res);
-        if (!res) {
-          setCurrentUser(null);
-        }
-      })
+    dispatch(setUserInfo(isToken))
+    dispatch(getSavedCards(isToken))
       .then(() => {
         mainApi.getSavedCards(isToken).then((res) => {
           setSavedCards(res.date);
@@ -63,7 +58,7 @@ function App() {
   }, [isToken]);
 
   useEffect(() => {
-    setKeyword(localStorage.getItem("keyword"));
+    dispatch(getKeyword(localStorage.getItem("keyword")));
     const articles = localStorage.getItem("articles")
       ? JSON.parse(localStorage.getItem("articles"))
       : [];
@@ -72,56 +67,6 @@ function App() {
       setCards(articles);
     }
   }, [setKeyword]);
-
-  const handleSaveCard = ({
-    keyword,
-    title,
-    text,
-    date,
-    source,
-    link,
-    image,
-    owner,
-  }) => {
-    if (!login) {
-      dispatch(setPopupLoginOpen());
-    }
-    mainApi
-      .addNewCard(isToken, {
-        keyword,
-        title,
-        text,
-        date,
-        source,
-        link,
-        image,
-        owner,
-      })
-      .then((res) => {
-        const newCards = news.map((card) => {
-          if (card.url === res.link) {
-            return { ...card, id: res._id, owner: res.owner };
-          }
-          return card;
-        });
-        setCards(newCards);
-        setSavedCards([...savedCards, res]);
-      })
-      .catch((err) => console.log(err));
-  };
-  
-  // const handleDeleteCard = (id) => {
-  //   if (!login) {
-  //     handleLoginPopup();
-  //   }
-  //   mainApi
-  //     .deleteThisCard(isToken, id)
-  //     .then(() => {
-  //       const newCards = savedCards.filter((item) => item._id !== id);
-  //       setSavedCards(newCards);
-  //     })
-  //     .catch((err) => console.log(err));
-  // };
 
   const handleLoginPopup = () => {
     dispatch(setPopupLoginOpen());
@@ -164,58 +109,48 @@ function App() {
   }, []);
 
   return (
-    <currentUserContext.Provider value={currentUser}>
-      <div className="page">
-        <Switch>
-          <Route exact path="/">
-            <div class="layout">
-              <Header signOut={signOut} handleLoginPopup={handleLoginPopup} />
-              <Main keyword={keyword} setKeyword={setKeyword} />
-            </div>
-            <Cards
-              savedCards={savedCards}
-              keyword={keyword}
-              // handleSaveCard={handleSaveCard}
-              // handleDeleteCard={handleDeleteCard}
-            />
-            <About />
-          </Route>
-          <ProtectedRoute
-            path="/saved-news"
-            component={SavedNews}
-            keyword={keyword}
-            // handleDeleteCard={handleDeleteCard}
-            loggedIn={login}
-            savedCards={savedCards}
-            signOut={signOut}
-          ></ProtectedRoute>
-        </Switch>
-        <Footer />
-        <InfoToolTip
-          isOpen={isInfoPopupOpen}
-          handleLoginPopup={handleLoginPopup}
-          isClose={closeAllPopups}
+    <div className="page">
+      <Switch>
+        <Route exact path="/">
+          <div class="layout">
+            <Header signOut={signOut} handleLoginPopup={handleLoginPopup} />
+            <Main />
+          </div>
+          <Cards />
+          <About />
+        </Route>
+        <ProtectedRoute
+          path="/saved-news"
+          component={SavedNews}
+          loggedIn={login}
+          signOut={signOut}
+        ></ProtectedRoute>
+      </Switch>
+      <Footer />
+      <InfoToolTip
+        isOpen={isInfoPopupOpen}
+        handleLoginPopup={handleLoginPopup}
+        isClose={closeAllPopups}
+        closeToOverlay={handleOverlayClose}
+      />
+      {!formToggle ? (
+        <LoginPopup
+          isOpen={LoginPopupOpen}
           closeToOverlay={handleOverlayClose}
-        />
-        {!formToggle ? (
-          <LoginPopup
-            isOpen={LoginPopupOpen}
-            closeToOverlay={handleOverlayClose}
-            toggled={formToggle}
-            handleFormToggle={handleFormToggle}
-            isClose={closeAllPopups}
-          ></LoginPopup>
-        ) : (
-          <RegistrationPopup
-            isOpen={LoginPopupOpen}
-            closeToOverlay={handleOverlayClose}
-            toggled={formToggle}
-            handleFormToggle={handleFormToggle}
-            isClose={closeAllPopups}
-          ></RegistrationPopup>
-        )}
-      </div>
-    </currentUserContext.Provider>
+          toggled={formToggle}
+          handleFormToggle={handleFormToggle}
+          isClose={closeAllPopups}
+        ></LoginPopup>
+      ) : (
+        <RegistrationPopup
+          isOpen={LoginPopupOpen}
+          closeToOverlay={handleOverlayClose}
+          toggled={formToggle}
+          handleFormToggle={handleFormToggle}
+          isClose={closeAllPopups}
+        ></RegistrationPopup>
+      )}
+    </div>
   );
 }
 

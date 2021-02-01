@@ -1,14 +1,15 @@
 import React from "react";
 import "./search/search.css";
-import {useDispatch} from 'react-redux'
-import {fetchCards} from '../../redux/actions'
-function Search({keyword, setKeyword }) {
+import { useSelector, useDispatch } from "react-redux";
+import { fetchCards, getKeyword } from "../../redux/actions";
+function Search() {
+  const keyword = useSelector((state) => state.news.keyword);
 
-  const dispatch = useDispatch()
-  function submitSearch(e){
+  const dispatch = useDispatch();
+  function submitSearch(e) {
     e.preventDefault();
-    if(keyword){
-      dispatch(fetchCards(keyword))
+    if (keyword) {
+      dispatch(fetchCards(keyword));
     }
   }
   return (
@@ -18,12 +19,12 @@ function Search({keyword, setKeyword }) {
         placeholder="Найти"
         type="text"
         value={keyword}
-        onChange={(e) => setKeyword(e.target.value)}
+        onChange={(e) => dispatch(getKeyword(e.target.value))}
       ></input>
       <button onClick={submitSearch} className="button button_place_search">
         Искать
       </button>
     </form>
-  )
-  }
+  );
+}
 export default Search;

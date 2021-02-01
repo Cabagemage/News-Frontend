@@ -14,17 +14,13 @@ import {
   SET_MESSAGE_FALSE,
   SET_KEYWORD,
   REMOVE_NEWS_CARD,
+  SET_USER_INFORMATION,
+  GET_SAVED_CARDS,
 } from "./types.js";
 import { newsProfile } from "../utils/API/NewsApi";
 import { mainApi } from "../utils/API/MainApi";
 import * as Auth from "../utils/API/Auth";
 
-export function createSaveNews(savedCard) {
-  return {
-    type: SAVE_NEWS_CARD,
-    payload: savedCard,
-  };
-}
 export function startSearch() {
   return {
     type: START_SEARCH,
@@ -85,6 +81,33 @@ export function setKeyword(keyword) {
     payload: keyword,
   };
 }
+export function setUserInfo(token) {
+  return async (dispatch) => {
+    try {
+      const getOwnerInfo = await mainApi.getOwnerInfo(token);
+      const res = getOwnerInfo;
+      dispatch({ type: SET_USER_INFORMATION, payload: res });
+    } catch (e) {
+      console.log(e);
+    } finally {
+    }
+  };
+}
+//All about news
+export function getSavedCards(token) {
+  return async (dispatch) => {
+    try {
+      const savedNews = await mainApi.getSavedCards(token);
+      const res = savedNews;
+      console.log(res, res.date)
+      dispatch({ type: GET_SAVED_CARDS, payload: res.date });
+
+    } catch (e) {
+      console.log(e);
+    } finally {
+    }
+  };
+}
 export function fetchCards(keyword) {
   return async (dispatch) => {
     try {
@@ -93,6 +116,7 @@ export function fetchCards(keyword) {
       const response = await newsProfile.getCards(keyword);
       const getCards = await response.articles;
       dispatch({ type: FETCH_NEWS_CARDS, payload: getCards });
+
       dispatch(setKeyword(keyword));
     } catch (e) {
       console.log(e);
@@ -101,6 +125,71 @@ export function fetchCards(keyword) {
     }
   };
 }
+export function getKeyword(keyword) {
+  return async (dispatch) => {
+    dispatch({ type: SET_KEYWORD, payload: keyword });
+  };
+}
+export function handleSaveCard({
+  keyword,
+  title,
+  text,
+  date,
+  source,
+  link,
+  image,
+  owner,
+  token,
+}) {
+  return async (dispatch) => {
+    try {
+      const handleSaveCard = await mainApi.addNewCard(token, {
+        keyword,
+        title,
+        text,
+        date,
+        source,
+        link,
+        image,
+        owner,
+      });
+      const response = await newsProfile.getCards(keyword);
+      const getCards = await response.articles;
+
+      const newCards = getCards.map((card) => {
+        if (card.url === handleSaveCard.link) {
+          return {
+            ...card,
+            id: handleSaveCard._id,
+            owner: handleSaveCard.owner,
+          };
+        }
+        return card;
+      });
+
+      dispatch({ type: FETCH_NEWS_CARDS, payload: newCards });
+      dispatch({ type: SAVE_NEWS_CARD, payload: handleSaveCard });
+    } catch (err) {
+      console.log(err);
+    } finally {
+    }
+  };
+}
+export function handleDeleteCard(token, id) {
+  return async (dispatch) => {
+    try {
+      await mainApi.deleteThisCard(token, id);
+      dispatch({ type: REMOVE_NEWS_CARD, payload: id });
+    } catch (err) {
+      if (err === 409) {
+        console.log(err);
+      }
+    } finally {
+    }
+  };
+}
+
+// Auth
 export function handleLogin(email, password) {
   return async (dispatch) => {
     try {
@@ -134,6 +223,7 @@ export function handleTokenCheck() {
     }
   };
 }
+
 export function onRegister(email, password, name) {
   return async (dispatch) => {
     try {
@@ -145,63 +235,6 @@ export function onRegister(email, password, name) {
     } catch (err) {
       if (err === 409) {
         console.log("Такой пользователь уже существует");
-      }
-    } finally {
-    }
-  };
-}
-export function handleSaveCard({
-  keyword,
-  title,
-  text,
-  date,
-  source,
-  link,
-  image,
-  owner,
-  token,
-}) {
-  return async (dispatch) => {
-    try {
-      const handleSaveCard = await mainApi.addNewCard(token, {
-        keyword,
-        title,
-        text,
-        date,
-        source,
-        link,
-        image,
-        owner,
-      });
-      const response = await newsProfile.getCards(keyword);
-      const getCards = await response.articles;
-      const newCards = getCards.map((card) => {
-        if (card.url === handleSaveCard.link) {
-          return {
-            ...card,
-            id: handleSaveCard._id,
-            owner: handleSaveCard.owner,
-          };
-        }
-        return card;
-      });
-
-      dispatch({ type: FETCH_NEWS_CARDS, payload: newCards });
-      dispatch({ type: SAVE_NEWS_CARD, payload: handleSaveCard });
-    } catch (err) {
-      console.log(err);
-    } finally {
-    }
-  };
-}
-export function handleDeleteCard(token, id) {
-  return async (dispatch) => {
-    try {
-      await mainApi.deleteThisCard(token, id);
-      dispatch({ type: REMOVE_NEWS_CARD, payload: id });
-    } catch (err) {
-      if (err === 409) {
-        console.log(err);
       }
     } finally {
     }

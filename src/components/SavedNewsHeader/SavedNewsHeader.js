@@ -1,8 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
 import "./savednews/savednews.css";
-import { currentUserContext } from "../../contexts/currentUserContext";
-function SavedNewsHeader({ savedCards }) {
-  const currentUser = useContext(currentUserContext);
+import { useSelector} from "react-redux";
+function SavedNewsHeader() {
+  const savedCards = useSelector((state) => state.news.savedCards);
+  const curUser = useSelector((state) => state.currentUser.userInfo);
+
   const arrayCopy = [...savedCards];
   arrayCopy.sort((a, b) => (a.keyword > b.keyword ? -1 : 1)); // сортируем копию
 
@@ -17,7 +19,7 @@ function SavedNewsHeader({ savedCards }) {
 
   function handlerMainText(arr) {
     if (arr.length >= 3) {
-      return arr.splice(0, 2 ) + " ";
+      return arr.splice(0, 2) + " ";
     } else if (arr.length < 3) {
       return arr.join(", ").split("");
     }
@@ -28,7 +30,7 @@ function SavedNewsHeader({ savedCards }) {
       <div className="savednews__content">
         <h2 className="savednews__title">Сохраненные статьи</h2>
         <h3 className="savednews__subtitle">
-          {currentUser.name}, у вас {savedCards.length}{" "}
+          {curUser.name}, у вас {savedCards.length}{" "}
           {savedCards.length >= 3
             ? "сохраненных статей"
             : "сохраненные статьи" && savedCards.length === 0
@@ -40,8 +42,7 @@ function SavedNewsHeader({ savedCards }) {
             ? " По ключевым словам:"
             : " По ключевому слову:"}{" "}
           <span className="savednews__keyword">
-            {handlerMainText(keysSorted)}
-            и {savedCards.length - 2} другим
+            {handlerMainText(keysSorted)}и {savedCards.length - 2} другим
           </span>
         </p>
       </div>

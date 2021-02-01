@@ -1,21 +1,22 @@
 import React, { useState, memo } from "react";
 import Card from "../Card/Card";
 import { useLocation } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import "./cards/cards.css";
 import "../../App.css";
 import Loader from "../Preloader/Preloader";
-function Cards({ handleDeleteCard, handleSaveCard, keyword, removeFromSavedNews }) {
+function Cards() {
   const loading = useSelector((state) => state.app.loading);
   const search = useSelector((state) => state.app.search);
   const news = useSelector((state) => state.news.fetchedNews);
+  const keyword = useSelector((state) => state.news.keyword);
   const savedCards = useSelector((state) => state.news.savedCards);
   const [toShow, setToShow] = useState(3);
   const itemsToShow = news.slice(0, toShow);
   const path = useLocation();
   const savedCardsPath = path.pathname === "/saved-news";
   const findCards = path.pathname === "/";
-  const dispatch = useDispatch();
+
   if (loading) {
     return <Loader />;
   }
@@ -35,8 +36,6 @@ function Cards({ handleDeleteCard, handleSaveCard, keyword, removeFromSavedNews 
                     keyword={keyword}
                     owner={card.owner}
                     date={card.publishedAt}
-                    handleSaveCard={handleSaveCard}
-                    handleDeleteCard={handleDeleteCard}
                     id={card.id}
                     text={card.description.substring(0, 87) + "..."}
                     title={card.title.substring(0, 60) + "..."}
@@ -70,7 +69,6 @@ function Cards({ handleDeleteCard, handleSaveCard, keyword, removeFromSavedNews 
                 {savedCards.map((savedCard, i) => (
                   <Card
                     owner={savedCard.owner}
-                    handleDeleteCard={handleDeleteCard}
                     keyword={savedCard.keyword}
                     key={i}
                     date={savedCard.date}
