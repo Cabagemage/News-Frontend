@@ -1,0 +1,10 @@
+.savednews__title {
+  font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
+  width: 100%;
+  margin: 0;
+  padding-bottom: 28px;
+  font-size: 14px;
+  font-weight: medium;
+  line-height: 24px;
+  color: rgba(26, 27, 34, 0.5);
+}

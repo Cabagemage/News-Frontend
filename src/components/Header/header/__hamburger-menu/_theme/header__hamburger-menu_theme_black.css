@@ -1,0 +1,27 @@
+.header__hamburger-menu_theme_black {
+  display: none;
+  position: absolute;
+  right: 16px;
+  width: 24px;
+  height: 24px;
+  background-color: transparent;
+  border: none;
+  background-image: url(../../../../../images/menu-black.svg);
+  background-position: center;
+  background-repeat: none;
+  background-size: cover;
+}
+
+.header__hamburger-menu_theme_black:hover {
+  opacity: 0.6;
+}
+
+.header__hamburger-menu_theme_black:focus {
+  outline: none;
+}
+
+@media screen and (max-width: 660px) {
+  .header__hamburger-menu_theme_black {
+    display: inline-block;
+  }
+}

@@ -1,0 +1,13 @@
+.savednews__subtitle {
+  max-width: 336px;
+  width: 100%;
+  margin: 0;
+  padding-bottom: 30px;
+  width: 100%;
+  font-family: "Roboto Slab", "Helvetica Neue", Arial, sans-serif;
+  color: #1a1b22;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 30px;
+  line-height: 34px;
+}

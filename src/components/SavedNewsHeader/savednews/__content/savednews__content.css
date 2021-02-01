@@ -1,0 +1,9 @@
+.savednews__content{
+padding-left: 104px;
+}
+
+@media screen and (max-width: 1440px) {
+  .savednews__content{
+    padding-left: 40px;
+  }
+}

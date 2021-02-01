@@ -1,0 +1,15 @@
+.layout__cards {
+  width: 100%;
+  background-color: #f5f6f7;
+  grid-area: cards;
+}
+
+@media screen and (max-width: 768px) {
+  .layout__cards {
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .layout__cards {
+  }
+}

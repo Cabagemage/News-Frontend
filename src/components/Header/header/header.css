@@ -1,0 +1,59 @@
+@import url(./_status/header_status_savednews.css);
+@import url(./_status/header_status_main.css);
+@import url(./__logo/header__logo.css);
+@import url(./__logo/_theme/header__logo_theme_black.css);
+@import url(./__link/header__link.css);
+@import url(./__container/header__container.css);
+@import url(./__navigation/header__navigation.css);
+@import url(./__hamburger-menu/header__hamburger-menu.css);
+
+.header {
+  width: 100%;
+  max-width: 1440px;
+  position: relative;
+  z-index: 100000;
+  height: 80px;
+  display: flex;
+  padding: 0 104px 0 104px;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: space-between;
+  font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
+  border-color: transparent;
+  border-bottom: 1px solid #c4c4c4;
+  background-repeat: no-repeat;
+  grid-area: header;
+}
+
+@media screen and (max-width: 790px) {
+  .header {
+    max-width: 790px;
+    height: 66px;
+    margin-bottom: 38px;
+    padding: 0 40px 0 40px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    max-width: 700px;
+    height: 66px;
+    padding: 0 20px 0 20px;
+  }
+}
+
+@media screen and (max-width: 639px) {
+  .header {
+    max-width: 639px;
+    margin-bottom: 50px;
+    height: 66px;
+    padding: 0 16px 0 16px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .header {
+    max-width: 500px;
+    margin-bottom: 30px;
+  }
+}

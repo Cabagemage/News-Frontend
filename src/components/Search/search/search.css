@@ -1,0 +1,38 @@
+@import url(./__input/search__input.css);
+@import url(./__error/search__error.css);
+.search {
+  display: grid;
+  max-width: 608px;
+  width: 100%;
+  height: 64px;
+  position: relative;
+  grid-area: search;
+  grid-template-areas: "search-input search-button";
+}
+
+@media screen and (max-width: 768px) {
+  .search {
+    width: 448px;
+    height: 56px;
+  }
+}
+
+@media screen and (max-width: 555px) {
+  .search {
+    width: 288px;
+    height: 56px;
+    grid-template-columns: 415px;
+    grid-template-rows: 68px 68px;
+    grid-template-areas: "search-input" "search-button";
+  }
+}
+
+@media screen and (max-width: 470px) {
+  .search {
+    width: 288px;
+    height: 56px;
+    grid-template-columns: 288px;
+    grid-template-rows: 68px 68px;
+    grid-template-areas: "search-input" "search-button";
+  }
+}

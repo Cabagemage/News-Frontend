@@ -1,0 +1,6 @@
+.footer__icons {
+  width: 72px;
+  display: flex;
+  justify-content: space-between;
+  grid-area: icons;
+}

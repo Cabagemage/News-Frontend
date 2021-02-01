@@ -1,0 +1,6 @@
+.link_theme_black {
+  color: #000000;
+}
+.link_theme_black:hover {
+  color: #808080;
+}

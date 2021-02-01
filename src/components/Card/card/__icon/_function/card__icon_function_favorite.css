@@ -1,0 +1,7 @@
+.card__icon_function_favorite {
+  background-image: url(../../../../../images/favorite.svg);
+}
+
+.card__icon_function_favorite:hover {
+  background-image: url(../../../../../images/favorite-active.svg);
+}

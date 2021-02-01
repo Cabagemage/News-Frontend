@@ -1,0 +1,12 @@
+.footer__social {
+  width: 24px;
+  height: 24px;
+  padding-left: 26px;
+}
+
+.footer__social:last-child {
+  width: 24px;
+  height: 24px;
+  padding-left: 0;
+}
+
