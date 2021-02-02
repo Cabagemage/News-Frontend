@@ -4,25 +4,12 @@ import Header from "../Header/Header";
 import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader";
 import "../Cards/cards/cards.css";
 
-function SavedNews({
-  loggedIn,
-  cards,
-  savedCards,
-  handleDeleteCard,
-  signOut,
-  getKeywords,
-})
-{
+function SavedNews({ signOut }) {
   return (
     <>
-      <Header loggedIn={loggedIn} signOut={signOut} />
-      <SavedNewsHeader getKeywords={getKeywords} savedCards={savedCards} />
-      <Cards
-        loggedIn={loggedIn}
-        cards={cards}
-        savedCards={savedCards}
-        handleDeleteCard={handleDeleteCard}
-      />
+      <Header signOut={signOut} />
+      <SavedNewsHeader />
+      <Cards />
     </>
   );
 }
