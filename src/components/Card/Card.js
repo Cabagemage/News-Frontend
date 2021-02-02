@@ -5,12 +5,14 @@ import { options } from "../../utils/utils";
 import {
   handleSaveCard,
   handleDeleteCard,
+  setKeyword,
 } from "../../redux/actions";
+import { SAVE_NEWS_CARD } from "../../redux/types";
 import { useSelector, useDispatch } from "react-redux";
-function Card({source, title, image, text, link, date, id, owner }) {
+function Card({ keyword, source, title, image, text, link, date, id, owner }) {
   const login = useSelector((state) => state.app.loggedIn);
   const token = useSelector((state) => state.app.token);
-  const keyword = useSelector((state) => state.news.keyword);
+  // const keyword = useSelector((state) => state.news.keyword);
   const savedCards = useSelector((state) => state.news.savedCards);
   console.log(savedCards);
   const [isShown, setIsShown] = useState(false); // Сокрытие и показ всплывающего сообщения
@@ -25,15 +27,14 @@ function Card({source, title, image, text, link, date, id, owner }) {
       ? "card__icon_status_bookmarked"
       : "card__icon_function_favorite"
   }`;
-
   // Убираем флажок, после чего удаляем карточка по айдишнику
   function handleDelete() {
     dispatch(handleDeleteCard(token, id));
     setFavorite(false);
   }
+  console.log(keyword);
   function handleSubmit() {
-    dispatch(
-      handleSaveCard({
+    dispatch(handleSaveCard({
         keyword: keyword,
         title: title.substring(0, 80) + "...", // Сокращаем размер строки до 80 символов + добавляем троеточие
         text: text.substring(0, 72) + "...", // Тоже самое
@@ -41,10 +42,9 @@ function Card({source, title, image, text, link, date, id, owner }) {
         source: source, // Источник
         link: link, // Ссылка
         image: image, // Изображение
-        owner: owner, // Владелец.
-        token: token,
-      })
-    );
+        owner: owner,
+        token: token, // Владелец.
+    }))
     setFavorite(true);
   }
 

@@ -159,9 +159,9 @@ export function handleSaveCard({
         image,
         owner,
       });
+      dispatch({ type: SAVE_NEWS_CARD, payload: handleSaveCard });
       const response = await newsProfile.getCards(keyword);
       const getCards = await response.articles;
-
       const newCards = getCards.map((card) => {
         if (card.url === handleSaveCard.link) {
           return {
@@ -172,15 +172,14 @@ export function handleSaveCard({
         }
         return card;
       });
-
       dispatch({ type: FETCH_NEWS_CARDS, payload: newCards });
-      dispatch({ type: SAVE_NEWS_CARD, payload: handleSaveCard });
     } catch (err) {
       console.log(err);
     } finally {
     }
   };
 }
+
 export function handleDeleteCard(token, id) {
   return async (dispatch) => {
     try {
