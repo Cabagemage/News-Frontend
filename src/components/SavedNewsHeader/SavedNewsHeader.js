@@ -21,7 +21,7 @@ function SavedNewsHeader() {
     if (arr.length >= 3) {
       return arr.splice(0, 2) + " ";
     } else if (arr.length < 3) {
-      return arr.join(", ").split("");
+      return arr.join(",").split("");
     }
   }
   function keySortedLength(arr){

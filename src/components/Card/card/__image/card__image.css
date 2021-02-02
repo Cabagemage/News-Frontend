@@ -3,6 +3,7 @@
   max-width: 400px;
   height: 272px;
   padding-bottom: 20px;
+  display: block;
 }
 
 @media screen and (max-width: 790px) {
@@ -12,9 +13,10 @@
   }
 }
 
-@media screen and (max-width: 560px) {
+@media screen and (max-width: 660px) {
   .card__image {
     max-width: 288px;
     height: 196px;
+    padding-bottom: 10px;
   }
 }

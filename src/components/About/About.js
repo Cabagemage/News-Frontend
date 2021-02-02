@@ -8,18 +8,20 @@ function About() {
       <div className="about__content">
         <img
           className="about__avatar"
-          src="https://s15.stc.all.kpcdn.net/russia/wp-content/uploads/2020/05/devushka-v-shlyape.jpg"
-          alt="девушка"
+          src="https://ichef.bbci.co.uk/news/800/cpsprodpb/169F6/production/_91026629_gettyimages-519508400.jpg"
+          alt="Панда"
         />
         <div className="about__text">
           <h2 className="about__title">Об авторе</h2>
           <p className="about__subtitle">
-            Это блок с описанием автора проекта. Здесь следует указать, как вас
-            зовут, чем вы занимаетесь, какими технологиями разработки владеете.
+            Меня зовут Андрей. Я создал данное приложение на стеке: React.js,
+            Express.js, Mongo.db.
           </p>
           <p className="about__subtitle">
-            Также можно рассказать о процессе обучения в Практикуме, чему вы тут
-            научились, и чем можете помочь потенциальным заказчикам.
+            Данное SPA-приложение выполняет функцию "поисковика" новостей на
+            основе ключевых слов на news-api. Также можно сохранять
+            понравившиеся карточки в свой профиль и при необходимости их
+            удалять.
           </p>
         </div>
       </div>

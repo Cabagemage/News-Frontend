@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 import { useLocation } from "react-router-dom";
 import "./card/card.css";
 import { options } from "../../utils/utils";
@@ -20,7 +20,7 @@ function Card({ keyword, source, title, image, text, link, date, id, owner }) {
   const savedCardsPath = path.pathname === "/saved-news";
   const dispatch = useDispatch();
   // Выставление класса иконки лайка в зависимости от условий.
-  
+
   const cardFavoritedClassName = `card__icon ${
     isFavorite && login && !savedCardsPath
       ? "card__icon_status_bookmarked"
