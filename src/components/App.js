@@ -8,7 +8,6 @@ import {
   removeToken,
   setPopupLoginOpen,
   setPopupLoginClose,
-  getKeyword,
   setUserInfo,
   getSavedCards,
   startSearch,
@@ -40,7 +39,7 @@ function App() {
   useEffect(() => {
     dispatch(setUserInfo(isToken));
     dispatch(getSavedCards(isToken));
-  }, [isToken]);
+  }, [isToken, dispatch]);
 
   useEffect(() => {
     // dispatch(getKeyword(localStorage.getItem("keyword")));

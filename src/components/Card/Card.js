@@ -5,14 +5,12 @@ import { options } from "../../utils/utils";
 import {
   handleSaveCard,
   handleDeleteCard,
-  setKeyword,
 } from "../../redux/actions";
-import { SAVE_NEWS_CARD } from "../../redux/types";
 import { useSelector, useDispatch } from "react-redux";
+
 function Card({ keyword, source, title, image, text, link, date, id, owner }) {
   const login = useSelector((state) => state.app.loggedIn);
   const token = useSelector((state) => state.app.token);
-  // const keyword = useSelector((state) => state.news.keyword);
   const savedCards = useSelector((state) => state.news.savedCards);
   console.log(savedCards);
   const [isShown, setIsShown] = useState(false); // Сокрытие и показ всплывающего сообщения
@@ -22,6 +20,7 @@ function Card({ keyword, source, title, image, text, link, date, id, owner }) {
   const savedCardsPath = path.pathname === "/saved-news";
   const dispatch = useDispatch();
   // Выставление класса иконки лайка в зависимости от условий.
+  
   const cardFavoritedClassName = `card__icon ${
     isFavorite && login && !savedCardsPath
       ? "card__icon_status_bookmarked"
