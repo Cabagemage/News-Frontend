@@ -110,6 +110,11 @@ function App() {
           loggedIn={login}
           signOut={signOut}
         ></ProtectedRoute>
+
+        <Route path="*">
+          <div>404 NOT FOUND</div>
+        </Route>
+        
       </Switch>
       <Footer />
       <InfoToolTip

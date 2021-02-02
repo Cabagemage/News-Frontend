@@ -81,6 +81,9 @@ export function setKeyword(keyword) {
     payload: keyword,
   };
 }
+
+
+
 export function setUserInfo(token) {
   return async (dispatch) => {
     try {
@@ -102,7 +105,6 @@ export function getSavedCards(token) {
     try {
       const savedNews = await mainApi.getSavedCards(token);
       const res = savedNews;
-      console.log(res, res.date);
       dispatch({ type: GET_SAVED_CARDS, payload: res.date });
       if (!res.date) {
         dispatch({ type: GET_SAVED_CARDS, payload: [] });
@@ -206,7 +208,6 @@ export function handleLogin(email, password) {
       console.log(e);
     } finally {
       dispatch(setPopupLoginClose());
-      console.log("hello");
     }
   };
 }
@@ -214,14 +215,12 @@ export function handleLogin(email, password) {
 export function handleTokenCheck() {
   return async (dispatch) => {
     const jwt = localStorage.getItem("token");
-    console.log(jwt);
     try {
       let response = await Auth.checkToken(jwt);
       if (response) {
         dispatch({ type: SET_TOKEN, payload: jwt });
         dispatch(setLoggedIn());
       }
-      console.log(jwt, response);
     } catch (e) {
       console.log(e);
     } finally {

@@ -11,8 +11,6 @@ import { useSelector, useDispatch } from "react-redux";
 function Card({ keyword, source, title, image, text, link, date, id, owner }) {
   const login = useSelector((state) => state.app.loggedIn);
   const token = useSelector((state) => state.app.token);
-  const savedCards = useSelector((state) => state.news.savedCards);
-  console.log(savedCards);
   const [isShown, setIsShown] = useState(false); // Сокрытие и показ всплывающего сообщения
   const [isFavorite, setFavorite] = useState(false); // likes
   const newsDate = new Date(date); // Время
@@ -31,7 +29,6 @@ function Card({ keyword, source, title, image, text, link, date, id, owner }) {
     dispatch(handleDeleteCard(token, id));
     setFavorite(false);
   }
-  console.log(keyword);
   function handleSubmit() {
     dispatch(handleSaveCard({
         keyword: keyword,

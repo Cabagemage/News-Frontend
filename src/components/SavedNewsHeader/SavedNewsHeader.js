@@ -16,7 +16,6 @@ function SavedNewsHeader() {
   const keysSorted = Object.keys(keywords).sort(function (a, b) {
     return keywords[a] > keywords[b] ? -1 : 1;
   });
-  console.log(keysSorted)
   function handlerMainText(arr) {
     if (arr.length >= 3) {
       return arr.splice(0, 2) + " ";
