@@ -42,11 +42,9 @@ function App() {
   }, [isToken, dispatch]);
 
   useEffect(() => {
-    // dispatch(getKeyword(localStorage.getItem("keyword")));
     const articles = localStorage.getItem("articles")
       ? JSON.parse(localStorage.getItem("articles"))
       : [];
-
     if (localStorage.getItem("keyword")) {
       dispatch(startSearch());
       dispatch({ type: FETCH_NEWS_CARDS, payload: articles });
@@ -114,7 +112,7 @@ function App() {
         <Route path="*">
           <div>404 NOT FOUND</div>
         </Route>
-        
+
       </Switch>
       <Footer />
       <InfoToolTip
