@@ -40,7 +40,8 @@ function App() {
     dispatch(setUserInfo(isToken));
     dispatch(getSavedCards(isToken));
   }, [isToken, dispatch]);
-
+  //  Берем новости из локалсторы и диспатчим два элемента: 1. startSearch триггерит поиск (Без которого карточки не отображаются)
+  // 2. Диспатчим в FETCH_NEWS_CARDS в качестве пейлоуда полученные из локалсторы карточки.
   useEffect(() => {
     const articles = localStorage.getItem("articles")
       ? JSON.parse(localStorage.getItem("articles"))
@@ -50,27 +51,27 @@ function App() {
       dispatch({ type: FETCH_NEWS_CARDS, payload: articles });
     }
   }, [dispatch]);
-
+  // На самом деле, эти три строки можно было бы вообще убрать и диспатчить состояние попапа напрямую в компоненты.
   const handleLoginPopup = () => {
     dispatch(setPopupLoginOpen());
   };
-
+// Переключатель формы внутри попапа (Между логином и регистрацией)
   const handleFormToggle = () => {
     setFormToggle(!formToggle);
   };
-
+// Закрытие всех попапов.
   const closeAllPopups = () => {
     dispatch(setPopupLoginClose());
     setInfoPopupOpen(false);
   };
-
+// Закрытие по клику на оверлей.
   const handleOverlayClose = (e) => {
     if (e.target !== e.currentTarget) {
       return;
     }
     closeAllPopups();
   };
-
+// Если юзер не зарегистрирован и попытается перейти на страницу с указанным ниже путем, то его перебросит на главную.
   function redirectToPopup() {
     const savedPath = path.pathname === "/saved-news";
     if (savedPath && !login) {
@@ -78,14 +79,14 @@ function App() {
       dispatch(setPopupLoginOpen());
     }
   }
-
+// Эта функция делает несколько вещей: 1. Удаляет токен из локалсторы, 2. Разлогинивает вас.
   const signOut = () => {
     dispatch(removeToken());
     dispatch(removeLoggedIn());
     localStorage.clear();
     history.push("/");
   };
-
+//  Проброс метода-проверки токена в юзэффект.
   useEffect(() => {
     dispatch(handleTokenCheck());
     redirectToPopup();

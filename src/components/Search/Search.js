@@ -8,6 +8,7 @@ function Search() {
   const dispatch = useDispatch();
   function submitSearch(e) {
     e.preventDefault();
+    //  Если есть кейворд, то поиск включается, если кейворда нет - то не включается. 
     if (keyword) {
       dispatch(fetchCards(keyword));
     }
