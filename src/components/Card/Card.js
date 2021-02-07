@@ -1,7 +1,7 @@
 import React, { useState} from "react";
 import { useLocation } from "react-router-dom";
 import "./card/card.css";
-import { options } from "../../utils/utils";
+import { optionsForDate } from "../../utils/utils";
 import {
   handleSaveCard,
   handleDeleteCard,
@@ -75,7 +75,7 @@ function Card({ keyword, source, title, image, text, link, date, id, owner }) {
       ) : null}
 
       <div className="card__text">
-        <p className="card__date">{newsDate.toLocaleString("ru", options)}</p>
+        <p className="card__date">{newsDate.toLocaleString("ru", optionsForDate)}</p>
         <a href={link} target="_blank" className="card__link">
           <h2 className="card__article">{title}</h2>
         </a>

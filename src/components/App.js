@@ -112,7 +112,6 @@ function App() {
         <Route path="*">
           <div>404 NOT FOUND</div>
         </Route>
-
       </Switch>
       <Footer />
       <InfoToolTip
