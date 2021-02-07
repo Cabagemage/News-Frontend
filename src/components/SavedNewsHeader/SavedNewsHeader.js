@@ -25,7 +25,7 @@ function SavedNewsHeader() {
   }
   function keySortedLength(arr){
     if(!arr.length){
-      return 'тут что-то будет'
+      return 'нет сохраненных новостей'
     }
     if(arr.length <= 2 ){
       return ''
