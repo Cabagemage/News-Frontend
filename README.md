@@ -11,4 +11,4 @@ Express.JS, Mongo.db
 3. Переписать код на TypeScript. 
 ### Ссылки: 
 Ссылка на репозиторий проекта: https://github.com/Cabagemage/News-Frontend 
-Ссылка на проект: https://news-explorer-proj.herokuapp.com/ 
+Ссылка на лайв-версию проекта: https://news-explorer-proj.herokuapp.com/ 
