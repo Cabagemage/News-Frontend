@@ -55,23 +55,23 @@ function App() {
   const handleLoginPopup = () => {
     dispatch(setPopupLoginOpen());
   };
-// Переключатель формы внутри попапа (Между логином и регистрацией)
+  // Переключатель формы внутри попапа (Между логином и регистрацией)
   const handleFormToggle = () => {
     setFormToggle(!formToggle);
   };
-// Закрытие всех попапов.
+  // Закрытие всех попапов.
   const closeAllPopups = () => {
     dispatch(setPopupLoginClose());
     setInfoPopupOpen(false);
   };
-// Закрытие по клику на оверлей.
+  // Закрытие по клику на оверлей.
   const handleOverlayClose = (e) => {
     if (e.target !== e.currentTarget) {
       return;
     }
     closeAllPopups();
   };
-// Если юзер не зарегистрирован и попытается перейти на страницу с указанным ниже путем, то его перебросит на главную.
+  // Если юзер не зарегистрирован и попытается перейти на страницу с указанным ниже путем, то его перебросит на главную.
   function redirectToPopup() {
     const savedPath = path.pathname === "/saved-news";
     if (savedPath && !login) {
@@ -79,14 +79,14 @@ function App() {
       dispatch(setPopupLoginOpen());
     }
   }
-// Эта функция делает несколько вещей: 1. Удаляет токен из локалсторы, 2. Разлогинивает вас.
+  // Эта функция делает несколько вещей: 1. Удаляет токен из локалсторы, 2. Разлогинивает вас.
   const signOut = () => {
     dispatch(removeToken());
     dispatch(removeLoggedIn());
     localStorage.clear();
     history.push("/");
   };
-//  Проброс метода-проверки токена в юзэффект.
+  //  Проброс метода-проверки токена в юзэффект.
   useEffect(() => {
     dispatch(handleTokenCheck());
     redirectToPopup();
