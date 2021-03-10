@@ -1,0 +1,39 @@
+
+.popup__save {
+  width: 360px;
+  height: 64px;
+  background-color: #2f71e5;
+  color: white;
+  border-radius: 100px;
+  margin-top: 39px;
+  justify-self: flex-end;
+  cursor: pointer;
+  border-color: transparent;
+  align-self: center;
+}
+.popup__save_disabled{
+  width: 360px;
+  height: 64px;
+  border-radius: 100px;
+  margin-top: 39px;
+  justify-self: flex-end;
+  cursor: pointer;
+  align-self: center;
+  background-color: #D1D2D6;
+}
+.popup__save:hover {
+  opacity: 0.6;
+}
+
+
+@media screen and (max-width: 650px) {
+  .popup__save .popup__save_disabled{
+    max-width: 270px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .popup__save .popup__save_disabled {
+    max-width: 170px;
+  }
+}

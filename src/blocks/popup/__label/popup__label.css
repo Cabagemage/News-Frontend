@@ -1,0 +1,9 @@
+.popup__label {
+  color: #2f71e5;
+  font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  padding-bottom: 9px;
+  font-size: 12px;
+  line-height: 15px;
+}

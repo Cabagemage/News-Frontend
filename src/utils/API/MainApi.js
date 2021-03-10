@@ -80,5 +80,5 @@ class MainApi {
   // Метод для получения инфы профиля
 }
 export const mainApi = new MainApi({
-  baseUrl: "https://news-finder.students.nomoreparties.xyz",
+  baseUrl: "https://backend-news12.herokuapp.com",
 });

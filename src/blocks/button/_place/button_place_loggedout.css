@@ -1,0 +1,24 @@
+.button_place_loggedout {
+  max-width: 176px;
+  height: 48px;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  box-sizing: content-box;
+  background-color: transparent;
+}
+
+@media screen and (max-width: 768px) {
+  .button_place_loggedout {
+    max-width: 152px;
+    height: 48px;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .button_place_loggedout {
+    max-width: 288px;
+    height: 48px;
+    margin-top: 22px;
+    margin-left: 15px;
+  }
+}
