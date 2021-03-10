@@ -1,14 +1,15 @@
 import React from "react";
 import PopupWithForm from "./PopupWithForm";
 import { Formik } from "formik";
-
+import { useDispatch } from "react-redux";
+import { onRegister } from "../../redux/actions";
 function RegistrationPopup({
   isOpen,
   isClose,
   handleFormToggle,
   closeToOverlay,
-  onRegister,
 }) {
+  const dispatch = useDispatch();
   return (
     <Formik
       initialValues={{ email: "", password: "", name: "" }}
@@ -36,7 +37,7 @@ function RegistrationPopup({
       }}
       onSubmit={(values, { setSubmitting }) => {
         setSubmitting(false);
-        onRegister(values.email, values.password, values.name);
+        dispatch(onRegister(values.email, values.password, values.name));
       }}
     >
       {({
@@ -49,7 +50,7 @@ function RegistrationPopup({
         handleReset,
         isSubmitting,
         dirty,
-        isValid
+        isValid,
       }) => (
         <PopupWithForm
           name="registration"
@@ -108,10 +109,9 @@ function RegistrationPopup({
                   placeholder="Введите имя"
                 />
                 <span className="popup__error_visible">
-                {errors.name && touched.name && errors.name}
+                  {errors.name && touched.name && errors.name}
                 </span>
               </div>
-
             </>
           }
         />

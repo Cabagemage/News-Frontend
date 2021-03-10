@@ -1,7 +1,7 @@
 import facebook from "../images/facebook.svg";
 import github from "../images/github.svg";
 // Опции для времени
-export const options = { day: "numeric", month: "long", year: "numeric" };
+export const optionsForDate = { day: "numeric", month: "long", year: "numeric" };
 
 export const footerLinks = [
   {

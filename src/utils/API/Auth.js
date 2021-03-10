@@ -1,4 +1,4 @@
-export const BASE_URL = "https://news-finder.students.nomoreparties.xyz";
+export const BASE_URL = "https://backend-news12.herokuapp.com";
 
 
 export const register = (email, password, name) => {

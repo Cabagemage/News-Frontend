@@ -28,5 +28,5 @@ class newsApi {
 }
 export const newsProfile = new newsApi({
   baseUrl: " https://nomoreparties.co/news/v2",
-  key: "2b98028da4304250b046d57668402fac",
+  key: "4cb18b1d9b4c4e3d8122046d71c1e2b0",
 });
