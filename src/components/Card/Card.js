@@ -1,14 +1,26 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import "./card/card.css";
 import { optionsForDate } from "../../utils/utils";
-import {
-  handleSaveCard,
-  handleDeleteCard,
-} from "../../redux/actions";
+import { handleSaveCard, handleDeleteCard } from "../../redux/actions";
 import { useSelector, useDispatch } from "react-redux";
-
-function Card({ keyword, source, title, image, text, link, date, id, owner }) {
+import LoginPopup from "../PopupAuth/LoginPopup";
+function Card({
+  LoginPopupOpen,
+  handleOverlayClose,
+  formToggle,
+  handleFormToggle,
+  closeAllPopups,
+  keyword,
+  source,
+  title,
+  image,
+  text,
+  link,
+  date,
+  id,
+  owner,
+}) {
   const login = useSelector((state) => state.app.loggedIn);
   const token = useSelector((state) => state.app.token);
   const [isShown, setIsShown] = useState(false); // Сокрытие и показ всплывающего сообщения
@@ -24,24 +36,30 @@ function Card({ keyword, source, title, image, text, link, date, id, owner }) {
       ? "card__icon_status_bookmarked"
       : "card__icon_function_favorite"
   }`;
+
   // Убираем флажок, после чего удаляем карточка по айдишнику
   function handleDelete() {
     dispatch(handleDeleteCard(token, id));
     setFavorite(false);
   }
   function handleSubmit() {
-    dispatch(handleSaveCard({
-        keyword: keyword,
-        title: title.substring(0, 80) + "...", // Сокращаем размер строки до 80 символов + добавляем троеточие
-        text: text.substring(0, 72) + "...", // Тоже самое
-        date: newsDate, // Дата
-        source: source, // Источник
-        link: link, // Ссылка
-        image: image, // Изображение
-        owner: owner,
-        token: token, // Владелец.
-    }))
-    setFavorite(true);
+    if (login) {
+      dispatch(
+        handleSaveCard({
+          keyword: keyword,
+          title: title.substring(0, 80) + "...", // Сокращаем размер строки до 80 символов + добавляем троеточие
+          text: text.substring(0, 72) + "...", // Тоже самое
+          date: newsDate, // Дата
+          source: source, // Источник
+          link: link, // Ссылка
+          image: image, // Изображение
+          owner: owner,
+          token: token, // Владелец.
+        })
+      );
+      setFavorite(true);
+    }
+
   }
 
   return (
@@ -63,7 +81,7 @@ function Card({ keyword, source, title, image, text, link, date, id, owner }) {
           onMouseEnter={() => setIsShown(true)}
           onMouseLeave={() => setIsShown(false)}
         ></button>
-      )}
+         )}
       {isShown ? (
         <p className="card__hover">
           {savedCardsPath
@@ -75,13 +93,20 @@ function Card({ keyword, source, title, image, text, link, date, id, owner }) {
       ) : null}
 
       <div className="card__text">
-        <p className="card__date">{newsDate.toLocaleString("ru", optionsForDate)}</p>
-        <a href={link} target="_blank" className="card__link">
+        <p className="card__date">
+          {newsDate.toLocaleString("ru", optionsForDate)}
+        </p>
+        <a href={link} rel="noreferrer" target="_blank" className="card__link">
           <h2 className="card__article">{title}</h2>
         </a>
         <p className="card__about"> {text}</p>
 
-        <a href={link} target="_blank" className="card__source">
+        <a
+          href={link}
+          target="_blank"
+          rel="noreferrer"
+          className="card__source"
+        >
           {source}
         </a>
       </div>

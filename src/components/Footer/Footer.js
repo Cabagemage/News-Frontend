@@ -10,10 +10,10 @@ function Footer() {
       <div className="footer__menu">
         <nav className="footer__nav">
           <ul className="footer__links">
-            {footerLinks.map(({ name, link }) => {
+            {footerLinks.map(({ name, link, id }) => {
               return (
                 <>
-                  <li className="footer__list-item">
+                  <li key={id} className="footer__list-item">
                     <a
                       className="link link_theme_black footer__link"
                       href={link}
@@ -28,9 +28,9 @@ function Footer() {
         </nav>
 
         <div className="footer__icons">
-          {footerSocialIcons.map(({ name, link, src }) => {
+          {footerSocialIcons.map(({ name, link, src, id }) => {
             return (
-              <a target="_blank" href={link}>
+              <a target="_blank" rel="noreferrer"  href={link} key={id}>
                 <img className="footer__social" src={src} alt={name} />
               </a>
             );

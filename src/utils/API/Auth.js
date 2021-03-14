@@ -1,4 +1,4 @@
-export const BASE_URL = "https://backend-news12.herokuapp.com";
+export const BASE_URL = "http://localhost:3001";
 
 
 export const register = (email, password, name) => {
