@@ -80,5 +80,5 @@ class MainApi {
   // Метод для получения инфы профиля
 }
 export const mainApi = new MainApi({
-  baseUrl: "https://backend-news12.herokuapp.com",
+  baseUrl: "http://localhost:3001",
 });

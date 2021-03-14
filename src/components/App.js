@@ -50,7 +50,7 @@ function App() {
       dispatch(startSearch());
       dispatch({ type: FETCH_NEWS_CARDS, payload: articles });
     }
-  }, [dispatch]);
+  }, []);
   // На самом деле, эти три строки можно было бы вообще убрать и диспатчить состояние попапа напрямую в компоненты.
   const handleLoginPopup = () => {
     dispatch(setPopupLoginOpen());
@@ -96,7 +96,7 @@ function App() {
     <div className="page">
       <Switch>
         <Route exact path="/">
-          <div class="layout">
+          <div className="layout">
             <Header signOut={signOut} handleLoginPopup={handleLoginPopup} />
             <Main />
           </div>

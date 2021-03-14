@@ -76,12 +76,12 @@ function Card({ keyword, source, title, image, text, link, date, id, owner }) {
 
       <div className="card__text">
         <p className="card__date">{newsDate.toLocaleString("ru", optionsForDate)}</p>
-        <a href={link} target="_blank" className="card__link">
+        <a href={link} rel="noreferrer" target="_blank" className="card__link">
           <h2 className="card__article">{title}</h2>
         </a>
         <p className="card__about"> {text}</p>
 
-        <a href={link} target="_blank" className="card__source">
+        <a href={link} target="_blank" rel="noreferrer" className="card__source">
           {source}
         </a>
       </div>
