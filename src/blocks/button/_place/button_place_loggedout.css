@@ -1,5 +1,6 @@
 .button_place_loggedout {
   max-width: 176px;
+  width: 100%;
   height: 48px;
   border: 1px solid #ffffff;
   color: #ffffff;
@@ -16,7 +17,7 @@
 
 @media screen and (max-width: 600px) {
   .button_place_loggedout {
-    max-width: 288px;
+    max-width: 200px;
     height: 48px;
   }
 }
