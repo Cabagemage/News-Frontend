@@ -1,25 +1,27 @@
 @import url(./__input/search__input.css);
 @import url(./__error/search__error.css);
+
 .search {
   display: grid;
   max-width: 608px;
   width: 100%;
   height: 64px;
   position: relative;
+  box-sizing: border-box;
   grid-area: search;
   grid-template-areas: "search-input search-button";
 }
 
 @media screen and (max-width: 768px) {
   .search {
-    width: 448px;
+    max-width: 608px;
     height: 56px;
   }
 }
 
 @media screen and (max-width: 555px) {
   .search {
-    width: 288px;
+    width: 100%;
     height: 56px;
     grid-template-columns: 415px;
     grid-template-rows: 68px 68px;

@@ -12,7 +12,7 @@
   background-size: cover;
 }
 
-@media screen and (max-width: 560px) {
+@media screen and (max-width: 660px) {
   .header__hamburger-menu_clicked {
     display: inline-block;
   }

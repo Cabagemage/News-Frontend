@@ -19,25 +19,8 @@
   background-color: #347eff;
 }
 
-@media screen and (max-width: 768px) {
-  .button_place_search {
-    width: 160px;
-    height: 56px;
-  }
-}
-@media screen and (max-width: 600px) {
-  .button_place_search {
-    width: 160px;
-  }
-}
-
 @media screen and (max-width: 555px) {
   .button_place_search {
-    width: 415px;
-  }
-}
-@media screen and (max-width: 474px) {
-  .button_place_search {
-    width: 288px;
+    width: 100%;
   }
 }

@@ -14,11 +14,9 @@
   }
 }
 
-@media screen and (max-width: 560px) {
+@media screen and (max-width: 600px) {
   .button_place_loggedout {
     max-width: 288px;
     height: 48px;
-    margin-top: 22px;
-    margin-left: 15px;
   }
 }
