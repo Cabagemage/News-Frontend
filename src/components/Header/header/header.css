@@ -6,6 +6,7 @@
 @import url(./__container/header__container.css);
 @import url(./__navigation/header__navigation.css);
 @import url(./__hamburger-menu/header__hamburger-menu.css);
+@import url(./__wrapper/header__wrapper.css);
 
 .header {
   width: 100%;
@@ -51,9 +52,3 @@
   }
 }
 
-@media screen and (max-width: 660px) {
-  .header {
-    max-width: 500px;
-    margin-bottom: 30px;
-  }
-}

@@ -9,6 +9,7 @@ function HeaderHamburgerSignedOut({ handleLoginPopup }) {
 
   return (
     <div className="header__container_version_mobile">
+      <div className="header__wrapper">
       <nav className="header__navigation">
         {login ? (
           <>
@@ -36,6 +37,7 @@ function HeaderHamburgerSignedOut({ handleLoginPopup }) {
       >
         Авторизироваться
       </button>
+      </div>
     </div>
   );
 }

@@ -9,6 +9,7 @@ function HeaderHamburgerSignedIn({signOut }) {
   const curUser = useSelector((state) => state.currentUser.userInfo);
   return (
     <div className="header__container_version_mobile">
+      <div className="header__wrapper">
       <nav className="header__navigation">
         <Route>
           <NavLink className="link link_theme_white" exact to="/">
@@ -46,6 +47,7 @@ function HeaderHamburgerSignedIn({signOut }) {
           ></img>
         </button>
       )}
+      </div>
     </div>
   );
 }
