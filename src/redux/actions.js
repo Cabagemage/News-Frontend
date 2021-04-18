@@ -88,11 +88,8 @@ export function setUserInfo(token) {
   return async (dispatch) => {
     try {
       const getOwnerInfo = await mainApi.getOwnerInfo(token);
-      const res = getOwnerInfo;
+      const res = getOwnerInfo ? getOwnerInfo : '';
       dispatch({ type: SET_USER_INFORMATION, payload: res });
-      if (!res) {
-        dispatch({ type: SET_USER_INFORMATION, payload: null });
-      }
     } catch (e) {
       console.log(e);
     } finally {
