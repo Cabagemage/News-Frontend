@@ -10,7 +10,7 @@
   margin-left: 15px;
 }
 
-@media screen and (max-width: 560px) {
+@media screen and (max-width: 600px) {
   .button_place_loggedin {
     max-width: 288px;
     height: 48px;
