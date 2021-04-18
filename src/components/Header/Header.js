@@ -92,7 +92,7 @@ function Header({ handleLoginPopup, signOut }) {
           {login && streamingsBtnIsClicked ? (
             <HeaderHamburgerSignedIn
               loggedIn={login}
-              name={curUser.name}
+              name={curUser ? curUser.name : ''}
               signOut={signOut}
               handleLoginPopup={handleLoginPopup}
             />

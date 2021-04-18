@@ -4,7 +4,7 @@ import "./card/card.css";
 import { optionsForDate } from "../../utils/utils";
 import { handleSaveCard, handleDeleteCard } from "../../redux/actions";
 import { useSelector, useDispatch } from "react-redux";
-import LoginPopup from "../PopupAuth/LoginPopup";
+
 function Card({
   LoginPopupOpen,
   handleOverlayClose,
@@ -59,7 +59,6 @@ function Card({
       );
       setFavorite(true);
     }
-
   }
 
   return (
@@ -81,7 +80,7 @@ function Card({
           onMouseEnter={() => setIsShown(true)}
           onMouseLeave={() => setIsShown(false)}
         ></button>
-         )}
+      )}
       {isShown ? (
         <p className="card__hover">
           {savedCardsPath
