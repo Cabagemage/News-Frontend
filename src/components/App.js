@@ -91,7 +91,7 @@ function App() {
     localStorage.clear();
     history.push("/");
   };
-  
+
   //  Проброс метода-проверки токена в юзэффект.
   useEffect(() => {
     dispatch(handleTokenCheck());

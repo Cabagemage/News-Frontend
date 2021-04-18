@@ -1,8 +1,6 @@
 .header_status_mobile {
-  width: 320px;
   position: absolute;
   background-color: grey;
   z-index: 500;
 }
 
- 
